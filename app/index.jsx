@@ -9,11 +9,12 @@ import CustomButton from "../components/CustomButton";
 
 export default function App() {
   return (
-    <SafeAreaView className="bg-black h-full">
-      <StatusBar hidden={true} />
+    <View className="bg-black h-full">
+      {/* <SafeAreaView className="bg-black h-full"> */}
+      <StatusBar hidden={false} style="light" />
       <ScrollView contentContainerStyle={{ height: "100%" }}>
         <ImageBackground source={images.splashscreegraphic}>
-          <View className="w-full justify-end items-center min-h-screen">
+          <View className="w-full justify-end items-center min-h-screen ">
             <CustomButton
               title="Get Started"
               handlePress={() => router.push("/entername")}
@@ -22,6 +23,7 @@ export default function App() {
           </View>
         </ImageBackground>
       </ScrollView>
-    </SafeAreaView>
+      {/* </SafeAreaView> */}
+    </View>
   );
 }

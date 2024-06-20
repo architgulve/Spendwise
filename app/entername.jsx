@@ -6,19 +6,25 @@ import { Redirect, router } from "expo-router";
 import CustomButton from "../components/CustomButton";
 const entername = () => {
   return (
-    <SafeAreaView className="bg-black h-full">
-      <StatusBar hidden={true} />
+    <View className="bg-black h-full">
+    {/* <SafeAreaView className="bg-black h-full"> */}
+      <StatusBar hidden={false} style="light" />
       <ScrollView contentContainerStyle={{ height: "100%" }}>
-          <View className="w-full justify-end items-center min-h-screen">
-            <Text className="text-white text-2xl ">Enter Name</Text>
+        <View className="w-full justify-between items-center min-h-screen">
+          <View className="w-full justify-start items-center">
+            <Text className="text-white text-3xl mt-32">Enter your Name</Text>
+          </View>
+          <View className="w-full justify-end items-center ">
             <CustomButton
-              title="Get Started"
-              handlePress={() => router.push("/home")}
+              title="Done"
+              handlePress={() => router.push("/entername")}
               ContainerStyles="mb-20"
             />
           </View>
+        </View>
       </ScrollView>
-    </SafeAreaView>
+    {/* </SafeAreaView> */}
+    </View>
   );
 };
 
