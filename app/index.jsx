@@ -17,7 +17,7 @@ export default function App() {
           <View className="w-full justify-end items-center min-h-screen ">
             <CustomButton
               title="Get Started"
-              handlePress={() => router.push("/entername")}
+              handlePress={() => router.push("/(onboarding)/entername")}
               ContainerStyles="mb-20"
             />
           </View>
