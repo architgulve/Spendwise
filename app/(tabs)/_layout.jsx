@@ -9,7 +9,7 @@ const TabsLayout = () => {
       <Tabs
         screenOptions={{ 
           headerShown: false,
-          tabBarActiveTintColor: '#711AB6', 
+          tabBarActiveTintColor: 'white', 
           tabBarInactiveTintColor: 'white',
           tabBarStyle: {
             backgroundColor: 'black',

@@ -1,7 +1,7 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import React from 'react'
 // import { ScrollView } from 'react-native-gesture-handler'
-//import entername from '../(onboarding)/entername'
+//import entername from '../(onboarding)/entername'\
 var month=new Date().getMonth() + 1;
 checkMonthName =(month)=>{
 
@@ -25,33 +25,93 @@ checkMonthName =(month)=>{
 const Home = () => {
   return (
     <View className="bg-black h-full ">
-      <ScrollView contentContainerStyle={{ height: "100%" }} >
-        <View className="mt-10 mx-3">
-          <Text className="text-white text-3xl font-bold ">Hello! User</Text>
-        </View>
-        <View className="bg-[#711AB6] w-11/12 h-36 rounded-2xl mt-5 self-center">
-          <View className="flex flex-row mx-3 mt-3 w-11/12 justify-between items-center">
-            <View className="">
-              <Text className="text-white text-3xl ">INR 0.00</Text>
+      <SafeAreaView>
+        <ScrollView>
+          <View className="mt-10 mx-3">
+            <Text className="text-white text-3xl font-bold ">Hello! User</Text>
+          </View>
+          <View className="bg-[#540495] w-11/12  rounded-2xl mt-5 p-3 self-center">
+            <View className="flex flex-row mx-3 justify-between items-center">
+              <View className="">
+                <Text className="text-white text-2xl ">INR 0.00</Text>
+              </View>
+              <View className="">
+                <Text className="text-white opacity-70">{checkMonthName(month)}</Text>
+              </View>
             </View>
-            <View className="">
-              <Text className="text-white opacity-70">{checkMonthName(month)}</Text>
+            <Text className="text-white opacity-70 self-start mx-3">of 5000</Text>
+            <View className="w-11/12 h-10 bg-black justify-center self-center my-3 rounded-full ">
+              <View className="w-1/2 h-10 bg-[#0FB700] rounded-full justify-start"></View>
             </View>
           </View>
-          <Text className="text-white opacity-70 self-start mx-3">of 5000</Text>
-          <View className="w-11/12 h-10 bg-black justify-center self-center mt-3 rounded-full ">
-            <View className="w-1/2 h-10 bg-green-500 rounded-full justify-start"></View>
+
+          <View >
+            <View>
+              <Text className="text-[#7700D7] text-xl font-bold mx-3 mt-5">Today</Text>
+            </View>
+            <View className="justify-start items-center  space-y-2 my-5">
+              <View className="bg-[#121212] w-11/12 my-1 items-center p-4 rounded-2xl">
+                <View className="flex flex-row  w-11/12 justify-between items-center">
+                  <Text className=" text-white">Burgers</Text>
+                  <Text className=" text-white">INR 0.00</Text>
+                </View>
+              </View>
+              <View className="bg-[#121212] w-11/12 my-1 items-center p-4 rounded-2xl">
+                <View className="flex flex-row  w-11/12 justify-between items-center">
+                  <Text className=" text-white">Burgers</Text>
+                  <Text className=" text-white">INR 0.00</Text>
+                </View>
+              </View>
+              <View className="bg-[#121212] w-11/12 my-1 items-center p-4 rounded-2xl">
+                <View className="flex flex-row  w-11/12 justify-between items-center">
+                  <Text className=" text-white">Burgers</Text>
+                  <Text className=" text-white">INR 0.00</Text>
+                </View>
+              </View>
+              
+            </View>
           </View>
-        </View>
-        <View>
-          <Text className="text-white text-2xl font-bold mx-3 mt-5 mb-3">Today</Text>
-          <View className="justify-start items-start mx-5 space-y-2">
-            <Text className="text-lg text-yellow-300">Burgers</Text>
-            <Text className="text-lg text-red-300">Pizza</Text>
-            <Text className="text-lg text-blue-300">Fries</Text>
+
+          <View>
+            <View>
+              <Text className="text-[#7700D7] text-xl font-bold mx-3 mt-5 mb-3">Categories</Text>
+            </View>
+            <View className="flex flex-row flex-wrap">
+              <View className="basis-1/2">
+                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                </View>
+              </View>
+              <View className="basis-1/2">
+                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                </View>
+              </View>
+              <View className="basis-1/2">
+                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                </View>
+              </View>
+              <View className="basis-1/2">
+                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                </View>
+              </View>
+              <View className="basis-1/2">
+                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                </View>
+              </View>
+              <View className="basis-1/2">
+                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                </View>
+              </View>
+                 
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
     </View>
   )
 }

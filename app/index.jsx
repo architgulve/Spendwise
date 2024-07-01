@@ -12,7 +12,7 @@ export default function App() {
     <View className="bg-black h-full">
       {/* <SafeAreaView className="bg-black h-full"> */}
       <StatusBar hidden={false} style="light" />
-      <ScrollView contentContainerStyle={{ height: "100%" }}>
+      <ScrollView>
         <ImageBackground source={images.splashscreegraphic}>
           <View className="w-full justify-end items-center min-h-screen ">
             <CustomButton
