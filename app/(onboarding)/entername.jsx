@@ -17,7 +17,7 @@ const entername = () => {
         <View className="w-full justify-between items-center min-h-screen">
           <View className="w-full justify-center items-center">
             <View className="w-full justify-start items-center">
-              <Text className="text-white text-3xl mt-32">Enter your Name</Text>
+              <Text className="text-white text-3xl mt-32">YEEEEEEEEEEEEEET INDIA WONN T20 WC</Text>
             </View>
             <View className="w-full justify-start items-center ">
               <FormField
