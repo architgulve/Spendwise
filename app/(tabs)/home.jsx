@@ -76,38 +76,39 @@ const Home = () => {
             <View>
               <Text className="text-[#7700D7] text-xl font-bold mx-3 mt-5 mb-3">Categories</Text>
             </View>
-            <View className="flex flex-row flex-wrap">
+            {/* <View className="w-11/12 self-center"> */}
+            <View className="flex flex-row flex-wrap ">
               <View className="basis-1/2">
                 <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍉 Food</Text>
                 </View>
               </View>
               <View className="basis-1/2">
                 <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍇 Food</Text>
                 </View>
               </View>
               <View className="basis-1/2">
                 <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                  <Text className="text-white font-extrabold mt-3 ml-5">👕 Food</Text>
                 </View>
               </View>
               <View className="basis-1/2">
                 <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                  <Text className="text-white font-extrabold mt-3 ml-5">💻 Food</Text>
                 </View>
               </View>
               <View className="basis-1/2">
                 <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                  <Text className="text-white font-extrabold mt-3 ml-5">🍌 Food</Text>
                 </View>
               </View>
               <View className="basis-1/2">
                 <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍇Food</Text>
+                  <Text className="text-white font-extrabold mt-3 ml-5">🤡 Food</Text>
                 </View>
               </View>
-                 
+              {/* </View>      */}
             </View>
           </View>
         </ScrollView>
