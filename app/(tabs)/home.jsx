@@ -28,7 +28,7 @@ const Home = () => {
       <SafeAreaView>
         <ScrollView>
           <View className="mt-10 mx-3">
-            <Text className="text-white text-3xl font-bold ">Hello! User</Text>
+            <Text className="text-white text-3xl font-bold ">Hello! LeBron</Text>
           </View>
           <View className="bg-[#540495] w-11/12  rounded-2xl mt-5 p-3 self-center">
             <View className="flex flex-row mx-3 justify-between items-center">
