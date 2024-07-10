@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import React from 'react'
+import { MotiView } from 'moti'
 // import { ScrollView } from 'react-native-gesture-handler'
 //import entername from '../(onboarding)/entername'\
 var month=new Date().getMonth() + 1;
@@ -27,9 +28,18 @@ const Home = () => {
     <View className="bg-black h-full ">
       <SafeAreaView>
         <ScrollView>
-          <View className="mt-10 mx-3">
-            <Text className="text-white text-3xl font-bold ">Hello! LeBron</Text>
-          </View>
+          <MotiView
+            from={{ 
+              opacity: 0,
+            }}
+            animate={{ 
+              opacity: 1,
+            }}
+          >
+            <View className="mt-10 mx-3">
+              <Text className="text-white text-3xl font-bold ">Hello! LeBron</Text>
+            </View>
+          </MotiView>
           <View className="bg-[#540495] w-11/12  rounded-2xl mt-5 p-3 self-center">
             <View className="flex flex-row mx-3 justify-between items-center">
               <View className="">
