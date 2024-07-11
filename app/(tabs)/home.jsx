@@ -28,97 +28,94 @@ const Home = () => {
     <View className="bg-black h-full ">
       <SafeAreaView>
         <ScrollView>
-          <MotiView
-            from={{ 
-              opacity: 0,
-            }}
-            animate={{ 
-              opacity: 1,
-            }}
-          >
-            <View className="mt-10 mx-3">
-              <Text className="text-white text-3xl font-bold ">Hello! LeBron</Text>
-            </View>
-          </MotiView>
-          <View className="bg-[#540495] w-11/12  rounded-2xl mt-5 p-3 self-center">
-            <View className="flex flex-row mx-3 justify-between items-center">
-              <View className="">
-                <Text className="text-white text-2xl ">INR 0.00</Text>
-              </View>
-              <View className="">
-                <Text className="text-white opacity-70">{checkMonthName(month)}</Text>
-              </View>
-            </View>
-            <Text className="text-white opacity-70 self-start mx-3">of 5000</Text>
-            <View className="w-11/12 h-10 bg-black justify-center self-center my-3 rounded-full ">
-              <View className="w-1/2 h-10 bg-[#0FB700] rounded-full justify-start"></View>
-            </View>
-          </View>
-
-          <View >
-            <View>
-              <Text className="text-[#7700D7] text-xl font-bold mx-3 mt-5">Today</Text>
-            </View>
-            <View className="justify-start items-center  space-y-2 my-5">
-              <View className="bg-[#121212] w-11/12 my-1 items-center p-4 rounded-2xl">
-                <View className="flex flex-row  w-11/12 justify-between items-center">
-                  <Text className=" text-white">Burgers</Text>
-                  <Text className=" text-white">INR 0.00</Text>
-                </View>
-              </View>
-              <View className="bg-[#121212] w-11/12 my-1 items-center p-4 rounded-2xl">
-                <View className="flex flex-row  w-11/12 justify-between items-center">
-                  <Text className=" text-white">Burgers</Text>
-                  <Text className=" text-white">INR 0.00</Text>
-                </View>
-              </View>
-              <View className="bg-[#121212] w-11/12 my-1 items-center p-4 rounded-2xl">
-                <View className="flex flex-row  w-11/12 justify-between items-center">
-                  <Text className=" text-white">Burgers</Text>
-                  <Text className=" text-white">INR 0.00</Text>
-                </View>
+          <View className="mx-3">
+            <View className="flex flex-col space-y-5">
+        
+              <View className="flex-1">
+                <Text className="text-white text-3xl font-bold mt-5">Hello! LeBron</Text>
               </View>
               
-            </View>
-          </View>
+              <View className="bg-[#540495] w-full  rounded-2xl p-3 self-center flex-1">
+                <View className="flex flex-row justify-between items-center">
+                  <View className="">
+                    <Text className="text-white text-2xl ">INR 0.00</Text>
+                  </View>
+                  <View className="">
+                    <Text className="text-white opacity-70">{checkMonthName(month)}</Text>
+                  </View>
+                </View>
+                <Text className="text-white opacity-70 self-start">of 5000</Text>
+                <View className="w-full h-10 bg-black justify-center self-center my-3 rounded-full ">
+                  <View className="w-1/2 h-10 bg-[#0FB700] rounded-full justify-start"></View>
+                </View>
+              </View>
 
-          <View>
-            <View>
-              <Text className="text-[#7700D7] text-xl font-bold mx-3 mt-5 mb-3">Categories</Text>
-            </View>
-            {/* <View className="w-11/12 self-center"> */}
-            <View className="flex flex-row flex-wrap ">
-              <View className="basis-1/2">
-                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍉 Food</Text>
+              <View className="flex-1 flex flex-col space-y-3">
+                <View>
+                  <Text className="text-[#7700D7] text-xl font-bold">Today</Text>
+                </View>
+                <View className="items-center flex flex-col space-y-3">
+                  <View className="bg-[#121212] w-full items-center p-4 rounded-2xl">
+                    <View className="flex flex-row  w-full justify-between items-center">
+                      <Text className=" text-white">Burgers</Text>
+                      <Text className=" text-white">INR 0.00</Text>
+                    </View>
+                  </View>
+                  <View className="bg-[#121212] w-full items-center p-4 rounded-2xl">
+                    <View className="flex flex-row w-full justify-between items-center">
+                      <Text className=" text-white">Burgers</Text>
+                      <Text className=" text-white">INR 0.00</Text>
+                    </View>
+                  </View>
+                  <View className="bg-[#121212] w-full items-center p-4 rounded-2xl">
+                    <View className="flex flex-row  w-full justify-between items-center">
+                      <Text className=" text-white">Burgers</Text>
+                      <Text className=" text-white">INR 0.00</Text>
+                    </View>
+                  </View>
                 </View>
               </View>
-              <View className="basis-1/2">
-                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍇 Food</Text>
+
+              <View className="flex-1 flex flex-col space-y-3">
+                <View>
+                  <Text className="text-[#7700D7] text-xl font-bold">Categories</Text>
                 </View>
+                {/* <View className="w-11/12 self-center"> */}
+                <View className="flex flex-row flex-wrap">
+                  <View className="basis-1/2 ">
+                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                      <Text className="text-white font-extrabold mt-3 ml-5">🍉 Food</Text>
+                    </View>
+                  </View>
+                  <View className="basis-1/2 ">
+                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                      <Text className="text-white font-extrabold mt-3 ml-5">🍇 Food</Text>
+                    </View>
+                  </View>
+                  <View className="basis-1/2 ">
+                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                      <Text className="text-white font-extrabold mt-3 ml-5">👕 Food</Text>
+                    </View>
+                  </View>
+                  <View className="basis-1/2 ">
+                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                      <Text className="text-white font-extrabold mt-3 ml-5">💻 Food</Text>
+                    </View>
+                  </View>
+                  <View className="basis-1/2 ">
+                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                      <Text className="text-white font-extrabold mt-3 ml-5">🍌 Food</Text>
+                    </View>
+                  </View>
+                  <View className="basis-1/2 ">
+                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+                      <Text className="text-white font-extrabold mt-3 ml-5">🤡 Food</Text>
+                    </View>
+                  </View>
+                </View>     
               </View>
-              <View className="basis-1/2">
-                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">👕 Food</Text>
-                </View>
-              </View>
-              <View className="basis-1/2">
-                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">💻 Food</Text>
-                </View>
-              </View>
-              <View className="basis-1/2">
-                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🍌 Food</Text>
-                </View>
-              </View>
-              <View className="basis-1/2">
-                <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                  <Text className="text-white font-extrabold mt-3 ml-5">🤡 Food</Text>
-                </View>
-              </View>
-              {/* </View>      */}
+
+
             </View>
           </View>
         </ScrollView>
