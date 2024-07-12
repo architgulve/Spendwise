@@ -1,8 +1,8 @@
 import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import React from 'react'
 import { MotiView } from 'moti'
-// import { ScrollView } from 'react-native-gesture-handler'
-//import entername from '../(onboarding)/entername'\
+import { StatusBar } from 'expo-status-bar';
+
 var month=new Date().getMonth() + 1;
 checkMonthName =(month)=>{
 
@@ -21,18 +21,19 @@ checkMonthName =(month)=>{
     else if(month == 11) monthName = "November"
     else if(month == 12) monthName = "December"
 
-    return monthName;
+    return monthName
 }
 const Home = () => {
   return (
     <View className="bg-black h-full ">
+      <StatusBar hidden={false} style="light" />
       <SafeAreaView>
         <ScrollView>
           <View className="mx-3">
             <View className="flex flex-col space-y-5">
         
               <View className="flex-1">
-                <Text className="text-white text-3xl font-bold mt-5">Hello! LeBron</Text>
+                <Text className="text-white text-3xl font-bold mt-5">Hello! name</Text>
               </View>
               
               <View className="bg-[#540495] w-full  rounded-2xl p-3 self-center flex-1">

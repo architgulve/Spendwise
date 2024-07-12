@@ -13,7 +13,7 @@ export default function App() {
   return (
     <View className="bg-black h-full">
       {/* <SafeAreaView className="bg-black h-full"> */}
-      <StatusBar hidden={false} style="light" />
+      <StatusBar hidden={true} style="light" />
       <ScrollView>
         <ImageBackground source={images.splashscreegraphic}>
           <View className="w-full justify-end items-center min-h-screen ">
