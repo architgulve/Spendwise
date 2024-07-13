@@ -2,28 +2,51 @@ import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import React from 'react'
 import { MotiView } from 'moti'
 import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from 'react';
 
-var month=new Date().getMonth() + 1;
-checkMonthName =(month)=>{
 
-  var monthName ;
-
-    if(month == 1)  monthName = "January"
-    else if(month == 2) monthName = "February" 
-    else if(month == 3) monthName = "March"
-    else if(month == 4) monthName = "April"
-    else if(month == 5) monthName = "May"
-    else if(month == 6) monthName = "June"
-    else if(month == 7) monthName = "July"
-    else if(month == 8) monthName = "August"
-    else if(month == 9) monthName = "September"
-    else if(month == 10) monthName = "October"
-    else if(month == 11) monthName = "November"
-    else if(month == 12) monthName = "December"
-
-    return monthName
-}
 const Home = () => {
+  const [userName, setUserName] = useState('Stranger');
+  const [userBudget, setUserBudget] = useState('5000');
+
+  useEffect(() => {
+    const fetchUserBudget = async () => {
+      try {
+        const budget = await AsyncStorage.getItem("userBudget");
+        if (budget !== null) {
+          setUserBudget(budget);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchUserBudget();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const name = await AsyncStorage.getItem("userName");
+        if (name !== null) {
+          setUserName(name);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchUserName();
+  }, []);
+
+  const checkMonthName = (month) => {
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June", 
+      "July", "August", "September", "October", "November", "December"
+    ];
+    return monthNames[month - 1];
+  };
+  var month=new Date().getMonth() + 1;
+
   return (
     <View className="bg-black h-full ">
       <StatusBar hidden={false} style="light" />
@@ -33,7 +56,7 @@ const Home = () => {
             <View className="flex flex-col space-y-5">
         
               <View className="flex-1">
-                <Text className="text-white text-3xl font-bold mt-5">Hello! name</Text>
+                <Text className="text-white text-3xl font-bold mt-5">Hello! {userName}</Text>
               </View>
               
               <View className="bg-[#540495] w-full  rounded-2xl p-3 self-center flex-1">
@@ -45,7 +68,7 @@ const Home = () => {
                     <Text className="text-white opacity-70">{checkMonthName(month)}</Text>
                   </View>
                 </View>
-                <Text className="text-white opacity-70 self-start">of 5000</Text>
+                <Text className="text-white opacity-70 self-start">of {userBudget}</Text>
                 <View className="w-full h-10 bg-black justify-center self-center my-3 rounded-full ">
                   <View className="w-1/2 h-10 bg-[#0FB700] rounded-full justify-start"></View>
                 </View>

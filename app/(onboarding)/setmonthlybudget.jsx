@@ -13,12 +13,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const entername = () => {
 
   const [form, setform] = useState({
-    name: "",
+    budget: "",
   })
 
-  const setUserName = async (name) => {
+  const setUserBudget = async (budget) => {
     try {
-      await AsyncStorage.setItem("userName", name);
+      await AsyncStorage.setItem("userBudget", budget);
     }
     catch (e) {
       console.log(e);
@@ -26,8 +26,8 @@ const entername = () => {
   };
 
   const handlePress = async () => {
-    await setUserName(form.name);
-    router.push("/setmonthlybudget");
+    await setUserBudget(form.budget);
+    router.push("/(tabs)/home");
   };
 
   return (
@@ -38,23 +38,23 @@ const entername = () => {
         <View className="w-full justify-between items-center min-h-screen">
           <View className="w-full justify-center items-center">
             <View className="w-full justify-start items-center">
-              <Text className="text-white text-3xl mt-32">Enter Your Name</Text>
+              <Text className="text-white text-3xl mt-32">Set monthly budget</Text>
             </View>
             <View className="w-full justify-start items-center ">
               <FormField
-                placeholder="Eg. John Doe"
+                placeholder="Default: 5000"
                 title="Name"
-                value={form.name}
-                handleChangeText={(e) => setform({...form,name:e})}
+                value={form.budget}
+                handleChangeText={(e) => setform({...form,budget:e})}
                 otherStyles="mx-7 mt-20"
-                keyboardType="default"
+                keyboardType="number-pad"
 
               />
             </View>
           </View>
           <View className="w-full justify-end items-center ">
             <CustomButton
-              title="Next"
+              title="Done"
               handlePress={handlePress}
               ContainerStyles="mb-20"
             />

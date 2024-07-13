@@ -6,6 +6,7 @@ const OnboardingLayout = () => {
   return (
     <Stack>
         <Stack.Screen name="entername" options={{ headerShown: false }} />
+        <Stack.Screen name="setmonthlybudget" options={{ headerShown: false }} />
         {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
     </Stack>
   )
