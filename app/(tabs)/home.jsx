@@ -5,7 +5,6 @@ import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from 'react';
 
-
 const Home = () => {
   const [userName, setUserName] = useState('Stranger');
   const [userBudget, setUserBudget] = useState('5000');
@@ -54,7 +53,6 @@ const Home = () => {
         <ScrollView>
           <View className="mx-3">
             <View className="flex flex-col space-y-5">
-        
               <View className="flex-1">
                 <Text className="text-white text-3xl font-bold mt-5">Hello! {userName}</Text>
               </View>
