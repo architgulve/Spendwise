@@ -4,8 +4,7 @@ import { MotiView } from 'moti'
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from 'react';
-import add from './add';
-import { getAmount } from './add';
+
 const Home = () => {
   const [userName, setUserName] = useState('Stranger');
   const [userBudget, setUserBudget] = useState('5000');
@@ -61,7 +60,7 @@ const Home = () => {
               <View className="bg-[#540495] w-full  rounded-2xl p-3 self-center flex-1">
                 <View className="flex flex-row justify-between items-center">
                   <View className="">
-                    <Text className="text-white text-2xl ">INR {amount}</Text>
+                    <Text className="text-white text-2xl ">INR 0.00</Text>
                   </View>
                   <View className="">
                     <Text className="text-white opacity-70">{checkMonthName(month)}</Text>
