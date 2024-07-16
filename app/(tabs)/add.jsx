@@ -14,7 +14,7 @@ const Add = () => {
         >
           <Text className="text-white text-3xl font-bold mt-10">Addition</Text>
 
-          <View className="bg-[#540495] w-11/12  rounded-2xl p-4 self-center flex-1">
+          <View className="bg-[#121212] w-11/12  rounded-2xl p-4 self-center flex-1">
                 
             <View style={{ flexDirection: 'column', justifyContent: 'center',
                 alignContent: 'center' }}>
