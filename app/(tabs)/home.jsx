@@ -54,6 +54,9 @@ const Home = () => {
           <View className="mx-3">
             <View className="flex flex-col space-y-5">
               <View className="flex-1">
+                <View className="flex flex-row justify-between items-center">
+                  <Text className="text-white text-3xl font-bold"></Text>
+                </View>
                 <Text className="text-white text-3xl font-bold mt-5">Hello! {userName}</Text>
               </View>
               
