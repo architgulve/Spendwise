@@ -4,6 +4,10 @@ import { MotiView } from 'moti'
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from 'react';
+import TodayListItems from '../../components/TodayListItems';
+import CatGridItem from '../../components/CatGridItem';
+import AddCat from '../../components/AddCat';
+import { router } from 'expo-router';
 
 const Home = () => {
   const [userName, setUserName] = useState('Stranger');
@@ -46,6 +50,10 @@ const Home = () => {
   };
   var month=new Date().getMonth() + 1;
 
+  const handlePress = async () => {
+    router.push("/addcategory");
+  };
+
   return (
     <View className="bg-black h-full ">
       <StatusBar hidden={false} style="light" />
@@ -53,10 +61,8 @@ const Home = () => {
         <ScrollView>
           <View className="mx-3">
             <View className="flex flex-col space-y-5">
+
               <View className="flex-1">
-                <View className="flex flex-row justify-between items-center">
-                  <Text className="text-white text-3xl font-bold"></Text>
-                </View>
                 <Text className="text-white text-3xl font-bold mt-5">Hello! {userName}</Text>
               </View>
               
@@ -79,67 +85,48 @@ const Home = () => {
                 <View>
                   <Text className="text-[#7700D7] text-xl font-bold">Today</Text>
                 </View>
-                <View className="items-center flex flex-col space-y-3">
-                  <View className="bg-[#121212] w-full items-center p-4 rounded-2xl">
-                    <View className="flex flex-row  w-full justify-between items-center">
-                      <Text className=" text-white">Burgers</Text>
-                      <Text className=" text-white">INR 0.00</Text>
-                    </View>
-                  </View>
-                  <View className="bg-[#121212] w-full items-center p-4 rounded-2xl">
-                    <View className="flex flex-row w-full justify-between items-center">
-                      <Text className=" text-white">Burgers</Text>
-                      <Text className=" text-white">INR 0.00</Text>
-                    </View>
-                  </View>
-                  <View className="bg-[#121212] w-full items-center p-4 rounded-2xl">
-                    <View className="flex flex-row  w-full justify-between items-center">
-                      <Text className=" text-white">Burgers</Text>
-                      <Text className=" text-white">INR 0.00</Text>
-                    </View>
-                  </View>
+                
+                <View className="self-center flex flex-col">  
+                  <TodayListItems
+                    title="Clothes"
+                    value="200"
+                  />
+                  <TodayListItems
+                    title="Food"
+                    value="100"
+                  />
+                  <TodayListItems
+                    title="Entertainment"
+                    value="300"
+                  />
                 </View>
               </View>
 
               <View className="flex-1 flex flex-col space-y-3">
+
                 <View>
                   <Text className="text-[#7700D7] text-xl font-bold">Categories</Text>
                 </View>
-                {/* <View className="w-11/12 self-center"> */}
+               
                 <View className="flex flex-row flex-wrap">
-                  <View className="basis-1/2 ">
-                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                      <Text className="text-white font-extrabold mt-3 ml-5">🍉 Food</Text>
-                    </View>
-                  </View>
-                  <View className="basis-1/2 ">
-                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                      <Text className="text-white font-extrabold mt-3 ml-5">🍇 Food</Text>
-                    </View>
-                  </View>
-                  <View className="basis-1/2 ">
-                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                      <Text className="text-white font-extrabold mt-3 ml-5">👕 Food</Text>
-                    </View>
-                  </View>
-                  <View className="basis-1/2 ">
-                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                      <Text className="text-white font-extrabold mt-3 ml-5">💻 Food</Text>
-                    </View>
-                  </View>
-                  <View className="basis-1/2 ">
-                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                      <Text className="text-white font-extrabold mt-3 ml-5">🍌 Food</Text>
-                    </View>
-                  </View>
-                  <View className="basis-1/2 ">
-                    <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
-                      <Text className="text-white font-extrabold mt-3 ml-5">🤡 Food</Text>
-                    </View>
-                  </View>
-                </View>     
-              </View>
+                  <CatGridItem
+                    title="👔 Clothes"
+                    value="200"
+                  />
+                  <CatGridItem
+                    title="🍇 Food"
+                    value="100"
+                  />
+                  <CatGridItem
+                    title="🎥 Movie"
+                    value="300"
+                  />
+                  <AddCat
+                    handlePress={handlePress}
+                  />
+                </View>   
 
+              </View>
 
             </View>
           </View>
