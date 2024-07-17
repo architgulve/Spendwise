@@ -8,14 +8,6 @@ const RootLayout = () => {
         <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen 
-          name="addcategory" 
-          options={{ 
-            presentation: 'modal', 
-            headerShown: true,
-            headerTitle: 'Add Category',
-          }}
-        />
     </Stack>
   )
 }
