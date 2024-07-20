@@ -39,7 +39,7 @@ const TabsLayout = () => {
            // <View className="justify-center items-center bg-[#121212]  h-full">
               <Ionicons 
               name={focused ? 'home' : 'home-outline'}
-              size={32} 
+              size={26} 
               color="white" 
               />
           //     {/* <Text style={{
@@ -61,7 +61,7 @@ const TabsLayout = () => {
              // <View className="justify-center items-center bg-[#121212] h-full w-[80px]">
             <Ionicons 
             name={focused ? 'calendar' : 'calendar-outline'}
-            size={32} 
+            size={26} 
             color="white" 
             />
            // </View>
@@ -78,15 +78,20 @@ const TabsLayout = () => {
             title: '',
             
             tabBarIcon: ({ focused }) =>(
-              <View className={`justify-center items-center h-[32px] w-[32px] rounded-full ${focused ? 'bg-[#7700D7]' : 'bg-[#701ab63f] border-2 border-[#711AB6]'}`}>
+              <Ionicons
+                name = {focused ? 'add-circle' : 'add-circle-outline'}
+                size={32}
+                color="#711AB6"
+              />
+              // <View className={`justify-center items-center h-[26px] w-[26px] rounded-full ${focused ? 'bg-[#7700D7]' : 'bg-[#701ab621] border-2 border-[#711AB6]'}`}>
                   
-                <Ionicons 
-                name={focused ? 'add' : 'add-outline'}
-                size={28}
-                color={focused ? 'black' : '#711AB6'} 
+              //   <Ionicons 
+              //   name={focused ? 'add' : 'add-outline'}
+              //   size={28}
+              //   color={focused ? 'black' : '#711AB6'} 
                 
-                /> 
-              </View>
+              //   /> 
+              // </View>
             )
             // headerShown: false
              
@@ -102,7 +107,7 @@ const TabsLayout = () => {
               //<View className="justify-center items-center bg-[#121212] w-[80px] h-full ">
             <Ionicons 
             name={focused ? 'trophy' : 'trophy-outline'}
-            size={32} 
+            size={26} 
             color="white" 
             />
            // </View>
@@ -121,7 +126,7 @@ const TabsLayout = () => {
              // <View className="justify-center items-center bg-[#121212] w-[80px] h-full">
             <Ionicons 
             name={focused ? 'settings' : 'settings-outline'}
-            size={32} 
+            size={26} 
             color="white" 
             />
             //</View>

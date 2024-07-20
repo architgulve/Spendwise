@@ -28,19 +28,19 @@ const Add = () => {
                   <Text className="text-white text-3xl font-bold">Add Expense</Text>
                 </View>
                 <View className="flex-1 flex flex-row justify-between">
-                  <View className="bg-[#1a1a1a] rounded-full p-3">
+                  <View className="bg-[#121212] rounded-full p-3">
                     <Text className="text-white">Category</Text>
                   </View>
-                  <View className="bg-[#1a1a1a] rounded-full p-3">
+                  <View className="bg-[#121212] rounded-full p-3">
                     <Text className="text-[#ffffff]">Date</Text>
                   </View>
                 </View>
-                <Card containerStyles="flex-1 flex flex-col space-y-5">
+                <Card containerStyles="flex-1 flex flex-col">
                   <View>
-                    <Text className="text-[#711AB6] font-bold text-xl">Cost</Text>
+                    <Text className="text-[#711AB6] font-bold ">Cost</Text>
                   </View>
                   <View>
-                    <View className={"px-4 rounded-2xl "}>
+                    <View className={"p-3 rounded-2xl "}>
                         <TextInput 
                             
                             className="flex-1 text-[#ffffff] text-7xl h-full text-center items-center justify-center"
@@ -57,20 +57,20 @@ const Add = () => {
                     </View>
                   </View>
                 </Card>
-                <View className="flex-1 flex flex-row justify-between">
-                  <Text className="text-[#711AB6] font-bold  ml-4 text-xl">Quantity</Text>
+                <View className="flex-1 flex flex-row mx-2 justify-between items-center">
+                  <Text className="text-[#711AB6] font-bold ">Quantity</Text>
                   <View className="flex flex-row ">
                     <Button 
-                      ContainerStyles="bg-[#121212] p-2 rounded-l-xl"
+                      ContainerStyles="bg-[#121212] p-3 rounded-l-xl"
                       handlePress={Decrement}
                     >
                       <Ionicons name="remove-outline" size={24} color="white" />
                     </Button>
-                    <View className="bg-[#121212]  p-1">
-                      <Text className="text-[#ffffff] text-xl">{Quantity}</Text>
+                    <View className="bg-[#121212]  p-2 items-center justify-center">
+                      <Text className="text-[#ffffff]">{Quantity}</Text>
                     </View>
                     <Button 
-                      ContainerStyles="bg-[#121212] p-2 rounded-r-xl"
+                      ContainerStyles="bg-[#121212] p-3 rounded-r-xl"
                       handlePress={Increment}
                     >
                       <Ionicons name="add-outline" size={24} color="white" />
@@ -78,14 +78,14 @@ const Add = () => {
                   </View>
                 </View>
                 <Card containerStyles="flex-1 flex flex-row justify-between">
-                  <Text className="text-[#711AB6] font-bold text-xl">Total</Text>
-                  <Text className="text-white text-xl">{Cost*Quantity} INR</Text>
+                  <Text className="text-[#711AB6] font-bold">Total</Text>
+                  <Text className="text-white">{Cost*Quantity} INR</Text>
                 </Card>
                 <Card className="flex-1 flex flex-col space-y-3">
                   <View>
-                    <Text className="text-[#711AB6] font-bold text-xl">Name</Text>
+                    <Text className="text-[#711AB6] font-bold">Name</Text>
                   </View>
-                  <View className={" min-w-full h-[60px] p-4 bg-black rounded-2xl items-start "}>
+                  <View className={" min-w-full h-[60px] p-4 bg-[#000000] rounded-xl items-start "}>
                       <TextInput 
                           className="flex-1 text-white text-base w-full"
                           placeholder="Eg. Clothes"
@@ -102,7 +102,7 @@ const Add = () => {
                 </Card>
                 <Card containerStyles="flex-1 flex flex-col space-y-3">
                   <View>
-                    <Text className="text-[#711AB6] font-bold text-xl">Description</Text>
+                    <Text className="text-[#711AB6] font-bold">Description</Text>
                   </View>
                   <View className={" min-w-full h-[150px] px-4 bg-[#000000] rounded-2xl items-start "}>
                       <TextInput 
@@ -120,7 +120,7 @@ const Add = () => {
                       />
                   </View>
                 </Card>
-                <View className="flex-1 flex flex-row justify-center space-x-2">
+                <View className="flex-1 flex flex-row justify-center space-x-3">
                   <MotiPressable
                     animate={({ pressed }) => {
                       'worklet'
@@ -136,7 +136,7 @@ const Add = () => {
                     className="bg-[#0FB700] rounded-full items-center justify-center"
                   >
                     <View className="flex-1 bg-[#711AB6] rounded-full w-32 h-16 items-center justify-center">
-                      <Text className="text-white text-2xl">Add</Text>
+                      <Text className="text-white text-xl">Add</Text>
 
                     </View>
                   </MotiPressable>
@@ -154,7 +154,7 @@ const Add = () => {
                     }}
                     className="bg-[#7700D7] rounded-full items-center justify-center"
                   >
-                    <View className="flex-1 bg-[#ff121241] rounded-full h-16 w-16 items-center justify-center border-2 border-[#ff0000]">
+                    <View className="flex-1 bg-[#ff121228] rounded-full h-16 w-16 items-center justify-center border-2 border-[#ff0000]">
                       <Ionicons
                         name="trash-outline"
                         size={24}
