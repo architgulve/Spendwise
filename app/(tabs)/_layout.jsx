@@ -4,12 +4,12 @@ import { Tabs, Redirect } from 'expo-router'
 import { Slot, Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
+import {  } from 'react-native-safe-area-context'
 
 const TabsLayout = () => {
   return (
     <>
-    
-
+    <>
       <Tabs
         
         screenOptions={{ 
@@ -136,6 +136,11 @@ const TabsLayout = () => {
           }}
         />
       </Tabs>
+
+    </>
+
+    
+
     </>
   )
 }

@@ -1,4 +1,5 @@
-import { View, Text, ScrollView, SafeAreaView } from 'react-native'
+import { View, Text, ScrollView, } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react'
 import { MotiView } from 'moti'
 import { StatusBar } from 'expo-status-bar';

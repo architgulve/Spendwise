@@ -1,5 +1,6 @@
-import { View, Text, ScrollView, SafeAreaView, TextInput } from 'react-native'
+import { View, Text, ScrollView, TextInput } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { useState } from 'react'
 import { MotiView } from 'moti'
 import { MotiPressable } from 'moti/interactions';
@@ -104,7 +105,7 @@ const Add = () => {
                   <View>
                     <Text className="text-[#711AB6] font-bold">Description</Text>
                   </View>
-                  <View className={" min-w-full h-[150px] px-4 bg-[#000000] rounded-2xl items-start "}>
+                  <View className={" min-w-full h-[150px] px-4 bg-[#000000] jrounded-2xl items-start "}>
                       <TextInput 
                           className="flex-1 text-white text-base h-full w-full "
                           placeholder="Eg. For Birthday"
