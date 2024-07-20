@@ -11,6 +11,7 @@ const TabsLayout = () => {
     
 
       <Tabs
+        
         screenOptions={{ 
           headerShown: false,
           tabBarActiveTintColor: 'white', 
@@ -72,18 +73,20 @@ const TabsLayout = () => {
 
         <Tabs.Screen
           name="add"
+          
           options={{ 
             title: '',
+            
             tabBarIcon: ({ focused }) =>(
-            <View className={`justify-center items-center h-[32px] w-[32px] rounded-full ${focused ? 'bg-[#7700D7]' : 'bg-inherit border-2 border-[#711AB6]'}`}>
+              <View className={`justify-center items-center h-[32px] w-[32px] rounded-full ${focused ? 'bg-[#7700D7]' : 'bg-[#701ab63f] border-2 border-[#711AB6]'}`}>
+                  
+                <Ionicons 
+                name={focused ? 'add' : 'add-outline'}
+                size={28}
+                color={focused ? 'black' : '#711AB6'} 
                 
-              <Ionicons 
-              name={focused ? 'add' : 'add-outline'}
-              size={28}
-              color={focused ? 'black' : '#711AB6'} 
-              
-              /> 
-            </View>
+                /> 
+              </View>
             )
             // headerShown: false
              

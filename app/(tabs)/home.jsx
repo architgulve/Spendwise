@@ -59,11 +59,11 @@ const Home = () => {
       <StatusBar hidden={false} style="light" />
       <SafeAreaView>
         <ScrollView>
-          <View className="mx-3">
+          <View className="m-3">
             <View className="flex flex-col space-y-5">
 
               <View className="flex-1">
-                <Text className="text-white text-3xl font-bold mt-5">Hello! {userName}</Text>
+                <Text className="text-white text-3xl font-bold">Hello! {userName}</Text>
               </View>
               
               <View className="bg-[#540495] w-full  rounded-2xl p-3 self-center flex-1">
