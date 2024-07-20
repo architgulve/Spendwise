@@ -38,7 +38,7 @@ const Add = () => {
                 </View>
                 <Card containerStyles="flex-1 flex flex-col">
                   <View>
-                    <Text className="text-[#711AB6] font-bold ">Cost</Text>
+                    <Text className="text-[#711AB6] font-bold text-lg ">Cost</Text>
                   </View>
                   <View>
                     <View className={"p-3 rounded-2xl "}>
@@ -59,7 +59,7 @@ const Add = () => {
                   </View>
                 </Card>
                 <View className="flex-1 flex flex-row mx-2 justify-between items-center">
-                  <Text className="text-[#711AB6] font-bold ">Quantity</Text>
+                  <Text className="text-[#711AB6] font-bold  text-lg">Quantity</Text>
                   <View className="flex flex-row ">
                     <Button 
                       ContainerStyles="bg-[#121212] p-3 rounded-l-xl"
@@ -79,12 +79,12 @@ const Add = () => {
                   </View>
                 </View>
                 <Card containerStyles="flex-1 flex flex-row justify-between">
-                  <Text className="text-[#711AB6] font-bold">Total</Text>
-                  <Text className="text-white">{Cost*Quantity} INR</Text>
+                  <Text className="text-[#711AB6] font-bold text-lg">Total</Text>
+                  <Text className="text-white text-lg">{Cost*Quantity} INR</Text>
                 </Card>
                 <Card className="flex-1 flex flex-col space-y-3">
                   <View>
-                    <Text className="text-[#711AB6] font-bold">Name</Text>
+                    <Text className="text-[#711AB6] font-bold text-lg">Name</Text>
                   </View>
                   <View className={" min-w-full h-[60px] p-4 bg-[#000000] rounded-xl items-start "}>
                       <TextInput 
@@ -103,9 +103,9 @@ const Add = () => {
                 </Card>
                 <Card containerStyles="flex-1 flex flex-col space-y-3">
                   <View>
-                    <Text className="text-[#711AB6] font-bold">Description</Text>
+                    <Text className="text-[#711AB6] font-bold text-lg">Description</Text>
                   </View>
-                  <View className={" min-w-full h-[150px] px-4 bg-[#000000] jrounded-2xl items-start "}>
+                  <View className={" min-w-full h-[150px] px-4 bg-[#000000] rounded-2xl items-start "}>
                       <TextInput 
                           className="flex-1 text-white text-base h-full w-full "
                           placeholder="Eg. For Birthday"

@@ -1,14 +1,26 @@
-import { View, Text, ScrollView, SafeAreaView } from 'react-native'
+import { View, Text, ScrollView,} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { StatusBar } from 'expo-status-bar'
 import React from 'react'
+import Card from '../../components/Card';
 
 const Activity = () => {
   return (
-    <View className="bg-black h-full">
-      <ScrollView>
-        <SafeAreaView>
-          <Text className="text-white text-3xl font-bold mt-10">Activity</Text>
-        </SafeAreaView>
-      </ScrollView>
+    <View className="bg-black h-full ">
+      <StatusBar hidden={false} style="light" />
+      <SafeAreaView>
+        <ScrollView>
+          <View className="m-3">
+            <View className="flex flex-col space-y-5">
+
+              <View className="flex-1">
+                <Text className="text-white text-3xl font-bold">Activity</Text>
+              </View>
+              
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </View>
   )
 }

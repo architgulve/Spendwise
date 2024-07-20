@@ -1,22 +1,29 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView,} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { MotiView } from 'moti'
+import Card from '../../components/Card';
+
 
 const Badges = () => {
   return (
-    <View className="bg-black h-full">
-      <ScrollView contentContainerStyle={{ height: "100%" }}>
-        <MotiView
-          from={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ type: 'timing', duration: 1000 }}
-          className="bg-black h-full"
-        >
-          <Text className="text-white text-3xl font-bold mt-10">Badges</Text>
-        </MotiView>
-        {/* <Text className="text-white text-3xl font-bold mt-10">Badges</Text> */}
-      </ScrollView>
+    <View className="bg-black h-full ">
+      <StatusBar hidden={false} style="light" />
+      <SafeAreaView>
+        <ScrollView>
+          <View className="m-3">
+            <View className="flex flex-col space-y-5">
+
+              <View className="flex-1">
+                <Text className="text-white text-3xl font-bold">Badges</Text>
+              </View>
+              
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </View>
+
   )
 }
 
