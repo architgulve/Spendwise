@@ -3,7 +3,7 @@ import React , { useState } from 'react'
 import { MotiPressable } from 'moti/interactions'
 import { MotiView } from 'moti';
 
-const FormField = ({title, value, handleChangeText, placeholder, keyboardType, otherStyles, ...props}) => {
+const FormField = ({title, value, handleChangeText, placeholder, keyboardType,autocomplete, otherStyles, ...props}) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
    
@@ -37,7 +37,7 @@ const FormField = ({title, value, handleChangeText, placeholder, keyboardType, o
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
                   keyboardType={keyboardType}
-                  autoComplete='given-name'
+                  autoComplete={autocomplete}
                   {...props}
               />
           </View>

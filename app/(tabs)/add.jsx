@@ -2,6 +2,7 @@ import { View, Text, ScrollView, TextInput } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { useState } from 'react'
+import * as Haptics from 'expo-haptics';
 import { MotiView } from 'moti'
 import { MotiPressable } from 'moti/interactions';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,11 +18,25 @@ const Add = () => {
     setQuantity(prevQuantity => prevQuantity - 1);
   }
   const [Cost, setCost] = useState(0);
+  const addPress = async () => {
+    // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Success
+    )
+  };
+  const deletePress = async () => {
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Error
+    )
+  };
 
   return (
-    <View className="bg-black h-full ">
-        <StatusBar hidden={false} style="light" />
-        <SafeAreaView>
+    <SafeAreaView
+      edges={["top"]}
+      className="bg-black h-full "
+    >
+      <View className="bg-black h-full ">
+          <StatusBar hidden={false} style="light" />
           <ScrollView>
             <View className="m-3">
               <View className="flex flex-col space-y-5">
@@ -123,6 +138,7 @@ const Add = () => {
                 </Card>
                 <View className="flex-1 flex flex-row justify-center space-x-3">
                   <MotiPressable
+                    onPress={addPress}
                     animate={({ pressed }) => {
                       'worklet'
                       return {
@@ -134,7 +150,7 @@ const Add = () => {
                       type: 'timing',
                       duration: 100,
                     }}
-                    className="bg-[#0FB700] rounded-full items-center justify-center"
+                    //className="bg-[#0FB700] rounded-full items-center justify-center"
                   >
                     <View className="flex-1 bg-[#711AB6] rounded-full w-32 h-16 items-center justify-center">
                       <Text className="text-white text-xl">Add</Text>
@@ -142,6 +158,7 @@ const Add = () => {
                     </View>
                   </MotiPressable>
                   <MotiPressable
+                    onPress={deletePress}
                     animate={({ pressed }) => { 
                       'worklet'
                       return {
@@ -168,10 +185,10 @@ const Add = () => {
                   </MotiPressable>
                 </View>
               </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </View>
+            </View>
+          </ScrollView>
+      </View>
+    </SafeAreaView>
   )
 }
 

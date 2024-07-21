@@ -4,12 +4,12 @@ import { Tabs, Redirect } from 'expo-router'
 import { Slot, Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
-import {  } from 'react-native-safe-area-context'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const TabsLayout = () => {
   return (
     <>
-    <>
+    <SafeAreaProvider>
       <Tabs
         
         screenOptions={{ 
@@ -20,11 +20,13 @@ const TabsLayout = () => {
           tabBarInactiveTintColor: 'white',
         
           tabBarStyle: {
-            backgroundColor: 'black',
-            //LinearGradient: '#121212',
+            backgroundColor: '#000000',
+            borderTopColor: '#121212',
+            alignContent: 'center',
+            alignItems: 'center',
+            borderTopWidth: 0.5,
+            height: 80
 
-            borderTopWidth: 0,
-            height: 60
             ,
             
             
@@ -137,7 +139,7 @@ const TabsLayout = () => {
         />
       </Tabs>
 
-    </>
+    </SafeAreaProvider>
 
     
 

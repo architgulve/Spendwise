@@ -48,6 +48,7 @@ const entername = () => {
                 handleChangeText={(e) => setform({...form,name:e})}
                 otherStyles="mx-7 mt-20"
                 keyboardType="default"
+                //autocomplete="name"
 
               />
             </View>

@@ -47,7 +47,7 @@ const entername = () => {
                 value={form.budget}
                 handleChangeText={(e) => setform({...form,budget:e})}
                 otherStyles="mx-7 mt-20"
-                keyboardType="number-pad"
+                keyboardType="numeric"
 
               />
             </View>
