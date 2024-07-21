@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TextInput } from 'react-native'
+import { View, Text, ScrollView, TextInput, KeyboardAvoidingView } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { useState } from 'react'
@@ -36,9 +36,9 @@ const Add = () => {
       className="bg-black h-full "
     >
       <View className="bg-black h-full ">
-          <StatusBar hidden={false} style="light" />
+          <StatusBar hidden={false} style="light" animated={true}/>
           <ScrollView>
-            <View className="m-3">
+            <View className="m-3 mb-[80px]">
               <View className="flex flex-col space-y-5">
                 <View>
                   <Text className="text-white text-3xl font-bold">Add Expense</Text>
@@ -116,26 +116,28 @@ const Add = () => {
                       />
                   </View>
                 </Card>
-                <Card containerStyles="flex-1 flex flex-col space-y-3">
-                  <View>
-                    <Text className="text-[#711AB6] font-bold text-lg">Description</Text>
-                  </View>
-                  <View className={" min-w-full h-[150px] px-4 bg-[#000000] rounded-2xl items-start "}>
-                      <TextInput 
-                          className="flex-1 text-white text-base h-full w-full "
-                          placeholder="Eg. For Birthday"
-                          //value={value}
-                          multiline={true}
-                          placeholderTextColor="#7a7a7a"
-                          //onChangeText={handleChangeText}
-                          // onFocus={() => setIsFocused(true)}
-                          // onBlur={() => setIsFocused(false)}
-                          keyboardType="default"
-                          //autoComplete='given-name'
-                          //{...props}
-                      />
-                  </View>
-                </Card>
+                
+                  <Card containerStyles="flex-1 flex flex-col space-y-3">
+                    <View>
+                      <Text className="text-[#711AB6] font-bold text-lg">Description</Text>
+                    </View>
+                    <View className={" min-w-full h-[150px] px-4 bg-[#000000] rounded-2xl items-start "}>
+                        <TextInput 
+                            className="flex-1 text-white text-base h-full w-full "
+                            placeholder="Eg. For Birthday"
+                            //value={value}
+                            multiline={true}
+                            placeholderTextColor="#7a7a7a"
+                            //onChangeText={handleChangeText}
+                            // onFocus={() => setIsFocused(true)}
+                            // onBlur={() => setIsFocused(false)}
+                            keyboardType="default"
+                            //autoComplete='given-name'
+                            //{...props}
+                        />
+                    </View>
+                  </Card>
+              
                 <View className="flex-1 flex flex-row justify-center space-x-3">
                   <MotiPressable
                     onPress={addPress}

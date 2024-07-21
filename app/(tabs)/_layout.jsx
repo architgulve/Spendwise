@@ -5,6 +5,7 @@ import { Slot, Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { BlurView } from 'expo-blur'
 
 const TabsLayout = () => {
   return (
@@ -16,21 +17,29 @@ const TabsLayout = () => {
           headerShown: false,
           tabBarActiveTintColor: 'white', 
           tabBarShowLabel: false,
-          //justifyContent:'space-around',
+          justifyContent:'space-around',
           tabBarInactiveTintColor: 'white',
         
           tabBarStyle: {
-            backgroundColor: '#000000',
-            borderTopColor: '#121212',
+            position: 'absolute',
+            backgroundColor: 'transparent',
+            //borderTopColor: '#121212',
             alignContent: 'center',
             alignItems: 'center',
-            borderTopWidth: 0.5,
-            height: 80
-
-            ,
-            
-            
-          }
+            borderTopWidth: 0,
+            height: 80,            
+          },
+          tabBarBackground: () => (
+            <View style={StyleSheet.absoluteFill}>
+              <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
+              <LinearGradient
+                colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']}
+                style={StyleSheet.absoluteFill}
+                start={{ x: 0, y: 1 }}
+                end={{ x: 0, y: 0 }}
+              />
+            </View>
+          ),
         }}
       >
         <Tabs.Screen

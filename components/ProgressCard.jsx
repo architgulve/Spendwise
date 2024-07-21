@@ -41,8 +41,8 @@ const ProgressCard = () => {
                     </View>
                 </View>
                     <Text className="text-white opacity-70 text-xs self-start">of {userBudget}</Text>
-                    <View className="w-full h-10 bg-black justify-center self-center my-3 rounded-full ">
-                <View className="w-1/2 h-10 bg-[#0FB700] rounded-full justify-start"></View>
+                    <View className="w-full h-10 bg-black justify-center p-0.5 self-center my-3 rounded-full ">
+                <View className="w-1/2 h-full bg-[#0FB700] rounded-full justify-start"></View>
             </View>
         </View>
     </Button>

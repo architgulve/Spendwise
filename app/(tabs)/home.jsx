@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, } from 'react-native'
+import { View, Text, ScrollView,StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react'
 import * as Haptics from 'expo-haptics';
@@ -11,6 +11,7 @@ import CatGridItem from '../../components/CatGridItem';
 import AddCat from '../../components/AddCat';
 import { router } from 'expo-router';
 import ProgressCard from '../../components/ProgressCard';
+import { BlurView } from 'expo-blur';
 
 const Home = () => {
   const [userName, setUserName] = useState('Stranger');
@@ -37,17 +38,17 @@ const Home = () => {
   return (
     <SafeAreaView
       edges={["top"]}
-      className="bg-[#000000] h-full "
+      className="bg-[#000000] h-full"
     >
-      <StatusBar hidden={false} style="light" />
+      <StatusBar hidden={false} style="light" animated={true} />
         <ScrollView>
-          <View className="m-3">
+          <View className="m-3 mb-[80px]">
             <View className="flex flex-col space-y-5">
 
               <View className="flex-1">
                 <Text className="text-white text-3xl font-bold">Hello! {userName}</Text>
               </View>
-              
+
               <ProgressCard />
 
               <View className="flex-1 flex flex-col space-y-3">

@@ -33,7 +33,7 @@ const entername = () => {
   return (
     <View className="bg-black h-full">
     {/* <SafeAreaView className="bg-black h-full"> */}
-      <StatusBar hidden={true} style="light" />
+      <StatusBar hidden={true} style="light" animated={true} />
       <ScrollView contentContainerStyle={{ height: "100%" }}>
         <View className="w-full justify-between items-center min-h-screen">
           <View className="w-full justify-center items-center">
