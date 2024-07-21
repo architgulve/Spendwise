@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import Card from '../../components/Card';
 
-const Activity = () => {
+const Badges = () => {
   return (
     <SafeAreaView
       edges={["top"]}
@@ -26,4 +26,4 @@ const Activity = () => {
   )
 }
 
-export default Activity
+export default Badges
