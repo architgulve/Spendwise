@@ -10,6 +10,15 @@ import Button from '../../components/Button';
 import Card from '../../components/Card';
 
 const Add = () => {
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
+  const handleDeletePress = () => {
+    setIsDeleteMode(true);
+    //Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  };
+
+  const handleCancelPress = () => {
+    setIsDeleteMode(false);
+  };
   const [Quantity, setQuantity] = useState(1);
   const Increment = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
@@ -138,29 +147,9 @@ const Add = () => {
                     </View>
                   </Card>
               
-                <View className="flex-1 flex flex-row justify-center space-x-3">
+                  <View className="flex-1 flex flex-row justify-center space-x-3">
                   <MotiPressable
-                    onPress={addPress}
-                    animate={({ pressed }) => {
-                      'worklet'
-                      return {
-                        opacity: pressed ? 0.5 : 1,
-                        scale: pressed ? 0.95 : 1,
-                      }
-                    }}
-                    transition={{
-                      type: 'timing',
-                      duration: 100,
-                    }}
-                    //className="bg-[#0FB700] rounded-full items-center justify-center"
-                  >
-                    <View className="flex-1 bg-[#711AB6] rounded-full w-32 h-16 items-center justify-center">
-                      <Text className="text-white text-xl">Add</Text>
-
-                    </View>
-                  </MotiPressable>
-                  <MotiPressable
-                    onPress={deletePress}
+                    onPress= {isDeleteMode ? handleCancelPress : addPress}
                     animate={({ pressed }) => { 
                       'worklet'
                       return {
@@ -169,23 +158,72 @@ const Add = () => {
                       }
                     }}
                     transition={{
-                      type: 'timing',
+                      type: 'spring',
                       duration: 100,
                     }}
-                    className="bg-[#7700D7] rounded-full items-center justify-center"
                   >
-                    <View className="flex-1 bg-[#ff121228] rounded-full h-16 w-16 items-center justify-center border-2 border-[#ff0000]">
-                      <Ionicons
-                        name="trash-outline"
-                        size={24}
-                        color="red"
-                        className="self-center p-4"
-                      >
-
-                      </Ionicons>
-                    </View>
+                    <MotiView
+                      from={{
+                        width: 128,
+                        height: 64,
+                      }}
+                      animate={{
+                        width: isDeleteMode ? 64 : 128,
+                        height: 64,
+                      }}
+                      transition={{
+                        type: 'timing',
+                        duration: 300,
+                      }}
+                      className={isDeleteMode ? `bg-[#701ab66b] rounded-full border-2 border-[#711AB6] items-center justify-center` : `bg-[#711AB6] rounded-full items-center justify-center`}
+                    >
+                      {isDeleteMode ? (
+                        <Ionicons name="close-outline" size={24} color="#711AB6" />
+                      ) : (
+                        <Text className="text-white text-xl">Add</Text>
+                      )}
+                    </MotiView>
                   </MotiPressable>
-                </View>
+              <MotiPressable
+                //onLongPress={isDeleteMode ? undefined : handleDeletePress}
+                onPress={isDeleteMode ? deletePress : handleDeletePress}
+                animate={({ pressed }) => { 
+                  'worklet'
+                  return {
+                    opacity: pressed ? 0.5 : 1,
+                    scale: pressed ? 0.95 : 1,
+                  }
+                }}
+                transition={{
+                  type: 'timing',
+                  duration: 100,
+                }}
+              >
+                <MotiView
+                  from={{
+                    width: isDeleteMode ? 128 : 64,
+                    height: 64,
+                  }}
+                  animate={{
+                    width: isDeleteMode ? 128 : 64,
+                    height: 64,
+                  }}
+                  transition={{
+                    type: 'timing',
+                    duration: 300,
+                  }}
+                  className={isDeleteMode ? `bg-[#ff0000] rounded-full  items-center justify-center` : "bg-[#ff121228] rounded-full items-center justify-center border-2 border-[#ff0000]"}
+                >
+                  {isDeleteMode ? (
+                    <Text className="text-[#ffffff] text-xl">Delete</Text>
+                  ) : (
+                    <Ionicons name="trash-outline" size={24} color="red" />
+                  )}
+                </MotiView>
+              </MotiPressable>
+
+
+            </View>
               </View>
             </View>
           </ScrollView>

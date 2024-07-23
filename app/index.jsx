@@ -16,27 +16,12 @@ export default function App() {
       <StatusBar hidden={true} style="light" />
       <ScrollView>
         <ImageBackground source={images.splashscreegraphic}>
-          <View className="w-full justify-end items-center min-h-screen ">
-            {/* <MotiView
-              from={{
-                shadowOpacity: 0.5
-              }}
-              animate={{ 
-                shadowOpacity: 1 
-              }}
-              transition={{ 
-                type: "timing",  
-                duration: 1000 ,
-                loop : true,
-              }}
-              className="shadow-lg shadow-[#711AB6]"
-            > */}
+          <View className="w-full justify-end items-center h-screen ">
               <CustomButton
                 title="Get Started"
                 handlePress={() => router.push("/(onboarding)/entername")}
-                ContainerStyles="mb-20"
+                ContainerStyles="mb-10"
               />
-            {/* </MotiView> */}
           </View>
         </ImageBackground>
       </ScrollView>

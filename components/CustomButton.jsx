@@ -2,6 +2,7 @@ import { TouchableOpacity , Text, Pressable, View} from 'react-native'
 import React from 'react'
 import { MotiPressable } from 'moti/interactions'
 import { MotiView } from 'moti'
+import { LinearGradient } from 'expo-linear-gradient'
 
 
 const CustomButton = ({handlePress, title, ContainerStyles, textStyles, isLoading}) => {
@@ -21,15 +22,21 @@ const CustomButton = ({handlePress, title, ContainerStyles, textStyles, isLoadin
           duration: 100,
         }}
         disabled={isLoading}
+        //className="w-full"
       >
         <View 
-          className={`bg-[#711AB6] rounded-full min-h-[60px] min-w-[200px] items-center justify-center
+          className={`rounded-full w-[90vw]
             ${ContainerStyles}
             ${isLoading ? 'opacity-70' : ''}`}
         >
-          <Text className={`text-white text-2xl p-4 ${textStyles}`}>
-              {title}
-          </Text>
+          <LinearGradient
+            colors={['#9D2CF6', '#360061']}
+            className="rounded-full w-full items-center justify-center"
+          >
+            <Text className={`text-white text-lg p-3 ${textStyles}`}>
+                {title}
+            </Text>
+          </LinearGradient>
         </View>
       </MotiPressable>
   )

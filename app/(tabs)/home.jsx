@@ -41,6 +41,7 @@ const Home = () => {
       className="bg-[#000000] h-full"
     >
       <StatusBar hidden={false} style="light" animated={true} />
+
         <ScrollView>
           <View className="m-3 mb-[80px]">
             <View className="flex flex-col space-y-5">

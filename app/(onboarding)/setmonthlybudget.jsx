@@ -1,17 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { Image, ScrollView, ImageBackground, Text, View } from "react-native";
+import { Image, ScrollView, ImageBackground, Text, View, KeyboardAvoidingView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import { Redirect, router } from "expo-router";
 import CustomButton from "../../components/CustomButton";
 import FormField from "../../components/FormField";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Platform } from "react-native";
 
 
 
 
 const entername = () => {
-
+  // const [budget, setBudget] = useState(5000);
   const [form, setform] = useState({
     budget: "",
   })
@@ -42,7 +43,7 @@ const entername = () => {
             </View>
             <View className="w-full justify-start items-center ">
               <FormField
-                placeholder="Default: 5000"
+                placeholder={`Default: 5000`}
                 title="Name"
                 value={form.budget}
                 handleChangeText={(e) => setform({...form,budget:e})}
@@ -52,13 +53,18 @@ const entername = () => {
               />
             </View>
           </View>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              className="w-full justify-end items-center "
+            >
           <View className="w-full justify-end items-center ">
-            <CustomButton
-              title="Done"
-              handlePress={handlePress}
-              ContainerStyles="mb-20"
-            />
+              <CustomButton
+                title="Done"
+                handlePress={handlePress}
+                ContainerStyles="mb-10"
+              />
           </View>
+            </KeyboardAvoidingView>
           {/* <View className="w-full justify-end items-center ">
             <Text className="text-white">{form.name}</Text>
           </View> */}
