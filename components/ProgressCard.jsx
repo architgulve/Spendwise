@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Button from './Button'
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { useEffect, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
