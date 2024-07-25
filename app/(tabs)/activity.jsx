@@ -14,6 +14,7 @@ const Activity = () => {
       <ScrollView>
         <View className="m-3">
           <View className="flex flex-col space-y-5">
+            
             <View className="flex-1">
               <Text className="text-white text-3xl font-bold">Activity</Text>
             </View>
