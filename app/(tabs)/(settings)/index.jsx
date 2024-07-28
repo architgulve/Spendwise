@@ -43,7 +43,9 @@ const Settings = () => {
               <Text className="text-white text-3xl font-bold">Settings</Text>
             </View>
               <View className="flex-1 flex-col space-y-3 mb-[80px]">
-                <Button>
+                <Button
+                  handlePress={() => router.push("/(tabs)/(settings)/profile")}
+                >
                   <Card containerStyles="flex flex-row space-x-3 items-center justify-start p-4">
                     <View >
                       <Ionicons name="person-circle-outline" size={64} color="gray" />

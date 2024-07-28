@@ -1,4 +1,4 @@
-import { View, Text, ScrollView,StyleSheet } from 'react-native'
+import { View, Text, ScrollView,StyleSheet, Pressable } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react'
 import * as Haptics from 'expo-haptics';
@@ -50,9 +50,13 @@ const Home = () => {
                 <View className="justify-center items-center">
                   <Text className="text-white text-3xl font-bold">Hello! {userName}</Text>
                 </View>
-                <View className="items-center justify-center">
-                  <Ionicons name='person-circle-outline' size={40} color="gray"></Ionicons>
-                </View>
+                <Pressable
+                  onPress={() => router.push("(tabs)/(settings)/profile")}
+                >
+                  <View className="items-center justify-center">
+                    <Ionicons name='person-circle-outline' size={40} color="gray"></Ionicons>
+                  </View>
+                </Pressable>
               </View>
 
               <ProgressCard />
