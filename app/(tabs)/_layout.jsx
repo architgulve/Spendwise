@@ -19,7 +19,7 @@ const TabsLayout = () => {
           tabBarShowLabel: false,
           justifyContent:'space-around',
           tabBarInactiveTintColor: 'white',
-        
+                    
           tabBarStyle: {
             position: 'absolute',
             backgroundColor: 'transparent',

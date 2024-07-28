@@ -12,6 +12,7 @@ import AddCat from '../../components/AddCat';
 import { router } from 'expo-router';
 import ProgressCard from '../../components/ProgressCard';
 import { BlurView } from 'expo-blur';
+import { Ionicons } from '@expo/vector-icons';
 
 const Home = () => {
   const [userName, setUserName] = useState('Stranger');
@@ -45,9 +46,13 @@ const Home = () => {
         <ScrollView>
           <View className="m-3 mb-[80px]">
             <View className="flex flex-col space-y-5">
-
-              <View className="flex-1">
-                <Text className="text-white text-3xl font-bold">Hello! {userName}</Text>
+              <View className="flex flex-row justify-between items-center">
+                <View className="justify-center items-center">
+                  <Text className="text-white text-3xl font-bold">Hello! {userName}</Text>
+                </View>
+                <View className="items-center justify-center">
+                  <Ionicons name='person-circle-outline' size={40} color="gray"></Ionicons>
+                </View>
               </View>
 
               <ProgressCard />

@@ -35,7 +35,7 @@ const ProgressCard = () => {
     <Button>
         {/* <View className="bg-[#540495] w-full  rounded-2xl p-3 mt-5 flex-1"> */}
             <LinearGradient
-                colors={['#711AB6', '#4B0A7E']}
+                colors={['#8d00FF', '#4C0088']}
                 className="w-full bg-[#540495] rounded-2xl p-3 mt-5 flex-1"
             >
                 <View className="flex flex-row justify-between items-center">
