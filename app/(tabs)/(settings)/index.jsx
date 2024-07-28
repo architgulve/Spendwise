@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { router, useRouter } from 'expo-router';
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
@@ -8,11 +8,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import SettingsComp from '../../components/SettingsComp';
-import Card from '../../components/Card';
+import SettingsComp from '../../../components/SettingsComp';
+import Card from '../../../components/Card';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from 'react';
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
 
 
 const Settings = () => {
@@ -114,7 +114,9 @@ const Settings = () => {
                     </View>
 
                     <View className="pt-3">
-                      <Button>
+                      <Button
+                        handlePress={() => router.push("/(tabs)/(settings)/termsandcon")}
+                      >
                         <View className="flex flex-row justify-between">
                           <View className="flex flex-row space-x-3 items-center">
                             <Ionicons name="document-outline" size={24} color="#9E9E9E" />
@@ -128,7 +130,9 @@ const Settings = () => {
                     </View>
 
                     <View className="pt-3">
-                      <Button>
+                      <Button
+                        handlePress={() => router.push("/(tabs)/(settings)/aboutus")}
+                      >
                         <View className="flex flex-row justify-between">
                           <View className="flex flex-row space-x-3 items-center">
                             <Ionicons name="information-circle-outline" size={24} color="#711AB6" />
