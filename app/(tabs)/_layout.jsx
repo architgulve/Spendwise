@@ -68,6 +68,7 @@ const TabsLayout = () => {
           name="activity"
           options={{ 
             title: 'Activity',
+            
             tabBarIcon: ({ focused }) =>(
              // <View className="justify-center items-center bg-[#121212] h-full w-[80px]">
             <Ionicons 
@@ -89,20 +90,20 @@ const TabsLayout = () => {
             title: '',
             
             tabBarIcon: ({ focused }) =>(
-              <Ionicons
-                name = {focused ? 'add-circle' : 'add-circle-outline'}
-                size={32}
-                color="#711AB6"
-              />
-              // <View className={`justify-center items-center h-[26px] w-[26px] rounded-full ${focused ? 'bg-[#7700D7]' : 'bg-[#701ab621] border-2 border-[#711AB6]'}`}>
+              // <Ionicons
+              //   name = {focused ? 'add-circle' : 'add-circle-outline'}
+              //   size={32}
+              //   color="#711AB6"
+              // />
+              <View className={`justify-center items-center h-[64px] w-[64px] rounded-full ${focused ? 'bg-[#7700D7]' : 'bg-[#701ab621] border-2 border-[#711AB6] items-center'}`}>
                   
-              //   <Ionicons 
-              //   name={focused ? 'add' : 'add-outline'}
-              //   size={28}
-              //   color={focused ? 'black' : '#711AB6'} 
-                
-              //   /> 
-              // </View>
+                <Ionicons 
+                name={focused ? 'add' : 'add-outline'}
+                size={48}
+                color={focused ? 'black' : '#711AB6'} 
+                className="self-center bg-slate-100 "
+                /> 
+              </View>
             )
             // headerShown: false
              
