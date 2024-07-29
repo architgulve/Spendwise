@@ -44,7 +44,7 @@ const Settings = () => {
             </View>
               <View className="flex-1 flex-col space-y-3 mb-[80px]">
                 <Button
-                  handlePress={() => router.push("/(tabs)/(settings)/profile")}
+                  handlePress={() => router.push("../../profile")}
                 >
                   <Card containerStyles="flex flex-row space-x-3 items-center justify-start p-4">
                     <View >
@@ -92,7 +92,7 @@ const Settings = () => {
                 </Card>
 
                 <SettingsComp
-                  icon="share-outline"
+                  icon="people-outline"
                   color="#2196F3"
                   title="Tell a Friend"
                   //onPress={() => console.log('Pressed')}
@@ -149,6 +149,13 @@ const Settings = () => {
 
                   </View>
                 </Card>
+
+                <SettingsComp
+                  icon="hand-left-outline"
+                  color="#aaa7f0"
+                  title="Show Onboarding"
+                  handlePress={() => router.push("/(tabs)/(settings)/onboarding")}
+                />
                </View>
 
           </View>

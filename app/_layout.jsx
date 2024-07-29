@@ -6,7 +6,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 const RootLayout = () => {
   return (
     <SafeAreaProvider>
-      <Stack>
+      <Stack screenOptions={{ headerShown: false, gestureEnabled: false }}>
         <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -19,6 +19,10 @@ const RootLayout = () => {
             headerTitle: "Add Category",
             headerShown: false,
           }}
+        />
+        <Stack.Screen
+          name="profile"
+          options={{ presentation: "transparentModal", animation: "fade" }}
         />
       </Stack>
     </SafeAreaProvider>

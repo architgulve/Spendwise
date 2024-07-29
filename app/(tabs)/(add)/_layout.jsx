@@ -16,6 +16,7 @@ const AddLayout = () => {
       <Stack.Screen
         name="donescreen"
         options={{
+          gestureEnabled: false,
           headerShown: false
         }}
       />

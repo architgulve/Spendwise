@@ -51,7 +51,7 @@ const Home = () => {
                   <Text className="text-white text-3xl font-bold">Hello! {userName}</Text>
                 </View>
                 <Pressable
-                  onPress={() => router.push("(tabs)/(settings)/profile")}
+                  onPress={() => router.push("../profile")}
                 >
                   <View className="items-center justify-center">
                     <Ionicons name='person-circle-outline' size={40} color="gray"></Ionicons>

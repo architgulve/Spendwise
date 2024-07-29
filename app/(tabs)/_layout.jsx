@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Tabs, Redirect } from 'expo-router'
+import { Tabs, router } from 'expo-router'
 import { Slot, Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { BlurView } from 'expo-blur'
+
 
 const TabsLayout = () => {
   return (
@@ -19,7 +20,7 @@ const TabsLayout = () => {
           tabBarShowLabel: false,
           justifyContent:'space-around',
           tabBarInactiveTintColor: 'white',
-                    
+          gestureEnabled: false,          
           tabBarStyle: {
             position: 'absolute',
             backgroundColor: 'transparent',
@@ -46,6 +47,7 @@ const TabsLayout = () => {
           name="home"
           options={{ 
             title: 'Home',
+            gestureEnabled: false,
             tabBarIcon: ({ focused }) =>(
            // <View className="justify-center items-center bg-[#121212]  h-full">
               <Ionicons 
@@ -67,6 +69,7 @@ const TabsLayout = () => {
         <Tabs.Screen
           name="activity"
           options={{ 
+            gestureEnabled: false,
             title: 'Activity',
             
             tabBarIcon: ({ focused }) =>(
@@ -87,6 +90,7 @@ const TabsLayout = () => {
           name="(add)"
           
           options={{ 
+            gestureEnabled: false,
             tabBarStyle: { display: 'none' },
             title: '',
             
@@ -109,12 +113,19 @@ const TabsLayout = () => {
             // headerShown: false
              
           }} 
+          listeners={{
+            tabPress: (e) => {
+              e.preventDefault();
+              router.push('/(add)');
+            },
+          }}
           />
 
         
         <Tabs.Screen
           name="badges"
           options={{ 
+            gestureEnabled: false,
             title: 'Badges',
             tabBarIcon: ({ focused }) =>(
               //<View className="justify-center items-center bg-[#121212] w-[80px] h-full ">
@@ -133,6 +144,7 @@ const TabsLayout = () => {
         <Tabs.Screen
           name="(settings)"
           options={{ 
+            gestureEnabled: false,
             title: 'Settings',
             
             tabBarIcon: ({ focused }) =>(

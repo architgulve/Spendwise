@@ -8,7 +8,7 @@ const addcategory = () => {
     <>
       {/* <View className="bg-red-500 h-full"> */}
       <BlurView
-        intensity={70}
+        intensity={90}
         tint="dark"
         experimentalBlurMethod="systemChromeMaterial"
         // style={{ flex: 1 }}
