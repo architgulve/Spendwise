@@ -10,6 +10,8 @@ const addcategory = () => {
       <BlurView
         intensity={70}
         tint="dark"
+        experimentalBlurMethod="systemChromeMaterial"
+        // style={{ flex: 1 }}
         //className="bg-black h-full"
       >
         <Pressable onPress={() => router.back()}>

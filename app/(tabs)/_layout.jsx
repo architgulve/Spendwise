@@ -31,7 +31,7 @@ const TabsLayout = () => {
           },
           tabBarBackground: () => (
             <View style={StyleSheet.absoluteFill}>
-              <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
+              <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill } />
               <LinearGradient
                 colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']}
                 style={StyleSheet.absoluteFill}
@@ -84,9 +84,10 @@ const TabsLayout = () => {
         />
 
         <Tabs.Screen
-          name="add"
+          name="(add)"
           
           options={{ 
+            tabBarStyle: { display: 'none' },
             title: '',
             
             tabBarIcon: ({ focused }) =>(
@@ -95,12 +96,12 @@ const TabsLayout = () => {
               //   size={32}
               //   color="#711AB6"
               // />
-              <View className={`justify-center items-center h-[64px] w-[64px] rounded-full ${focused ? 'bg-[#7700D7]' : 'bg-[#701ab621] border-2 border-[#711AB6] items-center'}`}>
+              <View className={`justify-center items-center h-[64px] w-[64px] rounded-full mb-10 ${focused ? 'bg-[#8F00FF]' : 'bg-[#8F00FF] border-2 border-[#8F00FF] items-center'}`}>
                   
                 <Ionicons 
                 name={focused ? 'add' : 'add-outline'}
                 size={48}
-                color={focused ? 'black' : '#711AB6'} 
+                color={focused ? 'black' : '#ffffff'} 
                 className="self-center bg-slate-100 "
                 /> 
               </View>
