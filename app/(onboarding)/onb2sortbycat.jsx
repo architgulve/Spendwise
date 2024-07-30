@@ -9,10 +9,11 @@ import Animated, {
   SlideInRight,
   SlideOutLeft,
 } from "react-native-reanimated";
+import BackButton from "../../components/backbutton";
 
 const onb2sortbycat = () => {
   const image = require("../../assets/images/Android Large - 7bg.png");
-  // const ImageBackground = Animated.createAnimatedComponent(ImageBackground);
+
   return (
     <ImageBackground
       source={image}
@@ -29,11 +30,17 @@ const onb2sortbycat = () => {
               Sort by category.
             </Animated.Text>
           </View>
-          <CustomButton
-            sharedTransitionTag="button"
-            title="Next"
-            handlePress={() => router.push("/(onboarding)/onb3earnbadges")}
-          />
+          <View className="w-[90vw] fle flex-row justify-between items-center ">
+            <BackButton />
+            <Animated.View>
+              <CustomButton
+                title="Next"
+                sharedTransitionTag="button"
+                handlePress={() => router.push("/(onboarding)/onb3earnbadges")}
+                ContainerStyles="w-[72vw]"
+              />
+            </Animated.View>
+          </View>
         </View>
       </View>
     </ImageBackground> //ImageBackground>

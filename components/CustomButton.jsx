@@ -36,9 +36,9 @@ const CustomButton = ({
       >
         <LinearGradient
           colors={["#8F00FF", "#4C0088"]}
-          className="rounded-full w-full items-center justify-center"
+          className="rounded-full w-full items-center p-3 justify-center"
         >
-          <Text className={`text-white text-lg p-3 ${textStyles}`}>
+          <Text className={`text-white text-lg  ${textStyles}`}>
             {title}
           </Text>
         </LinearGradient>

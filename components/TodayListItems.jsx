@@ -8,7 +8,7 @@ const TodayListItems = ({title, value,}) => {
       <View className="bg-[#121212] items-center p-4 rounded-2xl my-1">
           <View className="flex flex-row  w-full justify-between items-center">
               <Text className=" text-white">{title}</Text>
-              <Text className=" text-white">INR {value}</Text>
+              <Text className=" text-white">₹ {value}</Text>
           </View>
       </View>
     // </Button>

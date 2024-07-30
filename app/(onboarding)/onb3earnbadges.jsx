@@ -9,6 +9,7 @@ import Animated, {
   SlideInRight,
   SlideOutLeft,
 } from "react-native-reanimated";
+import BackButton from "../../components/backbutton";
 const onb3earnbadges = () => {
   const image = require("../../assets/images/Android Large - 7bg.png");
   return (
@@ -27,10 +28,14 @@ const onb3earnbadges = () => {
               Earn Badges.
             </Animated.Text>
           </View>
-          <CustomButton
-            title="Next"
-            handlePress={() => router.push("/(onboarding)/onb4entername")}
-          />
+          <View className="w-[90vw] fle flex-row justify-between items-center ">
+              <BackButton />
+              <CustomButton
+                title="Next"
+                handlePress={() => router.push("/(onboarding)/onb4entername")}
+                ContainerStyles="w-[72vw]"
+              />
+            </View>
         </View>
       </View>
     </ImageBackground>

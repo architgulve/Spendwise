@@ -4,6 +4,7 @@ import CustomButton from "../../components/CustomButton";
 import { Redirect, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInRight } from "react-native-reanimated";
+import BackButton from "../../components/backbutton";
 const onb8allset = () => {
   const image = require("../../assets/images/Android Large - 7bg.png");
   return (
@@ -22,10 +23,14 @@ const onb8allset = () => {
               All Set!
             </Animated.Text>
           </View>
-          <CustomButton
-            title="Done"
-            handlePress={() => router.push("/(tabs)/home")}
-          />
+          <View className="w-[90vw] fle flex-row justify-between items-center ">
+              <BackButton />
+              <CustomButton
+                title="Next"
+                handlePress={() => router.push("/(tabs)/home")}
+                ContainerStyles="w-[72vw]"
+              />
+            </View>
         </View>
       </View>
     </ImageBackground>

@@ -15,6 +15,8 @@ import { Ionicons } from "@expo/vector-icons";
 import Button from "../../../components/Button";
 import Card from "../../../components/Card";
 import { router } from "expo-router";
+import BackButton from "../../../components/backbutton";
+import { BlurView } from "expo-blur";
 
 const Add = () => {
   const [isDeleteMode, setIsDeleteMode] = useState(false);
@@ -51,7 +53,7 @@ const Add = () => {
           <View className="m-3 mb-[120px]">
             <View className="flex flex-col space-y-5">
               <View>
-                <Text className="text-white text-3xl font-bold">
+                <Text className="text-white text-2xl font-bold">
                   Add Expense
                 </Text>
               </View>
@@ -110,9 +112,7 @@ const Add = () => {
               </View>
               <Card containerStyles="flex-1 flex flex-row justify-between">
                 <Text className="text-[#711AB6] font-bold text-lg">Total</Text>
-                <Text className="text-white text-lg">
-                  {Cost * Quantity} INR
-                </Text>
+                <Text className="text-white text-lg">₹ {Cost * Quantity}</Text>
               </Card>
               <Card className="flex-1 flex flex-col space-y-3">
                 <View>
@@ -167,89 +167,28 @@ const Add = () => {
             </View>
           </View>
         </ScrollView>
-        <View className="flex-1 flex flex-row justify-center self-center space-x-3 absolute bottom-10">
-          <MotiPressable
-            // className="absolute bottom-5 right-5
-            onPress={isDeleteMode ? handleCancelPress : addPress}
-            animate={({ pressed }) => {
-              "worklet";
-              return {
-                opacity: pressed ? 0.5 : 1,
-                scale: pressed ? 0.95 : 1,
-              };
+        <View className="absolute bottom-10 self-center rounded-full overflow-hidden ">
+          <BlurView
+            intensity={30}
+            experimentalBlurMethod="systemChromeMaterial"
+            tint="light"
+            style={{
+              borderRadius: 20,
             }}
-            transition={{
-              type: "spring",
-              duration: 100,
-            }}
+            className="flex flex-row space-x-2 rounded-full p-2"
           >
-            <MotiView
-              from={{
-                width: 128,
-                height: 64,
-              }}
-              animate={{
-                width: isDeleteMode ? 64 : 128,
-                height: 64,
-              }}
-              transition={{
-                type: "timing",
-                duration: 300,
-              }}
-              className={
-                isDeleteMode
-                  ? `bg-[#701ab66b] rounded-full border-2 border-[#711AB6] items-center justify-center`
-                  : `bg-[#711AB6] rounded-full items-center justify-center`
-              }
-            >
-              {isDeleteMode ? (
-                <Ionicons name="close-outline" size={24} color="#711AB6" />
-              ) : (
-                <Text className="text-white text-xl">Add</Text>
-              )}
-            </MotiView>
-          </MotiPressable>
-          <MotiPressable
-            //onLongPress={isDeleteMode ? undefined : handleDeletePress}
-            onPress={isDeleteMode ? deletePress : handleDeletePress}
-            animate={({ pressed }) => {
-              "worklet";
-              return {
-                opacity: pressed ? 0.5 : 1,
-                scale: pressed ? 0.95 : 1,
-              };
-            }}
-            transition={{
-              type: "timing",
-              duration: 100,
-            }}
-          >
-            <MotiView
-              from={{
-                width: isDeleteMode ? 128 : 64,
-                height: 64,
-              }}
-              animate={{
-                width: isDeleteMode ? 128 : 64,
-                height: 64,
-              }}
-              transition={{
-                type: "timing",
-                duration: 300,
-              }}
-              className={
-                isDeleteMode
-                  ? `bg-[#ff0000] rounded-full  items-center justify-center`
-                  : "bg-[#ff121228] rounded-full items-center justify-center border-2 border-[#ff0000]"
-              }
-            >
-              {isDeleteMode ? (
-                <Text className="text-[#ffffff] text-xl">Delete</Text>
-              ) : (
-                <Ionicons name="trash-outline" size={24} color="red" />
-              )}
-            </MotiView>
-          </MotiPressable>
+            <View>
+              <BackButton />
+            </View>
+            <View>
+              <Button
+                ContainerStyles="bg-[#8f00ff] p-3 w-[30vw] rounded-full justify-center items-center"
+                handlePress={addPress}
+              >
+                <Text className="text-white text-lg">Add</Text>
+              </Button>
+            </View>
+          </BlurView>
         </View>
       </View>
     </SafeAreaView>

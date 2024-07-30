@@ -15,6 +15,8 @@ import FormField from "../../components/FormField";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
 import Animated, { FadeInRight } from "react-native-reanimated";
+// import SkipButton from "../../components/skip";
+import BackButton from "../../components/backbutton";
 
 const onb4entername = () => {
   const [form, setform] = useState({
@@ -42,6 +44,7 @@ const onb4entername = () => {
       <StatusBar hidden={true} style="light" />
       <ImageBackground source={image} className="w-full h-full">
         <View className="w-full h-full justify-center items-center">
+          
           <View className=" h-5/6 justify-between items-center ">
             <Animated.View
               className="w-full justify-center items-center"
@@ -61,11 +64,12 @@ const onb4entername = () => {
                 //autocomplete="name"
               />
             </Animated.View>
-            <View className="w-full justify-end items-center ">
+            <View className="w-[90vw] fle flex-row justify-between items-center ">
+              <BackButton />
               <CustomButton
                 title="Next"
-                handlePress={handlePress}
-                //ContainerStyles="mb-10"
+                handlePress={() => router.push("/(onboarding)/onb5setmonthlybudget")}
+                ContainerStyles="w-[72vw]"
               />
             </View>
           </View>

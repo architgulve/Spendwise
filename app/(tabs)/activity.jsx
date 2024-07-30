@@ -16,7 +16,7 @@ const Activity = () => {
           <View className="flex flex-col space-y-5">
             
             <View className="flex-1">
-              <Text className="text-white text-3xl font-bold">Activity</Text>
+              <Text className="text-white text-2xl font-bold">Activity</Text>
             </View>
             
           </View>

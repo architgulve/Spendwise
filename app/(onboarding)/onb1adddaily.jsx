@@ -11,6 +11,7 @@ import Animated, {
   SlideInRight,
   SlideOutLeft,
 } from "react-native-reanimated";
+
 // const { Value, timing } = Animated;
 
 const onb1adddaily = () => {
@@ -38,11 +39,13 @@ const onb1adddaily = () => {
               Add Expenses.
             </Animated.Text>
           </View>
-          <CustomButton
-            sharedTransitionTag="button"
-            title="Next"
-            handlePress={handlePress}
-          />
+          <Animated.View>
+            <CustomButton
+              sharedTransitionTag="button"
+              title="Next"
+              handlePress={handlePress}
+            />
+          </Animated.View>
           {isblurred && (
             <BlurView className=" absolute w-screen h-screen"></BlurView>
           )}

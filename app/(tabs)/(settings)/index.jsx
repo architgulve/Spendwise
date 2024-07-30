@@ -40,7 +40,7 @@ const Settings = () => {
           <View className="flex flex-col ">
 
             <View className="flex-1">
-              <Text className="text-white text-3xl font-bold">Settings</Text>
+              <Text className="text-white text-2xl font-bold">Settings</Text>
             </View>
               <View className="flex-1 flex-col space-y-3 mb-[80px]">
                 <Button
@@ -51,7 +51,7 @@ const Settings = () => {
                       <Ionicons name="person-circle-outline" size={64} color="gray" />
                     </View>
                     <View>
-                      <Text className="text-white text-2xl font-semibold">{userName}</Text>
+                      <Text className="text-white text-xl font-semibold">{userName}</Text>
                       <Text className="text-white opacity-50">View Profile</Text>
                     </View>
                   </Card>
@@ -154,7 +154,7 @@ const Settings = () => {
                   icon="hand-left-outline"
                   color="#aaa7f0"
                   title="Show Onboarding"
-                  handlePress={() => router.push("/(tabs)/(settings)/onboarding")}
+                  handlePress={() => router.navigate("/(onboarding)/onb1adddaily")}
                 />
                </View>
 

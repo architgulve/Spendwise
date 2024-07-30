@@ -48,7 +48,7 @@ const Home = () => {
             <View className="flex flex-col space-y-5">
               <View className="flex flex-row justify-between items-center">
                 <View className="justify-center items-center">
-                  <Text className="text-white text-3xl font-bold">Hello! {userName}</Text>
+                  <Text className="text-white text-2xl font-bold">Hello! {userName}</Text>
                 </View>
                 <Pressable
                   onPress={() => router.push("../profile")}
@@ -63,7 +63,7 @@ const Home = () => {
 
               <View className="flex-1 flex flex-col space-y-3">
                 <View>
-                  <Text className="text-[#7700D7] text-lg font-bold">Today</Text>
+                  <Text className="text-[#8f00ff] text-lg font-bold">Today</Text>
                 </View>
                 
                 <View className="self-center flex flex-col">  
@@ -85,7 +85,7 @@ const Home = () => {
               <View className="flex-1 flex flex-col space-y-3">
 
                 <View>
-                  <Text className="text-[#7700D7] text-lg font-bold">Categories</Text>
+                  <Text className="text-[#8f00ff] text-lg font-bold">Categories</Text>
                 </View>
                
                 <View className="flex flex-row flex-wrap">

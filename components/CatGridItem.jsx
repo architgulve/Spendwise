@@ -11,7 +11,7 @@ const CatGridItem = ({title,value,}) => {
                   <Text className="text-white  font-extrabold mt-3 ml-5">{title}</Text>
               </View>
               <View className="w-full self-center rounded-lg items-center">
-                  <Text className="opacity-80 text-white text-lg mt-6">INR {value}</Text>
+                  <Text className="opacity-80 text-white text-lg mt-6">₹ {value}</Text>
               </View>
           </View>
       </Button>

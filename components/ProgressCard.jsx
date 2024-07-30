@@ -40,7 +40,7 @@ const ProgressCard = () => {
             >
                 <View className="flex flex-row justify-between items-center">
                     <View className="">
-                        <Text className="text-white text-2xl ">INR 0.00</Text>
+                        <Text className="text-white font-semibold text-2xl ">₹ 50.00 </Text>
                     </View>
                     <View className="">
                         <Text className="text-white text-xs opacity-70">{checkMonthName(month)}</Text>

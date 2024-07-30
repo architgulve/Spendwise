@@ -15,6 +15,8 @@ import FormField from "../../components/FormField";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
 import Animated, { FadeInRight } from "react-native-reanimated";
+import SkipButton from "../../components/skip";
+import BackButton from "../../components/backbutton";
 
 const onb5setmonthlybudget = () => {
   // const [budget, setBudget] = useState(5000);
@@ -60,11 +62,12 @@ const onb5setmonthlybudget = () => {
                 keyboardType="numeric"
               />
             </Animated.View>
-            <View className="w-full justify-end items-center ">
+            <View className="w-[90vw] fle flex-row justify-between items-center ">
+              <BackButton />
               <CustomButton
                 title="Next"
                 handlePress={handlePress}
-                //ContainerStyles="mb-10"
+                ContainerStyles="w-[72vw]"
               />
             </View>
           </View>

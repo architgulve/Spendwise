@@ -4,6 +4,7 @@ import CustomButton from "../../components/CustomButton";
 import { Redirect, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInRight } from "react-native-reanimated";
+import BackButton from "../../components/backbutton";
 const onb7createcat = () => {
   const image = require("../../assets/images/Android Large - 7bg.png");
   return (
@@ -22,10 +23,14 @@ const onb7createcat = () => {
               Create Categories.
             </Animated.Text>
           </View>
-          <CustomButton
-            title="Next"
-            handlePress={() => router.push("/(onboarding)/onb8allset")}
-          />
+          <View className="w-[90vw] fle flex-row justify-between items-center ">
+              <BackButton />
+              <CustomButton
+                title="Next"
+                handlePress={() => router.push("/(onboarding)/onb8allset")}
+                ContainerStyles="w-[72vw]"
+              />
+            </View>
         </View>
       </View>
     </ImageBackground>
