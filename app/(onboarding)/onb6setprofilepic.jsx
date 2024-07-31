@@ -15,7 +15,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import SkipButton from "../../components/skip";
 import BackButton from "../../components/backbutton";
+import { useState } from "react";
 const onb6setprofilepic = () => {
+  const [profile, setProfile] = useState("../../assets/images/9.png");
   const image = require("../../assets/images/Android Large - 7bg.png");
   return (
     <ImageBackground
@@ -34,55 +36,78 @@ const onb6setprofilepic = () => {
             </Animated.Text>
           </View>
           <View className="w-full justify-between items-center h-3/5">
-            <View className=" rounded-full w-[50vw] h-[50vw] bg-gray-600"></View>
+            <View className=" rounded-full w-[50vw] h-[50vw] bg-gray-600 items-center justify-center">
+              <Text className="text-white text-3xl font-bold">{profile}</Text>
+            </View>
             <View>
               <View className="flex flex-row  justify-between w-11/12 p-2 ">
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(2)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/9.png")}
+                    />
+                     
+                   
                   </Button>
                 </View>
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(3)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/1.png")}/>
                   </Button>
                 </View>
 
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(4)}>
+                    <ProfilePic
+                    image={require("../../assets/images/2.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(5)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/3.png")}/>
                   </Button>
                 </View>
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(6)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/4.png")}/>
                   </Button>
                 </View>
               </View>
               <View className="flex flex-row  justify-between w-11/12 p-2">
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(7)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/5.png")}/>
                   </Button>
                 </View>
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(8)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/6.png")}/>
                   </Button>
                 </View>
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(9)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/7.png")}/>
                   </Button>
                 </View>
                 <View>
-                  <Button>
-                    <ProfilePic />
+                  <Button
+                  handlePress={() => setProfile(10)}>
+                    <ProfilePic 
+                    image={require("../../assets/images/8.png")}/>
                   </Button>
                 </View>
                 <View>

@@ -31,7 +31,7 @@ const DoneScreen = () => {
                 source={require("../../../assets/animations/Check4.json")}
                 autoPlay
                 loop={false}
-                className="w-96 h-96 mb-10"
+                className="w-[80vw] h-[80vw] mb-10"
               ></LottieView>
             </View>
             <View className=" self-center mb-10">

@@ -167,20 +167,20 @@ const Add = () => {
             </View>
           </View>
         </ScrollView>
-        <View className="absolute bottom-10 self-center rounded-full overflow-hidden ">
+        <View className="absolute bottom-10 self-center justify-center rounded-full overflow-hidden ">
           <BlurView
             intensity={30}
-            experimentalBlurMethod="systemChromeMaterial"
-            tint="light"
+            experimentalBlurMethod="dimezisBlurView"
+            tint="dark"
             style={{
               borderRadius: 20,
             }}
-            className="flex flex-row space-x-2 rounded-full p-2"
+            className="flex flex-row space-x-2 rounded-full p-2 justify-center"
           >
             <View>
               <BackButton />
             </View>
-            <View>
+            <View className="justify-center">
               <Button
                 ContainerStyles="bg-[#8f00ff] p-3 w-[30vw] rounded-full justify-center items-center"
                 handlePress={addPress}

@@ -161,6 +161,18 @@ const TabsLayout = () => {
           }}
         />
       </Tabs>
+      {/* <View> */}
+      {/* <View className={`justify-center items-center h-[64px] w-[64px] rounded-full mb-10 absolute bottom-[0px] self-center bg-[#8F00FF] `}>
+                  
+                  <Ionicons 
+                  name="add"
+                  size={48}
+                  color="#fffffff" 
+                  className="self-center bg-slate-100 "
+                  /> 
+                </View>
+
+      </View> */}
 
     </SafeAreaProvider>
 
