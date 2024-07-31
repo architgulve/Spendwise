@@ -32,7 +32,7 @@ const TabsLayout = () => {
           },
           tabBarBackground: () => (
             <View style={StyleSheet.absoluteFill}>
-              <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill } />
+              <BlurView intensity={70} tint="dark" style={StyleSheet.absoluteFill } experimentalBlurMethod='systemChromeMaterial' />
               <LinearGradient
                 colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']}
                 style={StyleSheet.absoluteFill}
