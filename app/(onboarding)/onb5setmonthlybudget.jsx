@@ -17,6 +17,7 @@ import { Platform } from "react-native";
 import Animated, { FadeInRight } from "react-native-reanimated";
 import SkipButton from "../../components/skip";
 import BackButton from "../../components/backbutton";
+import * as Haptics from "expo-haptics";
 
 const onb5setmonthlybudget = () => {
   // const [budget, setBudget] = useState(5000);
@@ -33,6 +34,7 @@ const onb5setmonthlybudget = () => {
   };
 
   const handlePress = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await setUserBudget(form.budget);
     router.push("/(onboarding)/onb6setprofilepic");
   };

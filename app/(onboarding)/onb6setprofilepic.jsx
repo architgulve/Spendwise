@@ -16,10 +16,16 @@ import { Ionicons } from "@expo/vector-icons";
 import SkipButton from "../../components/skip";
 import BackButton from "../../components/backbutton";
 import { useState } from "react";
+import * as Haptics from "expo-haptics";
 const onb6setprofilepic = () => {
   const [profile, setProfile] = useState(require("../../assets/images/9.png"));
   const image = require("../../assets/images/Rectangle 55bg.png");
+  const handlePress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    router.push("/(onboarding)/onb7createcat")
+  };
   return (
+    
     <ImageBackground
       source={image}
       className="w-full h-full justify-center items-center"
@@ -117,7 +123,7 @@ const onb6setprofilepic = () => {
             <BackButton />
             <CustomButton
               title="Next"
-              handlePress={() => router.push("/(onboarding)/onb7createcat")}
+              handlePress={handlePress}
               ContainerStyles="w-[72vw]"
             />
           </View>

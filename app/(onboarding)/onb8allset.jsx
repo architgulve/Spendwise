@@ -5,8 +5,13 @@ import { Redirect, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInRight } from "react-native-reanimated";
 import BackButton from "../../components/backbutton";
+import * as Haptics from "expo-haptics";
 const onb8allset = () => {
   const image = require("../../assets/images/Rectangle 55bg.png");
+  const handlePress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    router.push("/(tabs)/home")
+  };
   return (
     <ImageBackground
       source={image}
@@ -27,7 +32,7 @@ const onb8allset = () => {
               <BackButton />
               <CustomButton
                 title="Next"
-                handlePress={() => router.push("/(tabs)/home")}
+                handlePress={handlePress}
                 ContainerStyles="w-[72vw]"
               />
             </View>

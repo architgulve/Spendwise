@@ -11,6 +11,7 @@ import Animated, {
   SlideInRight,
   SlideOutLeft,
 } from "react-native-reanimated";
+import * as Haptics from "expo-haptics";
 
 // const { Value, timing } = Animated;
 
@@ -18,7 +19,7 @@ const onb1adddaily = () => {
   const image = require("../../assets/images/Android Large - 7bg.png");
   const [isblurred, setisblurred] = React.useState(false);
   const handlePress = () => {
-    // setisblurred(true);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     router.push("/(onboarding)/onb2sortbycat");
   };
 

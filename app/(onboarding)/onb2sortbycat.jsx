@@ -10,9 +10,15 @@ import Animated, {
   SlideOutLeft,
 } from "react-native-reanimated";
 import BackButton from "../../components/backbutton";
+import * as Haptics from "expo-haptics";
 
 const onb2sortbycat = () => {
   const image = require("../../assets/images/Rectangle 55bg.png");
+
+  const handlePress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    router.push("/(onboarding)/onb3earnbadges");
+  };
 
   return (
     <ImageBackground
@@ -36,7 +42,7 @@ const onb2sortbycat = () => {
               <CustomButton
                 title="Next"
                 sharedTransitionTag="button"
-                handlePress={() => router.push("/(onboarding)/onb3earnbadges")}
+                handlePress={handlePress}
                 ContainerStyles="w-[72vw]"
               />
             </Animated.View>

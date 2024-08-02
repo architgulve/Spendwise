@@ -17,6 +17,7 @@ import { Platform } from "react-native";
 import Animated, { FadeInRight } from "react-native-reanimated";
 // import SkipButton from "../../components/skip";
 import BackButton from "../../components/backbutton";
+import * as Haptics from "expo-haptics";
 
 const onb4entername = () => {
   const [form, setform] = useState({
@@ -32,6 +33,7 @@ const onb4entername = () => {
   };
 
   const handlePress = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await setUserName(form.name);
     router.push("/(onboarding)/onb5setmonthlybudget");
   };

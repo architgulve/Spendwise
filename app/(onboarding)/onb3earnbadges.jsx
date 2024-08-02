@@ -10,7 +10,12 @@ import Animated, {
   SlideOutLeft,
 } from "react-native-reanimated";
 import BackButton from "../../components/backbutton";
+import * as Haptics from "expo-haptics";
 const onb3earnbadges = () => {
+  const handlePress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    router.push("/(onboarding)/onb4entername")
+  };
   const image = require("../../assets/images/Android Large - 7bg.png");
   return (
     <ImageBackground
@@ -32,7 +37,7 @@ const onb3earnbadges = () => {
               <BackButton />
               <CustomButton
                 title="Next"
-                handlePress={() => router.push("/(onboarding)/onb4entername")}
+                handlePress={handlePress}
                 ContainerStyles="w-[72vw]"
               />
             </View>
