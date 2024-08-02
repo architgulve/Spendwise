@@ -35,7 +35,7 @@ const onb4entername = () => {
     await setUserName(form.name);
     router.push("/(onboarding)/onb5setmonthlybudget");
   };
-  const image = require("../../assets/images/Android Large - 7bg.png");
+  const image = require("../../assets/images/Rectangle 55bg.png");
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}

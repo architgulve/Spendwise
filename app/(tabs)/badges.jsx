@@ -6,6 +6,9 @@ import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Badge from "../../components/Badge";
 
+import { router } from "expo-router";
+import Animated from "react-native-reanimated";
+
 const Badges = () => {
   return (
     <SafeAreaView edges={["top"]} className="bg-[#000000] h-full ">
@@ -17,35 +20,61 @@ const Badges = () => {
               <Text className="text-white text-2xl font-bold">Badges</Text>
             </View>
             <View className="flex flex-row flex-wrap justify-between ">
+              <Animated.View sharedTransitionTag="hatrr">
+                <Button
+                  handlePress={() => router.push("/badgedetails")}>
+                  <Badge />
+                </Button>
+              </Animated.View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
               <View>
-                <Badge />
+                <Button>
+                  <Badge />
+                </Button>
               </View>
             </View>
           </View>

@@ -18,7 +18,7 @@ import BackButton from "../../components/backbutton";
 import { useState } from "react";
 const onb6setprofilepic = () => {
   const [profile, setProfile] = useState(require("../../assets/images/9.png"));
-  const image = require("../../assets/images/Android Large - 7bg.png");
+  const image = require("../../assets/images/Rectangle 55bg.png");
   return (
     <ImageBackground
       source={image}

@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInRight } from "react-native-reanimated";
 import BackButton from "../../components/backbutton";
 const onb8allset = () => {
-  const image = require("../../assets/images/Android Large - 7bg.png");
+  const image = require("../../assets/images/Rectangle 55bg.png");
   return (
     <ImageBackground
       source={image}

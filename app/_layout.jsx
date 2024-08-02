@@ -53,6 +53,10 @@ const RootLayout = () => {
               name="profile"
               options={{ presentation: "transparentModal", animation: "fade" }}
             />
+            <Stack.Screen
+              name="badgedetails"
+              options={{ presentation: "transparentModal", animation: "fade" }}
+            />
           </Stack>
         </SafeAreaProvider>
       {/* </LayoutWrapper> */}

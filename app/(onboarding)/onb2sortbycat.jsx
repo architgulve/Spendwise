@@ -12,7 +12,7 @@ import Animated, {
 import BackButton from "../../components/backbutton";
 
 const onb2sortbycat = () => {
-  const image = require("../../assets/images/Android Large - 7bg.png");
+  const image = require("../../assets/images/Rectangle 55bg.png");
 
   return (
     <ImageBackground
