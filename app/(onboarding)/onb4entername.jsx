@@ -70,7 +70,7 @@ const onb4entername = () => {
               <BackButton />
               <CustomButton
                 title="Next"
-                handlePress={() => router.push("/(onboarding)/onb5setmonthlybudget")}
+                handlePress={handlePress}
                 ContainerStyles="w-[72vw]"
               />
             </View>
