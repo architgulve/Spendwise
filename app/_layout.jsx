@@ -43,7 +43,7 @@ const RootLayout = () => {
             <Stack.Screen
               name="addcategory"
               options={{
-                presentation: "transparentModal",
+                presentation: "modal",
                 animation: "fade",
                 headerTitle: "Add Category",
                 headerShown: false,
@@ -51,7 +51,7 @@ const RootLayout = () => {
             />
             <Stack.Screen
               name="profile"
-              options={{ presentation: "transparentModal", animation: "fade" }}
+              options={{ presentation: "transparentModal", animation: "fade", }}
             />
             <Stack.Screen
               name="badgedetails"

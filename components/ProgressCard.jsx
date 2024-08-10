@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import Button from './Button'
+// import View from './View'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useEffect, useState } from 'react';
@@ -32,12 +32,12 @@ const ProgressCard = () => {
     };
     var month=new Date().getMonth() + 1;
   return (
-    <Button>
+    <View className="bg-[#8f00ff] w-full  rounded-2xl p-3 mt-5">
         {/* <View className="bg-[#540495] w-full  rounded-2xl p-3 mt-5 flex-1"> */}
-            <LinearGradient
+            {/* <LinearGradient
                 colors={['#8d00FF', '#4C0088']}
                 className="w-full bg-[#540495] rounded-2xl p-3 mt-5 flex-1"
-            >
+            > */}
                 <View className="flex flex-row justify-between items-center">
                     <View className="">
                         <Text className="text-white font-semibold text-2xl ">₹ 50.00 </Text>
@@ -54,9 +54,9 @@ const ProgressCard = () => {
                         ></LinearGradient>
                     {/* <View className="w-1/2 h-10 bg-[#0FB700] rounded-full justify-start"></View> */}
                 </View>
-            </LinearGradient>
+            {/* </LinearGradient> */}
         {/* </View> */}
-    </Button>
+    </View>
   )
 }
 

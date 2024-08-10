@@ -2,6 +2,7 @@ import { View, Text, ScrollView, Pressable } from "react-native";
 import React from "react";
 import { BlurView } from "expo-blur";
 import { router } from "expo-router";
+import BackButton from "../components/backbutton";
 
 const addcategory = () => {
   return (
@@ -18,6 +19,7 @@ const addcategory = () => {
           <ScrollView className="h-full">
             <View className="mt-20 items-center">
               <Text className="text-white">addcategory</Text>
+              <BackButton />
             </View>
           </ScrollView>
         </Pressable>
