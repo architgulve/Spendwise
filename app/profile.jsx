@@ -2,7 +2,7 @@ import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { BlurView } from "expo-blur";
 import { router } from "expo-router";
-import ProgressCard from "../components/ProgressCard";
+// import ProgressCard from "../components/ProgressCard";
 import BackButton from "../components/backbutton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from 'react';
@@ -51,7 +51,7 @@ const Profile = () => {
               <Text className="text-white font-semibold text-2xl">{userName}</Text>
             </View>
           </View>
-          <ProgressCard />
+          {/* <ProgressCard /> */}
           
           <Card >
             <View className="flex flex-row items-center justify-between w-full">

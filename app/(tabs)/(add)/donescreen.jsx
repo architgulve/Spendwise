@@ -1,12 +1,38 @@
 import { View, Text, Pressable, ImageBackground } from "react-native";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "../../../components/Button";
 import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import LottieView from "lottie-react-native";
+import { lastExpense } from "../../../utils/database";
+import { useFocusEffect } from "@react-navigation/native";
 
 const DoneScreen = () => {
+
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [cost, setCost] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+
+  const fetchData = async () => {
+    try {
+      const expenses = await lastExpense();
+      setName(expenses[0].name);
+      setCategory(expenses[0].category);
+      setCost(expenses[0].cost);
+      setQuantity(expenses[0].quantity);
+    } catch (e) {
+      console.log("Error fetching expenses:", e);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
+
   return (
     <ImageBackground
       source={require("../../../assets/images/Android Large - 7bg.png")}
@@ -16,14 +42,18 @@ const DoneScreen = () => {
         <View className=" m-3 justify-center ">
           {/* <View className="h-5/6"> */}
           <View className="justify-between h-full w-full  item-ceter">
-            <View className=" h-36  justify-between mt-10 ">
-              <View className=" w-full items-center ">
-                <Text className="text-white font-semibold text-2xl">
-                  added
+            <View className=" h-36  justify-between mt-10 space-y-10">
+              <View className=" w-full items-center space-y-3">
+                <Text className="text-white font-semibold text-2xl">Added {name}</Text>
+                {/* <Text className="text-white font-semibold text-2xl">{name}</Text> */}
+              <View className=" w-full items-center">
+                <Text className="text-white font-semibold opacity-50">
+                  to {category}
                 </Text>
               </View>
+              </View>
               <View className=" w-full items-center">
-                <Text className="text-white font-semibold text-6xl">800 </Text>
+                <Text className="text-white font-semibold text-6xl">{cost}</Text>
               </View>
             </View>
             <View className="self-center">

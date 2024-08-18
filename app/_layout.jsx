@@ -7,7 +7,10 @@ import {
   GestureDetector,
   Gesture,
 } from "react-native-gesture-handler";
-
+import { initDatabase } from "../utils/database";
+initDatabase().catch((e) => {
+  console.log(e);
+});
 const DisableSwipeGesture = ({ children }) => {
   const gesture = Gesture.Simultaneous(
     Gesture.Native(),

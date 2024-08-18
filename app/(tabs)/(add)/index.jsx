@@ -17,33 +17,46 @@ import Card from "../../../components/Card";
 import { router } from "expo-router";
 import BackButton from "../../../components/backbutton";
 import { BlurView } from "expo-blur";
+import { addExpense } from "../../../utils/database";
 
 const Add = () => {
-  const [isDeleteMode, setIsDeleteMode] = useState(false);
-  const handleDeletePress = () => {
-    setIsDeleteMode(true);
-    //Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-  };
+  // const [isDeleteMode, setIsDeleteMode] = useState(false);
+  // const handleDeletePress = () => {
+  //   setIsDeleteMode(true);
+  //   //Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  // };
 
-  const handleCancelPress = () => {
-    setIsDeleteMode(false);
-  };
+  // const handleCancelPress = () => {
+  //   setIsDeleteMode(false);
+  // };
   const [Quantity, setQuantity] = useState(1);
+  const [Cost, setCost] = useState(0);
+  const [Category, setCategory] = useState("Grocery");
+  const [Name, setName] = useState("No Name");
+  // const [date, setDate] = useState(new Date());
+  // const [Month, setMonth] = useState(new Date().getMonth()+1);
+  const [Description, setDescription] = useState("No Description");
+  const [IsEdit, setIsEdit] = useState(false);
   const Increment = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
   const Decrement = () => {
     setQuantity((prevQuantity) => prevQuantity - 1);
   };
-  const [Cost, setCost] = useState(0);
+  
+
   const addPress = async () => {
     // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    await addExpense(Name, Cost*Quantity, Description, new Date(), new Date().getMonth()+1, Category, Quantity).catch((e) => {
+      console.log(e);
+    });
+    // {addExpense(Name, Category, Cost, Quantity, Description)}
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     router.push("/(tabs)/(add)/donescreen");
   };
-  const deletePress = async () => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-  };
+  // const deletePress = async () => {
+  //   Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+  // };
 
   return (
     <SafeAreaView edges={["top"]} className="bg-black h-full ">
@@ -126,9 +139,9 @@ const Add = () => {
                   <TextInput
                     className="flex-1 text-white text-base w-full"
                     placeholder="Eg. Clothes"
-                    //value={value}
+                    value={Name}
                     placeholderTextColor="#7a7a7a"
-                    //onChangeText={handleChangeText}
+                    onChangeText={(e) => setName(e)}
                     // onFocus={() => setIsFocused(true)}
                     // onBlur={() => setIsFocused(false)}
                     keyboardType="default"
@@ -152,10 +165,10 @@ const Add = () => {
                   <TextInput
                     className="flex-1 text-white text-base h-full w-full "
                     placeholder="Eg. For Birthday"
-                    //value={value}
+                    value={Description}
                     multiline={true}
                     placeholderTextColor="#7a7a7a"
-                    //onChangeText={handleChangeText}
+                    onChangeText={(e) => setDescription(e)}
                     // onFocus={() => setIsFocused(true)}
                     // onBlur={() => setIsFocused(false)}
                     keyboardType="default"

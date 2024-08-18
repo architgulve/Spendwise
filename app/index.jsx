@@ -9,6 +9,8 @@ import { images } from "../constants/images";
 import { Redirect, router } from "expo-router";
 import CustomButton from "../components/CustomButton";
 import * as Haptics from "expo-haptics";
+import { initDatabase } from "../utils/database";
+
 
 export default function App() {
   const handlePress = () => {
