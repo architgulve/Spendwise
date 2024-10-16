@@ -67,7 +67,7 @@ export const getExpenses = () => {
       );
     });
   });
-}; 
+};
 
 export const getTodayExpenses = () => {
   return new Promise((resolve, reject) => {

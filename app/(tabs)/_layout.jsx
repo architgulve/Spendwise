@@ -119,7 +119,7 @@ const TabsLayout = () => {
               router.push('/(add)');
             },
           }}
-          />
+        />
 
         
         <Tabs.Screen
