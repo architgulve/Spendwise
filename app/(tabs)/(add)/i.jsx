@@ -1,3 +1,6 @@
+
+
+
 import {
   View,
   Text,
@@ -7,10 +10,8 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import * as Haptics from "expo-haptics";
-import { MotiView } from "moti";
-import { MotiPressable } from "moti/interactions";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "../../../components/Button";
 import Card from "../../../components/Card";
@@ -18,49 +19,69 @@ import { router } from "expo-router";
 import BackButton from "../../../components/backbutton";
 import { BlurView } from "expo-blur";
 import { addExpense } from "../../../utils/database";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Add = () => {
-  // const [isDeleteMode, setIsDeleteMode] = useState(false);
-  // const handleDeletePress = () => {
-  //   setIsDeleteMode(true);
-  //   //Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-  // };
+  const [quantity, setQuantity] = useState(1);
+  const [cost, setCost] = useState(0);
+  const [category, setCategory] = useState("Grocery");
+  const [name, setName] = useState("No Name");
+  const [description, setDescription] = useState("No Description");
+  const [isEdit, setIsEdit] = useState(false);
 
-  // const handleCancelPress = () => {
-  //   setIsDeleteMode(false);
-  // };
-  const [Quantity, setQuantity] = useState(1);
-  const [Cost, setCost] = useState(0);
-  const [Category, setCategory] = useState("Grocery");
-  const [Name, setName] = useState("No Name");
-  // const [date, setDate] = useState(new Date());
-  // const [Month, setMonth] = useState(new Date().getMonth()+1);
-  const [Description, setDescription] = useState("No Description");
-  const [IsEdit, setIsEdit] = useState(false);
-  const Increment = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  const increment = () => {
+    setQuantity(prev => prev + 1);
   };
-  const Decrement = () => {
-    setQuantity((prevQuantity) => prevQuantity - 1);
+
+  const decrement = () => {
+    setQuantity(prev => Math.max(1, prev - 1)); // Prevent negative quantity
   };
   
+  const fetchData = async () => {
+    try {
+      const savedCost = await AsyncStorage.getItem("tempCost");
+      setCost(savedCost ? parseFloat(savedCost) : 0);
+    } catch (e) {
+      console.log('Error fetching cost:', e);
+      setCost(0);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   const addPress = async () => {
-    // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    await addExpense(Name, Cost*Quantity, Description, new Date(), new Date().getMonth()+1, Category, Quantity).catch((e) => {
-      console.log(e);
-    });
-    // {addExpense(Name, Category, Cost, Quantity, Description)}
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    router.push("/(tabs)/(add)/donescreen");
+    try {
+      const numericCost = parseFloat(cost);
+      if (isNaN(numericCost)) {
+        throw new Error('Invalid cost value');
+      }
+
+      await addExpense(
+        name,
+        numericCost * quantity,
+        description,
+        new Date(),
+        new Date().getMonth() + 1,
+        category,
+        quantity
+      );
+      
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      router.push("/(tabs)/(add)/donescreen");
+    } catch (e) {
+      console.log('Error adding expense:', e);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+    }
   };
-  // const deletePress = async () => {
-  //   Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-  // };
 
   return (
-    <SafeAreaView edges={["top"]} className="bg-black h-full ">
-      <View className="bg-black h-full ">
+    <SafeAreaView edges={["top"]} className="bg-black h-full">
+      <View className="bg-black h-full">
         <StatusBar hidden={false} style="light" animated={true} />
         <ScrollView>
           <View className="m-3 mb-[120px]">
@@ -70,6 +91,8 @@ const Add = () => {
                   Add Expense
                 </Text>
               </View>
+              
+              {/* Category and Date Section */}
               <View className="flex-1 flex flex-row justify-between">
                 <View className="bg-[#121212] rounded-full p-3">
                   <Text className="text-white">Category</Text>
@@ -78,109 +101,103 @@ const Add = () => {
                   <Text className="text-[#ffffff]">Date</Text>
                 </View>
               </View>
+
+              {/* Cost Input Section */}
               <Card containerStyles="flex-1 flex flex-col">
                 <View>
-                  <Text className="text-[#711AB6] font-bold text-lg ">
+                  <Text className="text-[#711AB6] font-bold text-lg">
                     Cost
                   </Text>
                 </View>
                 <View>
-                  <View className={"p-3 rounded-2xl "}>
+                  <View className="p-3 rounded-2xl">
                     <TextInput
                       className="flex-1 text-[#ffffff] text-7xl h-full text-center items-center justify-center"
                       placeholder="0"
-                      value={Cost}
+                      value={cost.toString()}
                       placeholderTextColor="#7a7a7a"
-                      onChangeText={(e) => setCost(e)}
-                      //onFocus={() => setIsFocused(true)}
-                      //onBlur={() => setIsFocused(false)}
-                      keyboardType="number-pad"
-                      //autoComplete='given-name'
-                      //{...props}
+                      onChangeText={(text) => {
+                        const numValue = parseFloat(text) || 0;
+                        setCost(numValue);
+                      }}
+                      keyboardType="numeric"
                     />
                   </View>
                 </View>
               </Card>
+
+              {/* Quantity Section */}
               <View className="flex-1 flex flex-row mx-2 justify-between items-center">
-                <Text className="text-[#711AB6] font-bold  text-lg">
+                <Text className="text-[#711AB6] font-bold text-lg">
                   Quantity
                 </Text>
-                <View className="flex flex-row ">
+                <View className="flex flex-row">
                   <Button
                     ContainerStyles="bg-[#121212] p-3 rounded-l-xl"
-                    handlePress={Decrement}
+                    handlePress={decrement}
                   >
                     <Ionicons name="remove-outline" size={24} color="white" />
                   </Button>
-                  <View className="bg-[#121212]  p-2 items-center justify-center">
-                    <Text className="text-[#ffffff]">{Quantity}</Text>
+                  <View className="bg-[#121212] p-2 items-center justify-center">
+                    <Text className="text-[#ffffff]">{quantity}</Text>
                   </View>
                   <Button
                     ContainerStyles="bg-[#121212] p-3 rounded-r-xl"
-                    handlePress={Increment}
+                    handlePress={increment}
                   >
                     <Ionicons name="add-outline" size={24} color="white" />
                   </Button>
                 </View>
               </View>
+
+              {/* Total Section */}
               <Card containerStyles="flex-1 flex flex-row justify-between">
                 <Text className="text-[#711AB6] font-bold text-lg">Total</Text>
-                <Text className="text-white text-lg">₹ {Cost * Quantity}</Text>
+                <Text className="text-white text-lg">₹ {(cost * quantity).toFixed(2)}</Text>
               </Card>
+
+              {/* Name Input Section */}
               <Card className="flex-1 flex flex-col space-y-3">
                 <View>
                   <Text className="text-[#711AB6] font-bold text-lg">Name</Text>
                 </View>
-                <View
-                  className={
-                    " min-w-full h-[60px] p-4 bg-[#000000] rounded-xl items-start "
-                  }
-                >
+                <View className="min-w-full h-[60px] p-4 bg-[#000000] rounded-xl items-start">
                   <TextInput
                     className="flex-1 text-white text-base w-full"
                     placeholder="Eg. Clothes"
-                    value={Name}
+                    value={name}
                     placeholderTextColor="#7a7a7a"
-                    onChangeText={(e) => setName(e)}
-                    // onFocus={() => setIsFocused(true)}
-                    // onBlur={() => setIsFocused(false)}
+                    onChangeText={setName}
                     keyboardType="default"
-                    //autoComplete='given-name'
-                    //{...props}
                   />
                 </View>
               </Card>
 
+              {/* Description Input Section */}
               <Card containerStyles="flex-1 flex flex-col space-y-3">
                 <View>
                   <Text className="text-[#711AB6] font-bold text-lg">
                     Description
                   </Text>
                 </View>
-                <View
-                  className={
-                    " min-w-full h-[150px] px-4 bg-[#000000] rounded-2xl items-start "
-                  }
-                >
+                <View className="min-w-full h-[150px] px-4 bg-[#000000] rounded-2xl items-start">
                   <TextInput
-                    className="flex-1 text-white text-base h-full w-full "
+                    className="flex-1 text-white text-base h-full w-full"
                     placeholder="Eg. For Birthday"
-                    value={Description}
+                    value={description}
                     multiline={true}
                     placeholderTextColor="#7a7a7a"
-                    onChangeText={(e) => setDescription(e)}
-                    // onFocus={() => setIsFocused(true)}
-                    // onBlur={() => setIsFocused(false)}
+                    onChangeText={setDescription}
                     keyboardType="default"
-                    //autoComplete='given-name'
-                    //{...props}
                   />
                 </View>
               </Card>
             </View>
           </View>
         </ScrollView>
-        <View className="absolute bottom-10 self-center justify-center rounded-full overflow-hidden ">
+
+        {/* Bottom Action Buttons */}
+        <View className="absolute bottom-10 self-center justify-center rounded-full overflow-hidden">
           <BlurView
             intensity={30}
             experimentalBlurMethod="dimezisBlurView"
