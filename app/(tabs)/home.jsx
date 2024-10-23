@@ -24,6 +24,8 @@ import { useFocusEffect } from "@react-navigation/native";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { LinearGradient } from "expo-linear-gradient";
+import { BarChart } from "react-native-gifted-charts";
+import { Dimensions } from "react-native";
 
 initDatabase();
 const Home = () => {
@@ -31,6 +33,8 @@ const Home = () => {
   const [userBudget, setUserBudget] = useState("5000");
   const [monthexpense, setMonthExpense] = useState(0);
   const [Expenses, setExpenses] = useState([]);
+  const screenWidth = Dimensions.get('window').width
+
 
   // useEffect(() => {
   //   const fetchUserName = async () => {
@@ -128,6 +132,7 @@ const Home = () => {
               </Pressable>
             </View>
 
+            {/* <ProgressCard /> */}
             <View className="bg-[#8f00ff] w-full  rounded-2xl p-3 mt-5">
               <View className="flex flex-row justify-between items-center">
                 <View className="">
@@ -144,11 +149,29 @@ const Home = () => {
               <Text className="text-white opacity-70 text-xs self-start">
                 of {userBudget}
               </Text>
-              <View className="w-full h-10 bg-black justify-center self-center my-3 rounded-full ">
-                <LinearGradient
-                  colors={["#0FB700", "#0FB700"]}
-                  className="w-1/2 h-10 bg-[#0FB700] rounded-l-full justify-start"
-                ></LinearGradient>
+              <View className="w-100 h-10 bg-black justify-start my-3 rounded-full "> 
+                <BarChart
+                  horizontal
+                  backgroundColor={"white"}
+                  data={[{value: monthexpense}]}
+                  barWidth={40}
+                  height={40}
+                  width={screenWidth}
+                  shiftY={-52}
+                  shiftX={-60}
+                  frontColor="#0FB700"
+                  maxValue={userBudget}
+                  yAxisThickness={0}
+                  xAxisThickness={0}
+                  roundedBottom
+                  roundedTop
+                  hideRules
+                  hideYAxisText
+                  isAnimated
+                  hideOrigin
+                  // hideAxesAndRules
+                  className="w-full"
+                />
               </View>
             </View>
             {/* <ProgressCard /> */}
