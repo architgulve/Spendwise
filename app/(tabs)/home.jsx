@@ -133,6 +133,7 @@ const Home = () => {
             </View>
 
             {/* <ProgressCard /> */}
+            <Pressable onPress={()=> router.push("../activity")}>
             <View className="bg-[#8f00ff] w-full  rounded-2xl p-3 mt-5">
               <View className="flex flex-row justify-between items-center">
                 <View className="">
@@ -149,31 +150,42 @@ const Home = () => {
               <Text className="text-white opacity-70 text-xs self-start">
                 of {userBudget}
               </Text>
-              <View className="w-100 h-10 bg-black justify-start my-3 rounded-full "> 
-                <BarChart
-                  horizontal
-                  backgroundColor={"white"}
-                  data={[{value: monthexpense}]}
-                  barWidth={40}
-                  height={40}
-                  width={screenWidth}
-                  shiftY={-52}
-                  shiftX={-60}
-                  frontColor="#0FB700"
-                  maxValue={userBudget}
-                  yAxisThickness={0}
-                  xAxisThickness={0}
-                  roundedBottom
-                  roundedTop
-                  hideRules
-                  hideYAxisText
-                  isAnimated
-                  hideOrigin
-                  // hideAxesAndRules
-                  className="w-full"
-                />
+              <View className="w-100 h-10  justify-start my-3 rounded-full "> 
+              <BarChart
+              horizontal
+              barBorderColor={"#FFFFFF"}
+              data={[{
+             value: monthexpense > userBudget ? userBudget : monthexpense
+              }]}
+              barWidth={40}
+              height={40}
+             width={screenWidth - 80}  // Subtract padding and margins
+             shiftY={-52}
+             shiftX={-52}  // Removed negative shift
+             frontColor={
+              monthexpense > userBudget * 1.50
+                ? "#8B0000"     // Dark red if over 200% of budget
+                : monthexpense > userBudget * 1.40
+                  ? "#FF0000"   // Red if over 175% of budget
+                  : monthexpense > userBudget * 1.25
+                    ? "#FF4500" // Orange red if over 150% of budget
+                      : monthexpense > userBudget
+                        ? "#FF8C00" // Orange if over 100% of budget
+                        : "#0FB700" // Green if within budget
+            }
+            maxValue={userBudget}
+            yAxisThickness={0}
+            xAxisThickness={0}
+            roundedBottom
+            roundedTop
+            hideRules
+            hideYAxisText
+            isAnimated
+            hideOrigin
+             />
               </View>
             </View>
+            </Pressable>
             {/* <ProgressCard /> */}
 
             <View className="flex-1 flex flex-col">

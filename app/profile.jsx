@@ -9,13 +9,12 @@ import { useEffect, useState } from 'react';
 import Card from "../components/Card";
 import Button from "../components/Button";
 import { Ionicons } from '@expo/vector-icons';
-
+import defaultProfile from '../assets/images/1.png';
 
 const Profile = () => {
   const [userName, setUserName] = useState("Stranger");
-  const [userBudget, setUserBudget] = useState('5000');
   useEffect(() => {
-    const fetchUserName = async () => {
+    const fetchUserName = async () => { 
       try {
         const name = await AsyncStorage.getItem("userName");
         if (name !== null) {
@@ -28,13 +27,54 @@ const Profile = () => {
     fetchUserName();
   }, []);
 
-  const [Quantity, setQuantity] = useState(1);
-  const Increment = () => {
-    setQuantity((prevuserBudget) => prevuserBudget + 500);
+  const [userBudget, setUserBudget] = useState(5000);
+  useEffect(() => {
+    const fetchUserBudget = async () => {
+      try {
+        const budget = await AsyncStorage.getItem("userBudget");
+        if (budget !== null) {
+          setUserBudget(budget);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchUserBudget();
+  })
+
+  const incrementBudget = () => {
+    setUserBudget(prevBudget => prevBudget + 500);
   };
-  const Decrement = () => {
-    setQuantity((prevuserBudget) => prevuserBudget - 500);
+  
+  const decrementBudget = () => {
+    setUserBudget(prevBudget => Math.max(500, prevBudget - 500)); // Prevents going below 500
   };
+
+  const [userProfile, setUserProfile] = useState({image: defaultProfile});
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const profile = await AsyncStorage.getItem("userProfile");
+        if (profile !== null) {
+          const parsedProfile = JSON.parse(profile);
+          
+          // Get the image from our mapping, or use default if not found
+          const imagePath = parsedProfile.image && profileImages[parsedProfile.image]
+            ? profileImages[parsedProfile.image]
+            : defaultProfile;
+  
+          setUserProfile({
+            ...parsedProfile,
+            image: imagePath
+          });
+        }
+      }
+      catch (e) {
+        console.log(e);
+      }
+    };
+    fetchUserProfile();
+  }, []);
 
   return (
     <View className="h-full p-3 bg-black">
@@ -54,23 +94,23 @@ const Profile = () => {
           {/* <ProgressCard /> */}
           
           <Card >
-            <View className="flex flex-row items-center justify-between w-full">
+          <View className="flex flex-row items-center justify-between w-full">
+          <View className="flex flex-row items-center justify-between w-full ">
           <Text className="text-white ">Budget</Text>
-          <View>
             <Text className="text-white font-semibold text-2xl">{userBudget}</Text>
             <View className="flex flex-row ">
                   <Button
                     ContainerStyles="bg-[#121212] p-3 rounded-l-xl"
-                    handlePress={Decrement}
+                    handlePress={decrementBudget}
                   >
                     <Ionicons name="remove-outline" size={24} color="white" />
                   </Button>
                   <View className="bg-[#121212]  p-2 items-center justify-center">
-                    <Text className="text-[#ffffff]">{userBudget}</Text>
+                    <Text className="text-[#ffffff]">{userBudget.toLocaleString()}</Text>
                   </View>
                   <Button
                     ContainerStyles="bg-[#121212] p-3 rounded-r-xl"
-                    handlePress={Increment}
+                    handlePress={incrementBudget}
                   >
                     <Ionicons name="add-outline" size={24} color="white" />
                   </Button>
