@@ -5,11 +5,15 @@ import { router } from "expo-router";
 // import ProgressCard from "../components/ProgressCard";
 import BackButton from "../components/backbutton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Button from "../components/Button";
-import { Ionicons } from '@expo/vector-icons';
-import defaultProfile from '../assets/images/1.png';
+import { Ionicons } from "@expo/vector-icons";
+import defaultProfile from "../assets/images/1.png";
+import { Image } from "react-native";
+import { ImageBackground } from "react-native-web";
+import { useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 
 const Profile = () => {
   const [userName, setUserName] = useState("Stranger");
@@ -49,32 +53,38 @@ const Profile = () => {
   const decrementBudget = () => {
     setUserBudget(prevBudget => Math.max(500, prevBudget - 500)); // Prevents going below 500
   };
-
-  const [userProfile, setUserProfile] = useState({image: defaultProfile});
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const profile = await AsyncStorage.getItem("userProfile");
-        if (profile !== null) {
-          const parsedProfile = JSON.parse(profile);
-          
-          // Get the image from our mapping, or use default if not found
-          const imagePath = parsedProfile.image && profileImages[parsedProfile.image]
-            ? profileImages[parsedProfile.image]
-            : defaultProfile;
+  const defaultProfile = require("../assets/images/9.png");
+  const profileLog={
+    "1":require("../assets/images/1.png"),
+    "2":require("../assets/images/2.png"),
+    "3":require("../assets/images/3.png"),
+    "4":require("../assets/images/4.png"),
+    "5":require("../assets/images/5.png"),
+    "6":require("../assets/images/6.png"),
+    "7":require("../assets/images/7.png"),
+    "8":require("../assets/images/8.png"),
+    "9":require("../assets/images/9.png"),
+    "10":require("../assets/images/10.png")
+  }
   
-          setUserProfile({
-            ...parsedProfile,
-            image: imagePath
-          });
-        }
+  const[image, setImage] = useState(defaultProfile);
+  const handlePress = async () => {
+    try {
+      const imageNumber = await AsyncStorage.getItem("profilePic");
+      if (imageNumber !== null) {
+        setImage(profileLog[imageNumber]);
+        console.log(imageNumber);
       }
-      catch (e) {
-        console.log(e);
-      }
-    };
-    fetchUserProfile();
-  }, []);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      handlePress();
+    }, [])
+  );
 
   return (
     <View className="h-full p-3 bg-black">
@@ -86,13 +96,19 @@ const Profile = () => {
             <Text className="text-white font-semibold text-2xl">Edit</Text>
           </View>
           <View className="w-full items-center">
-            <View className="bg-white h-[50vw] w-[50vw] rounded-full"></View>
+            <View className="bg-white h-[50vw] w-[50vw] rounded-full">
+              <Image
+                source={image}
+                resizeMode="cover"
+                className="h-[50vw] w-[50vw] rounded-full"
+              />
+            </View>
             <View>
               <Text className="text-white font-semibold text-2xl">{userName}</Text>
             </View>
           </View>
           {/* <ProgressCard /> */}
-          
+
           <Card >
           <View className="flex flex-row items-center justify-between w-full">
           <View className="flex flex-row items-center justify-between w-full ">
