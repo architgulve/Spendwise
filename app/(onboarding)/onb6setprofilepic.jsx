@@ -17,6 +17,8 @@ import SkipButton from "../../components/skip";
 import BackButton from "../../components/backbutton";
 import { useState } from "react";
 import * as Haptics from "expo-haptics";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const onb6setprofilepic = () => {
   const [profile, setProfile] = useState(require("../../assets/images/9.png"));
   const image = require("../../assets/images/Rectangle 55bg.png");
@@ -24,6 +26,15 @@ const onb6setprofilepic = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     router.push("/(onboarding)/onb7createcat")
   };
+  const profilePress = async (imageNumber,profileAddress) => {
+    setProfile(profileAddress);
+    try{
+      await AsyncStorage.setItem("profilePic", imageNumber);
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
   return (
     
     <ImageBackground
@@ -57,62 +68,56 @@ const onb6setprofilepic = () => {
             <View>
               <View className="flex flex-row  justify-between w-11/12 p-2 ">
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/9.png"))}>
+                <Button handlePress={() => profilePress("9",require("../../assets/images/9.png"))}>
                     <ProfilePic image={require("../../assets/images/9.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/1.png"))}>
+                  <Button handlePress={() => profilePress("1",require( "../../assets/images/1.png"))}>
                     <ProfilePic image={require("../../assets/images/1.png")} />
                   </Button>
                 </View>
 
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/2.png"))}>
+                  <Button handlePress={() => profilePress("2",require("../../assets/images/2.png"))}>
                     <ProfilePic image={require("../../assets/images/2.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/3.png"))}>
+                  <Button handlePress={() => profilePress("3",require("../../assets/images/3.png"))}>
                     <ProfilePic image={require("../../assets/images/3.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/4.png"))}>
+                  <Button handlePress={() => profilePress("4",require("../../assets/images/4.png"))}>
                     <ProfilePic image={require("../../assets/images/4.png")} />
                   </Button>
                 </View>
               </View>
               <View className="flex flex-row  justify-between w-11/12 p-2">
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/5.png"))}>
+                  <Button handlePress={() => profilePress("5",require("../../assets/images/5.png"))}>
                     <ProfilePic image={require("../../assets/images/5.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/6.png"))}>
+                  <Button handlePress={() => profilePress("6",require("../../assets/images/6.png"))}>
                     <ProfilePic image={require("../../assets/images/6.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/7.png"))}>
+                  <Button handlePress={() => profilePress("7",require("../../assets/images/7.png"))}>
                     <ProfilePic image={require("../../assets/images/7.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button handlePress={() => setProfile(require("../../assets/images/8.png"))}>
+                  <Button handlePress={() => profilePress("8",require("../../assets/images/8.png"))}>
                     <ProfilePic image={require("../../assets/images/8.png")} />
                   </Button>
                 </View>
                 <View>
-                  <Button>
-                    <View className="rounded-full h-[15vw] w-[15vw] border-2 border-[#8f00ff] items-center justify-center">
-                      <Ionicons
-                        name="image-outline"
-                        color={"#8f00ff"}
-                        size={40}
-                      />
-                    </View>
+                  <Button handlePress={() => profilePress("10",require("../../assets/images/10.png"))}>
+                    <ProfilePic image={require("../../assets/images/10.png")} />
                   </Button>
                 </View>
               </View>
