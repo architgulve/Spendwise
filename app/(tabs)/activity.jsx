@@ -7,6 +7,7 @@ import {
   deleteallExpenses,
   deleteExpense,
   getExpenses,
+  getLastWeekExpenses,
   initDatabase,
 } from "../../utils/database";
 import TodayListItems from "../../components/TodayListItems";
@@ -17,25 +18,37 @@ import Animated from "react-native-reanimated";
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import SwipeableItem from "../../components/SwipeableItem";
 import * as Haptics from "expo-haptics";
+import { BarChart } from "react-native-gifted-charts";
 
 const Activity = () => {
-  const [data, setData] = useState("week");
+  // const [data, setData] = useState("week");
   const [selectedValue, setSelectedValue] = useState(1);
   const [Expenses, setExpenses] = useState([]);
 
+  const weekData= getLastWeekExpenses();
   const fetchData = async () => {
+
     try {
+      console.log(weekData["_j"] );
       const expenses = await getExpenses(); // Fetch expenses from the database
       setExpenses(expenses); // Update the state with the fetched expenses
     } catch (e) {
       console.log("Error fetching expenses:", e);
     }
   };
+
+
   useFocusEffect(
     useCallback(() => {
       fetchData(); // Fetch data every time the tab comes into focus
     }, [])
   );
+
+  
+
+
+
+
   return (
     <SafeAreaView edges={["top"]} className="bg-[#000000] h-full">
       <StatusBar hidden={false} style="light" />
@@ -51,14 +64,34 @@ const Activity = () => {
                 onChange={(newValue) => setSelectedValue(newValue)}
               />
             </View>
-            <View className="h-[60vw] rounded-2xl w-full bg-[#121212]"></View>
+            <View className="h-[60vw] rounded-2xl w-full bg-[#121212]  ">
+              <BarChart
+              data = {[
+                { value: weekData._j[0] },
+                { value: weekData._j[1] },
+                { value: weekData._j[2] },
+                { value: weekData._j[3] },
+                { value: weekData._j[4] },
+                { value: weekData._j[5] },
+                { value: weekData._j[6] },
+              ]}
+              // color={["#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff"]}
+
+              height={300}
+              barWidth={20}
+              showGrid
+              showValues
+              showLabels
+              showAnimation
+              />
+            </View>
             <View>
               <Text className="text-[#8f00ff] text-lg font-bold">
                 Categories
               </Text>
             </View>
             <View className="rounded-2xl w-full bg-[#121212] overflow-hidden p-3 items-center">
-              <View className="rounded-full h-[60vw] w-[60vw] bg-emerald-800"></View>
+              {/* <View className="rounded-full h-[60vw] w-[60vw] bg-emerald-800"></View> */}
             </View>
             <View>
               <Text className="text-[#8f00ff] text-lg font-bold">Expenses</Text>

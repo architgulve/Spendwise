@@ -73,7 +73,7 @@ const Profile = () => {
       const imageNumber = await AsyncStorage.getItem("profilePic");
       if (imageNumber !== null) {
         setImage(profileLog[imageNumber]);
-        console.log(imageNumber);
+        // console.log(imageNumber);
       }
     } catch (e) {
       console.log(e);

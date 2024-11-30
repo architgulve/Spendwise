@@ -180,7 +180,7 @@ const Home = () => {
             roundedTop
             hideRules
             hideYAxisText
-            isAnimated
+            // isAnimated
             hideOrigin
              />
               </View>

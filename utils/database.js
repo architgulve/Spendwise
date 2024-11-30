@@ -1,4 +1,5 @@
 import * as SQLite from 'expo-sqlite/legacy';
+import dayjs from 'dayjs';
 
 const db = SQLite.openDatabase('expenses.db');
 
@@ -52,6 +53,48 @@ export const addExpense = (name, cost, description, date, month, category) => {
   reject( error );
 });
 };
+
+export const datamonthlyExpenses = () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        `SELECT SUM(cost) as total FROM expenses WHERE month = ?`,
+        [new Date().getMonth() + 1],
+        (_, { rows }) => {
+          const total = rows.item(0).total;
+          resolve(total || 0);
+        },
+        (_, error) => {
+          console.log('Error summing expenses', error);
+          reject(error);
+        }
+      );
+    });
+  });
+};
+
+
+export const getLastWeekExpenses = async () => {
+  try {
+    const today = dayjs();
+    const lastWeekExpenses = [];
+
+    for (let i = 6; i >= 0; i--) {
+      const date = today.subtract(i, 'day');
+      const monthNumber = date.month() + 1;
+      const dailyExpenses = await datamonthlyExpenses(monthNumber, date.date());
+      lastWeekExpenses.push(dailyExpenses?dailyExpenses:0);
+    }
+
+    return lastWeekExpenses;
+  } catch (error) {
+    console.error('Error fetching last week expenses:', error);
+    throw error;
+  }
+};
+
+
+ 
 
 export const getExpenses = () => {
   return new Promise((resolve, reject) => {
