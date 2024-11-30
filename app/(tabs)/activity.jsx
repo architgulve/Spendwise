@@ -8,7 +8,7 @@ import {
   deleteExpense,
   getExpenses,
   getLastWeekExpenses,
-  initDatabase,
+  summonthExpenses,
 } from "../../utils/database";
 import TodayListItems from "../../components/TodayListItems";
 import { useFocusEffect } from "@react-navigation/native";
@@ -19,23 +19,47 @@ import { PanGestureHandler } from 'react-native-gesture-handler';
 import SwipeableItem from "../../components/SwipeableItem";
 import * as Haptics from "expo-haptics";
 import { BarChart } from "react-native-gifted-charts";
+import { FullWindowOverlay } from "react-native-screens";
 
 const Activity = () => {
   // const [data, setData] = useState("week");
   const [selectedValue, setSelectedValue] = useState(1);
   const [Expenses, setExpenses] = useState([]);
 
-  const weekData= getLastWeekExpenses();
-  const fetchData = async () => {
 
+  const [weeklyExpenses, setWeeklyExpenses] = useState([0, 0, 0, 0, 0, 0, 0]); // Default to zeros
+
+  const weekData= getLastWeekExpenses();
+  // const fetchData = async () => {
+  //   try {
+  //     console.log(weekData["_j"] );
+  //     const expenses = await getExpenses(); // Fetch expenses from the database
+  //     setExpenses(expenses); // Update the state with the fetched expenses
+
+  //     const weekData = await getLastWeekExpenses();
+  //     setWeeklyExpenses(weekData);
+  //   } catch (e) {
+  //     console.log("Error fetching expenses:", e);
+  //   }
+  // };
+  const fetchData = async () => {
     try {
-      console.log(weekData["_j"] );
-      const expenses = await getExpenses(); // Fetch expenses from the database
-      setExpenses(expenses); // Update the state with the fetched expenses
-    } catch (e) {
-      console.log("Error fetching expenses:", e);
+      console.log("Fetching data...");
+      const expenses = await getExpenses(); // Fetch all expenses
+      console.log("Fetched expenses:", expenses);
+      setExpenses(expenses);
+  
+      const weekData = await getLastWeekExpenses(); // Fetch weekly expenses
+      console.log("Fetched weekly expenses:", weekData);
+      setWeeklyExpenses(weekData);
+      console.log("Expenses state:", Expenses);
+console.log("Weekly expenses state:", weeklyExpenses);
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
+  
 
 
   useFocusEffect(
@@ -45,10 +69,6 @@ const Activity = () => {
   );
 
   
-
-
-
-
   return (
     <SafeAreaView edges={["top"]} className="bg-[#000000] h-full">
       <StatusBar hidden={false} style="light" />
@@ -64,26 +84,25 @@ const Activity = () => {
                 onChange={(newValue) => setSelectedValue(newValue)}
               />
             </View>
-            <View className="h-[60vw] rounded-2xl w-full bg-[#121212]  ">
+            <View className="h-[60vw] rounded-2xl w-full bg-[#121212] overflow-hidden items-center  ">
               <BarChart
-              data = {[
-                { value: weekData._j[0] },
-                { value: weekData._j[1] },
-                { value: weekData._j[2] },
-                { value: weekData._j[3] },
-                { value: weekData._j[4] },
-                { value: weekData._j[5] },
-                { value: weekData._j[6] },
-              ]}
-              // color={["#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff", "#8f00ff"]}
+  data={weeklyExpenses.map((value, index) => ({
+    value,
+    label: `Day ${index}`,
+  }))} // Dynamically map weekly expenses
+  maxValue={7000}
+  barBorderRadius={4}
+  width={300}
+  showXAxisIndices
+  showYAxisIndices
+  barWidth={20}
+  height={200}
+  showValues
+  frontColor={'#8f00ff'}
+  // gradientColor={'#FFEEFE'}
+  
+/>
 
-              height={300}
-              barWidth={20}
-              showGrid
-              showValues
-              showLabels
-              showAnimation
-              />
             </View>
             <View>
               <Text className="text-[#8f00ff] text-lg font-bold">

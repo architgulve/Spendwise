@@ -13,10 +13,50 @@ import Card from '../../../components/Card';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from 'react';
 import Button from '../../../components/Button';
+import { useFocusEffect } from '@react-navigation/native';
+// import defaultProfile from '../../../assets/images/9.png';
+import { Image } from 'react-native';
+import { useCallback } from 'react';
+
+
 
 
 const Settings = () => {
   const [userName, setUserName] = useState('Stranger');
+
+  const defaultProfile = require("../../../assets/images/9.png");
+  const profileLog={
+    "1":require("../../../assets/images/1.png"),
+    "2":require("../../../assets/images/2.png"),
+    "3":require("../../../assets/images/3.png"),
+    "4":require("../../../assets/images/4.png"),
+    "5":require("../../../assets/images/5.png"),
+    "6":require("../../../assets/images/6.png"),
+    "7":require("../../../assets/images/7.png"),
+    "8":require("../../../assets/images/8.png"),
+    "9":require("../../../assets/images/9.png"),
+    "10":require("../../../assets/images/10.png")
+  }
+
+  const[image, setImage] = useState(defaultProfile);
+useFocusEffect(
+  useCallback(() => {
+    const handlePress2 = async () => {
+      try {
+        const imageNumber = await AsyncStorage.getItem("profilePic");
+        if (imageNumber !== null) {
+          setImage(profileLog[imageNumber]);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    // Call the function here
+    handlePress2();
+  }, [])
+);
+
 
   useEffect(() => {
     const fetchUserName = async () => {
@@ -48,7 +88,13 @@ const Settings = () => {
                 >
                   <Card containerStyles="flex flex-row space-x-3 items-center justify-start p-4">
                     <View >
-                      <Ionicons name="person-circle-outline" size={64} color="gray" />
+                      {/* <Ionicons name="person-circle-outline" size={64} color="gray" />
+                       */}
+                       <Image
+                       source={image}
+                       resizeMode="cover"
+                       className="h-[64] w-[64] rounded-full"
+                       />
                     </View>
                     <View>
                       <Text className="text-white text-xl font-semibold">{userName}</Text>

@@ -18,6 +18,9 @@ import {
   getTodayExpenses,
   getExpenses,
   deleteExpense,
+  deleteallExpenses,
+  sumMonthExpenses,
+  getLastWeekExpenses
 } from "../../utils/database";
 import Animated from "react-native-reanimated";
 import { useFocusEffect } from "@react-navigation/native";
@@ -26,6 +29,7 @@ import Card from "../../components/Card";
 import { LinearGradient } from "expo-linear-gradient";
 import { BarChart } from "react-native-gifted-charts";
 import { Dimensions } from "react-native";
+import {Image} from 'react-native'
 
 initDatabase();
 const Home = () => {
@@ -50,7 +54,41 @@ const Home = () => {
   //   fetchUserName();
   // }, []);
 
-  const handlePress = async () => {
+  //profilepic
+  const defaultProfile = require("../../assets/images/9.png");
+  const profileLog={
+    "1":require("../../assets/images/1.png"),
+    "2":require("../../assets/images/2.png"),
+    "3":require("../../assets/images/3.png"),
+    "4":require("../../assets/images/4.png"),
+    "5":require("../../assets/images/5.png"),
+    "6":require("../../assets/images/6.png"),
+    "7":require("../../assets/images/7.png"),
+    "8":require("../../assets/images/8.png"),
+    "9":require("../../assets/images/9.png"),
+    "10":require("../../assets/images/10.png")
+  }
+  
+  const[image, setImage] = useState(defaultProfile);
+  useFocusEffect(
+    useCallback(() => {
+      const handlePress2 = async () => {
+        try {
+          const imageNumber = await AsyncStorage.getItem("profilePic");
+          if (imageNumber !== null) {
+            setImage(profileLog[imageNumber]);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      handlePress2();
+    }, [])
+  );
+  
+//profilepic
+
+  const handlePress1 = async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     router.push("/addcategory");
   };
@@ -123,11 +161,11 @@ const Home = () => {
               </View>
               <Pressable onPress={() => router.push("../profile")}>
                 <View className="items-center justify-center">
-                  <Ionicons
-                    name="person-circle-outline"
-                    size={40}
-                    color="gray"
-                  ></Ionicons>
+                <Image
+                source={image}
+                resizeMode="cover"
+                className="h-10 w-10 rounded-full"
+              />
                 </View>
               </Pressable>
             </View>
@@ -243,7 +281,8 @@ const Home = () => {
                 <CatGridItem title="👔 Clothes" value="200" />
                 <CatGridItem title="🍇 Food" value="100" />
                 <CatGridItem title="🎥 Movie" value="300" />
-                <AddCat handlePress={handlePress} />
+                <AddCat 
+                handlePress={handlePress1}/>
               </View>
             </View>
           </View>
