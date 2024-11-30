@@ -45,7 +45,7 @@ const Profile = () => {
     };
     fetchUserBudget();
   })
-
+  
   const incrementBudget = () => {
     setUserBudget(prevBudget => prevBudget + 500);
   };
@@ -122,7 +122,7 @@ const Profile = () => {
                     <Ionicons name="remove-outline" size={24} color="white" />
                   </Button>
                   <View className="bg-[#121212]  p-2 items-center justify-center">
-                    <Text className="text-[#ffffff]">{userBudget.toLocaleString()}</Text>
+                    <Text className="text-[#ffffff]">{userBudget}</Text>
                   </View>
                   <Button
                     ContainerStyles="bg-[#121212] p-3 rounded-r-xl"
