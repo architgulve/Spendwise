@@ -68,7 +68,7 @@ const Add = () => {
         new Date(),
         new Date().getMonth() + 1,
         category,
-        quantity
+        // quantity
       );
       
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

@@ -1,14 +1,14 @@
 import { View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import SegmentedControl from "../../components/SegmentedControl";
 import {
-  deleteallExpenses,
+  deleteAllExpenses,
   deleteExpense,
-  getExpenses,
+  getAllExpenses,
   getLastWeekExpenses,
-  summonthExpenses,
+  getSumOfMonthExpenses,
 } from "../../utils/database";
 import TodayListItems from "../../components/TodayListItems";
 import { useFocusEffect } from "@react-navigation/native";
@@ -20,20 +20,23 @@ import SwipeableItem from "../../components/SwipeableItem";
 import * as Haptics from "expo-haptics";
 import { BarChart } from "react-native-gifted-charts";
 import { FullWindowOverlay } from "react-native-screens";
+import { useSegments } from "expo-router";
+import AsyncStorage, { useAsyncStorage } from "@react-native-async-storage/async-storage";
 
 const Activity = () => {
   // const [data, setData] = useState("week");
   const [selectedValue, setSelectedValue] = useState(1);
   const [Expenses, setExpenses] = useState([]);
 
-
+  const [userBudget, setUserBudget] = useState("5000");
   const [weeklyExpenses, setWeeklyExpenses] = useState([0, 0, 0, 0, 0, 0, 0]); // Default to zeros
-
+  const segments = useSegments();
+  const prevsegments = segments;
   const weekData= getLastWeekExpenses();
   // const fetchData = async () => {
   //   try {
   //     console.log(weekData["_j"] );
-  //     const expenses = await getExpenses(); // Fetch expenses from the database
+  //     const expenses = await getAllExpenses(); // Fetch expenses from the database
   //     setExpenses(expenses); // Update the state with the fetched expenses
 
   //     const weekData = await getLastWeekExpenses();
@@ -44,16 +47,23 @@ const Activity = () => {
   // };
   const fetchData = async () => {
     try {
-      console.log("Fetching data...");
-      const expenses = await getExpenses(); // Fetch all expenses
-      console.log("Fetched expenses:", expenses);
+      // console.log("Fetching data...");
+      const expenses = await getAllExpenses(); // Fetch all expenses
+      // console.log("Fetched expenses:", expenses);
       setExpenses(expenses);
-  
+      try {
+        const budget = await AsyncStorage.getItem("userBudget");
+        if (budget !== null) {
+          setUserBudget(budget);
+        }
+      } catch (e) {
+        console.log(e);
+      }
       const weekData = await getLastWeekExpenses(); // Fetch weekly expenses
-      console.log("Fetched weekly expenses:", weekData);
+      // console.log("Fetched weekly expenses:", weekData);
       setWeeklyExpenses(weekData);
-      console.log("Expenses state:", Expenses);
-console.log("Weekly expenses state:", weeklyExpenses);
+      // console.log("Expenses state:", Expenses);
+      // console.log("Weekly expenses state:", weeklyExpenses);
 
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -61,12 +71,19 @@ console.log("Weekly expenses state:", weeklyExpenses);
   };
   
 
-
-  useFocusEffect(
-    useCallback(() => {
-      fetchData(); // Fetch data every time the tab comes into focus
-    }, [])
-  );
+  useEffect(() => {
+    if (prevsegments.current !== segments && segments.includes('activity')) {
+      console.log(segments);
+      prevsegments.current=segments;
+      fetchData();
+      
+    }
+  },[segments]);
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     fetchData(); // Fetch data every time the tab comes into focus
+  //   }, [])
+  // );
 
   
   return (
@@ -80,28 +97,49 @@ console.log("Weekly expenses state:", weeklyExpenses);
             </View>
             <View>
               <SegmentedControl
-                options={["Month", "Week", "Year"]}
+                options={["Week", "Month", "Year"]}
                 onChange={(newValue) => setSelectedValue(newValue)}
               />
             </View>
-            <View className="h-[60vw] rounded-2xl w-full bg-[#121212] overflow-hidden items-center  ">
+            <View className="h-[60vw] rounded-2xl w-full bg-[#121212] overflow-hidden items-center justify-center ">
               <BarChart
-  data={weeklyExpenses.map((value, index) => ({
-    value,
-    label: `Day ${index}`,
-  }))} // Dynamically map weekly expenses
-  maxValue={7000}
-  barBorderRadius={4}
-  width={300}
-  showXAxisIndices
-  showYAxisIndices
-  barWidth={20}
-  height={200}
-  showValues
-  frontColor={'#8f00ff'}
-  // gradientColor={'#FFEEFE'}
-  
-/>
+                data={weeklyExpenses.map((value, index) => ({
+                  value,
+                  label: `${index}`,
+                }))} // Dynamically map weekly expenses
+                maxValue={userBudget}
+                disableScroll
+                roundedTop
+                roundedBottom
+                width={300}
+                // showXAxisIndices
+                // showYAxisIndices
+                xAxisThickness={0}
+                yAxisThickness={0}
+                rulesColor={'#232323'}
+                hideRules
+                barWidth={20}
+                height={200}
+                showValues
+                frontColor={'#8f00ff'}
+                yAxisTextStyle={{color : 'white'}}
+                xAxisLabelTextStyle={{color : 'white'}}
+                noOfSections={4}
+                referenceLine1Config={userBudget}
+                yAxisLabelWidth={60}
+                renderTooltip={(item, index) => {
+                  return (
+                    <View className="bg-[#9000ff35] p-1.5 rounded-full ml-[-13] mb-[-40]">
+                      <Text className="text-[#8f00ff]">{item.value}</Text>
+                    </View>
+                  );
+                }}
+
+                
+                
+                // gradientColor={'#FFEEFE'}
+                
+              />
 
             </View>
             <View>
@@ -139,7 +177,7 @@ console.log("Weekly expenses state:", weeklyExpenses);
             <View>
               <Button
                 handlePress={() => {
-                  deleteallExpenses();
+                  deleteAllExpenses();
                   fetchData();
                 }}
               >

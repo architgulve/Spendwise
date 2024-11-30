@@ -8,10 +8,12 @@ import {
   Gesture,
 } from "react-native-gesture-handler";
 import { initDatabase } from "../utils/database";
-initDatabase().catch((e) => {
-  console.log(e);
-});
-const DisableSwipeGesture = ({ children }) => {
+import { NavigationContainer } from "@react-navigation/native";
+import { useEffect } from "react";
+
+
+
+DisableSwipeGesture = ({ children }) => {
   const gesture = Gesture.Simultaneous(
     Gesture.Native(),
     Gesture.Pan()
@@ -27,6 +29,18 @@ const DisableSwipeGesture = ({ children }) => {
 
 const RootLayout = () => {
   const pathname = usePathname();
+  useEffect(() => {
+    const setupDatabase = async () => {
+      try {
+        await initDatabase();
+        // Database initialized successfully
+      } catch (error) {
+        console.error('Failed to initialize database', error);
+      }
+    };
+  
+    setupDatabase();
+  }, []);
 
   // List of routes where you want to disable the swipe gesture
   // const disableSwipeRoutes = ['/(tabs)', '/addcategory', '/profile'];
@@ -36,6 +50,8 @@ const RootLayout = () => {
   // const LayoutWrapper = shouldDisableSwipe ? DisableSwipeGesture : React.Fragment;
 
   return (
+    // <NavigationIndependentTree>
+    <NavigationContainer>
     <GestureHandlerRootView style={{ flex: 1 }}>
       {/* <LayoutWrapper> */}
         <SafeAreaProvider>
@@ -64,6 +80,9 @@ const RootLayout = () => {
         </SafeAreaProvider>
       {/* </LayoutWrapper> */}
     </GestureHandlerRootView>
+    </NavigationContainer>
+    
+    // </NavigationIndependentTree>
   );
 };
 

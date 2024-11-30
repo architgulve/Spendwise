@@ -5,7 +5,7 @@ import Button from "../../../components/Button";
 import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import LottieView from "lottie-react-native";
-import { lastExpense } from "../../../utils/database";
+import { getLastAddedExpense, lastExpense } from "../../../utils/database";
 import { useFocusEffect } from "@react-navigation/native";
 
 const DoneScreen = () => {
@@ -17,7 +17,7 @@ const DoneScreen = () => {
 
   const fetchData = async () => {
     try {
-      const expenses = await lastExpense();
+      const expenses = await getLastAddedExpense();
       setName(expenses[0].name);
       setCategory(expenses[0].category);
       setCost(expenses[0].cost);

@@ -1,26 +1,21 @@
 import { View, Text, ScrollView, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import * as Haptics from "expo-haptics";
-import { MotiView } from "moti";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import TodayListItems from "../../components/TodayListItems";
 import CatGridItem from "../../components/CatGridItem";
 import AddCat from "../../components/AddCat";
-import { router } from "expo-router";
+import { router, useSegments } from "expo-router";
 // import ProgressCard from "../../components/ProgressCard";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import { initDatabase, summonthExpenses } from "../../utils/database";
 import {
   getTodayExpenses,
-  getExpenses,
-  deleteExpense,
-  deleteallExpenses,
-  sumMonthExpenses,
-  getLastWeekExpenses
+  getSumOfMonthExpenses,
 } from "../../utils/database";
 import Animated from "react-native-reanimated";
 import { useFocusEffect } from "@react-navigation/native";
@@ -92,11 +87,13 @@ const Home = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     router.push("/addcategory");
   };
-
+  const segments = useSegments();
+  const prevsegments = useRef(segments);
   const fetchData = async () => {
     try {
-      const expenses = await getExpenses();
+      const expenses = await getTodayExpenses();
       setExpenses(expenses);
+      // console.log(expenses)
     } catch (e) {
       console.log("Error fetching expenses:", e);
     }
@@ -109,7 +106,7 @@ const Home = () => {
       console.log(e);
     }
     try {
-      const monthExpense = await summonthExpenses();
+      const monthExpense = await getSumOfMonthExpenses();
       setMonthExpense(monthExpense);
     } catch (e) {
       console.log("Error fetching expenses:", e);
@@ -123,11 +120,20 @@ const Home = () => {
       console.log(e);
     }
   };
-  useFocusEffect(
-    useCallback(() => {
+  useEffect(() => {
+    if (prevsegments.current !== segments && segments.includes('home')) {
+      console.log(segments);
+      prevsegments.current=segments;
       fetchData();
-    }, [])
-  );
+      
+    }
+  },[segments]);
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     console.log("focused")
+  //     fetchData();
+  //   }, [])
+  // );
   const checkMonthName = (month) => {
     const monthNames = [
       "January",

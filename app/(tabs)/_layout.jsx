@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { BlurView } from 'expo-blur'
+import { NavigationContainer } from '@react-navigation/native'
 
 
 const TabsLayout = () => {
