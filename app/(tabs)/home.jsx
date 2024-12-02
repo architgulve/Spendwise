@@ -177,59 +177,63 @@ const Home = () => {
             </View>
 
             {/* <ProgressCard /> */}
-            <Pressable onPress={()=> router.push("../activity")}>
-            <View className="bg-[#8f00ff] w-full  rounded-2xl p-3 mt-5">
-              <View className="flex flex-row justify-between items-center">
-                <View className="">
-                  <Text className="text-white font-semibold text-2xl ">
-                    ₹ {monthexpense}
-                  </Text>
+            <Button handlePress={()=> router.push("../activity")}>
+              <View className="bg-[#8f00ff] w-full  rounded-2xl p-3 mt-5">
+                <View className="flex flex-row justify-between items-center">
+                  <View className="">
+                    <Text className="text-white font-semibold text-2xl ">
+                      ₹ {monthexpense}
+                    </Text>
+                  </View>
+                  <View className="">
+                    <Text className="text-white text-xs opacity-70">
+                      {checkMonthName(month)}
+                    </Text>
+                  </View>
                 </View>
-                <View className="">
-                  <Text className="text-white text-xs opacity-70">
-                    {checkMonthName(month)}
-                  </Text>
+                <Text className="text-white opacity-70 text-xs self-start">
+                  of {userBudget}
+                </Text>
+                <View className="w-100 h-10  justify-start my-3 rounded-full bg-[#000000] "> 
+                <BarChart
+                  horizontal
+                  disableScroll
+                  disablePress
+                  barBorderColor={"#FFFFFF"}
+                  data={[{
+                    value: monthexpense > userBudget ? userBudget : monthexpense
+                  }]}
+                  yAxisLabelWidth={0}
+                  barWidth={40}
+                  height={40}
+                  width={screenWidth - 47}  // Subtract padding and margins
+                  shiftY={-56.3}
+                  shiftX={-56}  // Removed negative shift
+                  frontColor={
+                    monthexpense > userBudget * 1.50
+                      ? "#8B0000"     // Dark red if over 200% of budget
+                      : monthexpense > userBudget * 1.40
+                        ? "#FF0000"   // Red if over 175% of budget
+                        : monthexpense > userBudget * 1.25
+                          ? "#FF4500" // Orange red if over 150% of budget
+                            : monthexpense > userBudget
+                              ? "#FF8C00" // Orange if over 100% of budget
+                              : "#0FB700" // Green if within budget
+                  }
+                  maxValue={userBudget}
+                  yAxisThickness={0}
+                  xAxisThickness={0}
+                  roundedBottom
+                  roundedTop
+                  hideRules
+                  hideYAxisText
+                  // backgroundColor={'#123456'}
+                  // isAnimated
+                  hideOrigin
+              />
                 </View>
               </View>
-              <Text className="text-white opacity-70 text-xs self-start">
-                of {userBudget}
-              </Text>
-              <View className="w-100 h-10  justify-start my-3 rounded-full "> 
-              <BarChart
-              horizontal
-              barBorderColor={"#FFFFFF"}
-              data={[{
-             value: monthexpense > userBudget ? userBudget : monthexpense
-              }]}
-              barWidth={40}
-              height={40}
-             width={screenWidth - 80}  // Subtract padding and margins
-             shiftY={-52}
-             shiftX={-52}  // Removed negative shift
-             frontColor={
-              monthexpense > userBudget * 1.50
-                ? "#8B0000"     // Dark red if over 200% of budget
-                : monthexpense > userBudget * 1.40
-                  ? "#FF0000"   // Red if over 175% of budget
-                  : monthexpense > userBudget * 1.25
-                    ? "#FF4500" // Orange red if over 150% of budget
-                      : monthexpense > userBudget
-                        ? "#FF8C00" // Orange if over 100% of budget
-                        : "#0FB700" // Green if within budget
-            }
-            maxValue={userBudget}
-            yAxisThickness={0}
-            xAxisThickness={0}
-            roundedBottom
-            roundedTop
-            hideRules
-            hideYAxisText
-            // isAnimated
-            hideOrigin
-             />
-              </View>
-            </View>
-            </Pressable>
+            </Button>
             {/* <ProgressCard /> */}
 
             <View className="flex-1 flex flex-col">

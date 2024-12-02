@@ -101,45 +101,45 @@ const Activity = () => {
                 onChange={(newValue) => setSelectedValue(newValue)}
               />
             </View>
-            <View className="h-[60vw] rounded-2xl w-full bg-[#121212] overflow-hidden items-center justify-center ">
-              <BarChart
-                data={weeklyExpenses.map((value, index) => ({
-                  value,
-                  label: `${index}`,
-                }))} // Dynamically map weekly expenses
-                maxValue={userBudget}
-                disableScroll
-                roundedTop
-                roundedBottom
-                width={300}
-                // showXAxisIndices
-                // showYAxisIndices
-                xAxisThickness={0}
-                yAxisThickness={0}
-                rulesColor={'#232323'}
-                hideRules
-                barWidth={20}
-                height={200}
-                showValues
-                frontColor={'#8f00ff'}
-                yAxisTextStyle={{color : 'white'}}
-                xAxisLabelTextStyle={{color : 'white'}}
-                noOfSections={4}
-                referenceLine1Config={userBudget}
-                yAxisLabelWidth={60}
-                renderTooltip={(item, index) => {
-                  return (
-                    <View className="bg-[#9000ff35] p-1.5 rounded-full ml-[-13] mb-[-40]">
-                      <Text className="text-[#8f00ff]">{item.value}</Text>
-                    </View>
-                  );
-                }}
-
-                
-                
-                // gradientColor={'#FFEEFE'}
-                
-              />
+            <View className="h-[67vw] rounded-2xl w-full bg-[#121212] overflow-hidden items-center justify-center ">
+              <View className="w-full items-center ">
+                <BarChart
+                  data={weeklyExpenses.map((value, index) => ({
+                    value,
+                    label: `${index}`,
+                  }))} // Dynamically map weekly expenses
+                  maxValue={userBudget}
+                  // disableScroll
+                  backgroundColor={'#123456'}
+                  roundedTop
+                  roundedBottom
+                  // width={300}
+                  // height={200}
+                  // showXAxisIndices
+                  // showYAxisIndices
+                  xAxisThickness={0}
+                  yAxisThickness={0}
+                  rulesColor={'#232323'}
+                  // hideRules
+                  // barWidth={20}
+                  showValues
+                  frontColor={'#8f00ff'}
+                  yAxisTextStyle={{color : 'white'}}
+                  xAxisLabelTextStyle={{color : 'white'}}
+                  // noOfSections={4}
+                  referenceLine1Config={userBudget}
+                  yAxisLabelWidth={0}
+                  hideAxesAndRules
+                  renderTooltip={(item, index) => {
+                    return (
+                      <View className="bg-[#9000ff35] p-1.5 rounded-full ml-[-13] mb-[-40]">
+                        <Text className="text-[#8f00ff]">{item.value}</Text>
+                      </View>
+                    );
+                  }}
+                  // gradientColor={'#FFEEFE'}
+                />
+              </View>
 
             </View>
             <View>
