@@ -194,7 +194,7 @@ const Home = () => {
                 <Text className="text-white opacity-70 text-xs self-start">
                   of {userBudget}
                 </Text>
-                <View className="w-100 h-10  justify-start my-3 rounded-full bg-[#000000] "> 
+                <View className="w-100 h-10  justify-start my-3 rounded-full "> 
                 <BarChart
                   horizontal
                   disableScroll
