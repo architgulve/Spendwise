@@ -13,6 +13,7 @@ import { useEffect } from "react";
 
 
 
+
 DisableSwipeGesture = ({ children }) => {
   const gesture = Gesture.Simultaneous(
     Gesture.Native(),
@@ -82,7 +83,7 @@ const RootLayout = () => {
     </GestureHandlerRootView>
     </NavigationContainer>
     
-    // </NavigationIndependentTree>
+    //  </NavigationIndependentTree>
   );
 };
 
