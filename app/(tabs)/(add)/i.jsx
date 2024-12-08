@@ -7,6 +7,8 @@ import {
   ScrollView,
   TextInput,
   KeyboardAvoidingView,
+  StyleSheet,
+  Platform
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,6 +23,7 @@ import { BlurView } from "expo-blur";
 import { addExpense } from "../../../utils/database";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Add = () => {
   const [quantity, setQuantity] = useState(1);
@@ -29,7 +32,25 @@ const Add = () => {
   const [name, setName] = useState("No Name");
   const [description, setDescription] = useState("No Description");
   const [isEdit, setIsEdit] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  const [text, setText] = useState('Select Date');
 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+    setText(fDate);
+    console.log(fDate);
+  }
+  const showModefe = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  }
   const increment = () => {
     setQuantity(prev => prev + 1);
   };
@@ -98,7 +119,23 @@ const Add = () => {
                   <Text className="text-white">Category</Text>
                 </View>
                 <View className="bg-[#121212] rounded-full p-3">
-                  <Text className="text-[#ffffff]">Date</Text>
+                  {/* <Text className="text-[#ffffff]">Date</Text> */}
+                  <Button
+                    ContainerStyles="bg-[#121212] p-3 rounded-full"
+                    handlePress={() => showModefe('date')}
+                  >
+                    <Text className="text-[#ffffff]">{text}</Text>
+                  </Button>
+                  {show && (
+                    <DateTimePicker
+                      testID="dateTimePicker"
+                      value={date}
+                      mode={mode}
+                      is24Hour={true}
+                      display="default"
+                      onChange={onChange}
+                    />
+                  )}
                 </View>
               </View>
 

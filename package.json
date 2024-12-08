@@ -18,6 +18,7 @@
     "@expo/cli": "^0.21.8",
     "@expo/vector-icons": "^14.0.0",
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-community/datetimepicker": "^8.2.0",
     "@react-navigation/native": "^6.0.2",
     "dayjs": "^1.11.13",
     "expo": "^52.0.0",
