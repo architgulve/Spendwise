@@ -6,7 +6,7 @@ const CatGridItem = ({title,value,}) => {
   return (
     <View className="basis-1/2 ">
       <Button>
-          <View className="bg-[#121212] w-11/12 self-center h-32 rounded-lg my-2">
+          <View className="bg-[#1c1c1c] w-11/12 self-center h-32 rounded-lg my-2">
               <View>
                   <Text className="text-white  font-extrabold mt-3 ml-5">{title}</Text>
               </View>

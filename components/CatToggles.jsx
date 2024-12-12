@@ -73,7 +73,7 @@ const CatToggles = ({ label, onPress }) => {
   return (
     <GestureDetector gesture={gesture}>
       <Animated.View
-        layout={LinearTransition.springify().mass(0.8)}
+        layout={LinearTransition.springify().mass(0.1)}
         style={[rContainerStyle]}
         className="flex flex-row items-center border rounded-full p-3 m-1"
       >

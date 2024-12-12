@@ -63,8 +63,8 @@ const RootLayout = () => {
             <Stack.Screen
               name="addcategory"
               options={{
-                presentation: "modal",
-                animation: "fade",
+                // presentation: "modal",
+                animation: "default",
                 headerTitle: "Add Category",
                 headerShown: false,
               }}

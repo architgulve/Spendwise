@@ -68,7 +68,8 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="activity"
+          name="(activity)"
+
           options={{ 
             gestureEnabled: false,
             title: 'Activity',

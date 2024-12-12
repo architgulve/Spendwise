@@ -49,7 +49,7 @@ const EnterCost = () => {
   const renderNumberButton = (number) => (
     <TouchableOpacity
       onPress={() => handleNumberInput(number)}
-      className="w-[30vw] h-[20vw] bg-black border-2 border-[#8f00ff] p-30 rounded-full justify-center items-center shadow-glow"
+      className="w-[30vw] h-[20vw] bg-black border-2 border-[#8f00ff] p-30 rounded-full justify-center items-center"
     >
       <Text className="text-white">{number}</Text>
     </TouchableOpacity>
@@ -59,8 +59,11 @@ const EnterCost = () => {
     <SafeAreaView edges={["top"]} className="bg-[#000000] h-full">
       <View className="bg-black h-full">
         <StatusBar hidden={false} style="light" animated={true} />
-        <View className="items-left w-16 absolute">
-          <BackButton />
+        <View className="items-left absolute">
+          <View className='flex flex-row justify-between w-1/2'>
+            <BackButton />
+            <Text className='text-white'>Add Cost</Text>
+          </View>
         </View>
         
         <View className="w-full h-1/2 justify-center items-center"> 

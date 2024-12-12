@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useDebugValue } from "react";
 import * as Haptics from "expo-haptics";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "../../../components/Button";
@@ -20,10 +20,12 @@ import Card from "../../../components/Card";
 import { router } from "expo-router";
 import BackButton from "../../../components/backbutton";
 import { BlurView } from "expo-blur";
-import { addExpense } from "../../../utils/database";
+import { addExpense, getAllCategories } from "../../../utils/database";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Animated, { FadeIn, FadeOut, LayoutAnimationType, LinearTransition,useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import CatDropdownItem from "../../../components/CatDropdownItem";
 
 const Add = () => {
   const [quantity, setQuantity] = useState(1);
@@ -31,26 +33,19 @@ const Add = () => {
   const [category, setCategory] = useState("Grocery");
   const [name, setName] = useState("No Name");
   const [description, setDescription] = useState("No Description");
-  const [isEdit, setIsEdit] = useState(false);
   const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
-  const [text, setText] = useState('Select Date');
+  const categoryHeight = useSharedValue(50);
+  const categoryWidth = useSharedValue('50%')
+  const [categoryMode, setcategoryMode] = useState('closed')
+  const [selectedCategory,setselectedCategory] = useState(['None','#ffffff'])
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
+    const [category,setCategory] = useState([])
+    // setShow(Platform.OS === 'ios');
     setDate(currentDate);
+  }
 
-    let tempDate = new Date(currentDate);
-    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
-    setText(fDate);
-    console.log(fDate);
-  }
-  const showModefe = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  }
   const increment = () => {
     setQuantity(prev => prev + 1);
   };
@@ -60,6 +55,12 @@ const Add = () => {
   };
   
   const fetchData = async () => {
+    try { 
+      const Cat = await getAllCategories();
+      setCategory(Cat);
+    } catch (e) { 
+      console.log(e);
+    }
     try {
       const savedCost = await AsyncStorage.getItem("tempCost");
       setCost(savedCost ? parseFloat(savedCost) : 0);
@@ -86,9 +87,9 @@ const Add = () => {
         name,
         numericCost * quantity,
         description,
-        new Date(),
-        new Date().getMonth() + 1,
-        category,
+        date,
+        date.getMonth() + 1,
+        selectedCategory[0],
         // quantity
       );
       
@@ -99,6 +100,10 @@ const Add = () => {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
     }
   };
+  const animatedStyle = useAnimatedStyle(() => ({
+    height: withTiming(categoryHeight.value),
+    width: withTiming(categoryWidth.value),
+  }));
 
   return (
     <SafeAreaView edges={["top"]} className="bg-black h-full">
@@ -107,42 +112,177 @@ const Add = () => {
         <ScrollView>
           <View className="m-3 mb-[120px]">
             <View className="flex flex-col space-y-5">
-              <View>
+              <View className="flex-1 flex flex-row justify-between">
                 <Text className="text-white text-2xl font-bold">
                   Add Expense
                 </Text>
+                <View>
+                  <DateTimePicker
+                    value={date}
+                    mode="date"
+                    display="default"
+                    onChange={onChange}
+                    accentColor="#8f00ff"
+                  />
+                </View>
               </View>
               
               {/* Category and Date Section */}
-              <View className="flex-1 flex flex-row justify-between">
-                <View className="bg-[#121212] rounded-full p-3">
-                  <Text className="text-white">Category</Text>
-                </View>
-                <View className="bg-[#121212] rounded-full p-3">
-                  {/* <Text className="text-[#ffffff]">Date</Text> */}
-                  <Button
-                    ContainerStyles="bg-[#121212] p-3 rounded-full"
-                    handlePress={() => showModefe('date')}
-                  >
-                    <Text className="text-[#ffffff]">{text}</Text>
-                  </Button>
-                  {show && (
-                    <DateTimePicker
-                      testID="dateTimePicker"
-                      value={date}
-                      mode={mode}
-                      is24Hour={true}
-                      display="default"
-                      onChange={onChange}
-                    />
-                  )}
-                </View>
+              <View>
+                <Animated.View
+                  className='bg-[#1c1c1c] rounded-2xl p-2 items-center'
+                  style={animatedStyle}
+                >
+                {categoryMode=='closed' ? (
+                  <>
+                    <Button
+                      handlePress={() => {
+                        categoryHeight.value=withTiming(categoryHeight.value+120);
+                        categoryWidth.value=withTiming('100%')
+                        setcategoryMode('expanded')
+                        // console.log(categoryMode)
+                      }}
+                    >
+                      <View className='flex flex-row justify-between items-center w-full px-2'>
+                        <Text
+                         className={`text-base`}
+                         style={{
+                          color: selectedCategory[1]
+                         }}
+                         >
+                          {selectedCategory[0]}
+                        </Text>
+                        <View className='h-full w-10 justify-center items-end p-2'>
+                          <Ionicons name="chevron-down-outline" size={20} color={selectedCategory[1]}></Ionicons>
+                        </View>
+                      </View>
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                  <View className='w-full'>
+                    {/* <ScrollView horizontal> */}
+                      <View className='flex flex-row flex-wrap'>
+                        {category.map((item,) => (
+                          <CatDropdownItem
+                            key = {item.category_id}
+                            category={item.name}
+                            color={item.cat_color}
+                            handlePress={() => {
+                              setcategoryMode('closed');
+                              categoryHeight.value = withTiming(categoryHeight.value - 120);
+                              categoryWidth.value = withTiming('50%');
+                              setselectedCategory([item.name, item.cat_color]);
+                            }}
+                          />
+                        ))}
+                        {/* <CatDropdownItem
+                          color={'#ffffff'}
+                          category={'None'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['None', '#ffffff']);
+                          }}
+                        />
+                        <CatDropdownItem
+                          color={'#8f00ff'}
+                          category={'Animals'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['Animals', '#8f00ff']);
+                          }}
+                        />
+                        <CatDropdownItem
+                          color={'#006666'}
+                          category={'Food'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['Food', '#123456']);
+                          }}
+                        />
+                        <CatDropdownItem
+                          color={'#FF5733'}
+                          category={'Nature'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['Nature', '#FF5733']);
+                          }}
+                        />
+                        <CatDropdownItem
+                          color={'#33FF57'}
+                          category={'Technology'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['Technology', '#33FF57']);
+                          }}
+                        />
+                        <CatDropdownItem
+                          color={'#5733FF'}
+                          category={'Travel'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['Travel', '#5733FF']);
+                          }}
+                        />
+                        <CatDropdownItem
+                          color={'#FFC300'}
+                          category={'Art'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['Art', '#FFC300']);
+                          }}
+                        />
+                        <CatDropdownItem
+                          color={'#FF33A1'}
+                          category={'Music'}
+                          handlePress={() => {
+                            setcategoryMode('closed');
+                            categoryHeight.value = withTiming(categoryHeight.value - 200);
+                            categoryWidth.value = withTiming('50%');
+                            setselectedCategory(['Music', '#FF33A1']);
+                          }}
+                        /> */}
+
+                      </View>
+                    {/* </ScrollView> */}
+                    <Button
+                      // ContainerStyles={''}
+                      handlePress={() => {
+                        categoryHeight.value=withTiming(categoryHeight.value-120);
+                        categoryWidth.value=withTiming('50%')
+                        setcategoryMode('closed')
+                        // console.log(categoryMode)
+                      }}
+                    >
+                      <View className='w-full items-end p-2'>
+                        <Ionicons name="chevron-up-outline" size={20} color={'#ffffff'}></Ionicons>
+                      </View>
+                    </Button>
+                  </View>
+                  </>
+                )}
+                </Animated.View>
+                
               </View>
 
               {/* Cost Input Section */}
               <Card containerStyles="flex-1 flex flex-col">
                 <View>
-                  <Text className="text-[#711AB6] font-bold text-lg">
+                  <Text className="text-[#8f00ff] font-bold text-lg">
                     Cost
                   </Text>
                 </View>
@@ -165,38 +305,40 @@ const Add = () => {
 
               {/* Quantity Section */}
               <View className="flex-1 flex flex-row mx-2 justify-between items-center">
-                <Text className="text-[#711AB6] font-bold text-lg">
+                <Text className="text-[#8f00ff] font-bold text-lg">
                   Quantity
                 </Text>
                 <View className="flex flex-row">
                   <Button
-                    ContainerStyles="bg-[#121212] p-3 rounded-l-xl"
+                    ContainerStyles="bg-[#1c1c1c] p-3 rounded-l-xl"
                     handlePress={decrement}
                   >
                     <Ionicons name="remove-outline" size={24} color="white" />
                   </Button>
-                  <View className="bg-[#121212] p-2 items-center justify-center">
+                  <View className="bg-[#1c1c1c] p-2 items-center justify-center">
                     <Text className="text-[#ffffff]">{quantity}</Text>
                   </View>
                   <Button
-                    ContainerStyles="bg-[#121212] p-3 rounded-r-xl"
+                    ContainerStyles="bg-[#1c1c1c] p-3 rounded-r-xl"
                     handlePress={increment}
                   >
                     <Ionicons name="add-outline" size={24} color="white" />
                   </Button>
                 </View>
               </View>
+              
 
               {/* Total Section */}
               <Card containerStyles="flex-1 flex flex-row justify-between">
-                <Text className="text-[#711AB6] font-bold text-lg">Total</Text>
+                <Text className="text-[#8f00ff] font-bold text-lg">Total</Text>
                 <Text className="text-white text-lg">₹ {(cost * quantity).toFixed(2)}</Text>
               </Card>
+            
 
               {/* Name Input Section */}
               <Card className="flex-1 flex flex-col space-y-3">
                 <View>
-                  <Text className="text-[#711AB6] font-bold text-lg">Name</Text>
+                  <Text className="text-[#8f00ff] font-bold text-lg">Name</Text>
                 </View>
                 <View className="min-w-full h-[60px] p-4 bg-[#000000] rounded-xl items-start">
                   <TextInput
@@ -213,7 +355,7 @@ const Add = () => {
               {/* Description Input Section */}
               <Card containerStyles="flex-1 flex flex-col space-y-3">
                 <View>
-                  <Text className="text-[#711AB6] font-bold text-lg">
+                  <Text className="text-[#8f00ff] font-bold text-lg">
                     Description
                   </Text>
                 </View>

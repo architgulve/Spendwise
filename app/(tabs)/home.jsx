@@ -18,7 +18,7 @@ import {
   getSumOfMonthExpenses,
 } from "../../utils/database";
 import Animated from "react-native-reanimated";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect } from "expo-router";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { LinearGradient } from "expo-linear-gradient";
@@ -120,20 +120,20 @@ const Home = () => {
       console.log(e);
     }
   };
-  useEffect(() => {
-    if (prevsegments.current !== segments && segments.includes('home')) {
-      console.log(segments);
-      prevsegments.current=segments;
-      fetchData();
-      
-    }
-  },[segments]);
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     console.log("focused")
+  // useEffect(() => {
+  //   if (prevsegments.current !== segments && segments.includes('home')) {
+  //     console.log(segments);
+  //     prevsegments.current=segments;
   //     fetchData();
-  //   }, [])
-  // );
+      
+  //   }
+  // },[segments]);
+  useFocusEffect(
+    useCallback(() => {
+      console.log("focused")
+      fetchData();
+    }, [])
+  );
   const checkMonthName = (month) => {
     const monthNames = [
       "January",
@@ -177,7 +177,7 @@ const Home = () => {
             </View>
 
             {/* <ProgressCard /> */}
-            <Button handlePress={()=> router.push("../activity")}>
+            <Button handlePress={()=> router.push("../(activity)")}>
               <View className="bg-[#8f00ff] w-full  rounded-2xl p-3 mt-5">
                 <View className="flex flex-row justify-between items-center">
                   <View className="">
