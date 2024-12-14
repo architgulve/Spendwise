@@ -52,7 +52,7 @@ const RootLayout = () => {
 
   return (
     // <NavigationIndependentTree>
-    <NavigationContainer>
+    // <NavigationContainer>
     <GestureHandlerRootView style={{ flex: 1 }}>
       {/* <LayoutWrapper> */}
         <SafeAreaProvider>
@@ -81,7 +81,7 @@ const RootLayout = () => {
         </SafeAreaProvider>
       {/* </LayoutWrapper> */}
     </GestureHandlerRootView>
-    </NavigationContainer>
+    // </NavigationContainer>
     
     //  </NavigationIndependentTree>
   );
