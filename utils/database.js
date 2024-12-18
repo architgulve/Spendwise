@@ -278,3 +278,70 @@ export const sumofAllCategories = async () => {
     throw e;
   }
 }
+
+db.execSync(`
+  CREATE TABLE IF NOT EXISTS streak_tracking (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    last_entry_date TEXT NOT NULL,
+    current_streak INTEGER DEFAULT 0,
+    max_streak INTEGER DEFAULT 0,
+    start_date TEXT NOT NULL
+  );
+`);
+
+
+export const existingStreak = async () => {
+  try {
+    const result = db.getFirstSync(
+      `SELECT * FROM streak_tracking`
+    );
+    console.log(result);
+    return result;
+  } catch (e) {
+    console.log("Error getting Sum of all categories");
+    throw e;
+  }
+}
+  if (!existingStreak) {
+    db.runSync(
+      `INSERT INTO streak_tracking (last_entry_date, current_streak, max_streak, start_date) 
+       VALUES (?, ?, ?, ?)`,
+      [dayjs().format('YYYY-MM-DD'), 0, 0, dayjs().format('YYYY-MM-DD')]
+    );
+  }
+
+// Streak tracking function
+const updateStreak = async (currentDate) => {
+  try {
+    // Get current streak information
+    const streakInfo = db.getFirstSync('SELECT * FROM streak_tracking');
+    
+    if (!streakInfo) {
+      // If no streak info exists, create initial record
+      db.runSync(
+        `INSERT INTO streak_tracking (last_entry_date, current_streak, max_streak, start_date) 
+         VALUES (?, ?, ?, ?)`,
+        [currentDate, 1, 1, currentDate]
+      );
+      return;
+    }
+    
+    const lastEntryDate = dayjs(streakInfo.last_entry_date);
+    const currentStreak = streakInfo.current_streak;
+    const maxStreak = streakInfo.max_streak;
+    const startDate = dayjs(streakInfo.start_date);
+    
+    // Calculate new streak information
+    const daysSinceLastEntry = currentDate.diff(lastEntryDate, 'days');
+    const newStreak = daysSinceLastEntry === 1 ? currentStreak + 1 : 1;
+    const newMaxStreak = newStreak > maxStreak ? newStreak : maxStreak;
+    
+    // Update the database
+    db.runSync(
+      `UPDATE streak_tracking SET last_entry_date = ?, current_streak = ?, max_streak = ? WHERE id = ?`,
+      [currentDate.format('YYYY-MM-DD'), newStreak, newMaxStreak, 1]
+    );
+  } catch (error) {
+    console.error('Error updating streak', error);
+  }
+};
