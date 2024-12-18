@@ -141,7 +141,7 @@ const Activity = () => {
                   referenceLine1Config={userBudget}
                   yAxisLabelWidth={0}
                   hideAxesAndRules
-                  renderTooltip={(item,) => {
+                  renderTooltip={(item) => {
                     return (
                       <View className="bg-[#9000ff35] p-1.5 rounded-full ml-[-13] mb-[-40]">
                         <Text className="text-[#8f00ff]">{item.value}</Text>
@@ -216,10 +216,31 @@ const Activity = () => {
                 </>
               )}
             </Card>
-            <View>
-              <Text className="text-[#8f00ff] text-lg font-bold">Expenses</Text>
-            </View>
-            <View className="rounded-2xl w-full overflow-hidden items-center">
+            <Card containerStyles={"mt-4 p-4 justify-center text-size-3xl"}>
+              <View className="flex flex-col space-y-4  divide-y divide-[#2b2b2b]">
+                <Button
+                  handlePress={() => router.push("(tabs)/(activity)/history")}
+                >
+                  <View className="flex flex-row justify-between">
+                    <View className="flex flex-row gap-3 items-center">
+                      <Ionicons name="book" size={24} color="#3E00C2" />
+                      <Text className="text-white font-bold text-size-3xl">
+                        History
+                      </Text>
+                    </View>
+                    <View>
+                      <Ionicons
+                        name="chevron-forward-outline"
+                        size={24}
+                        color="gray"
+                      />
+                    </View>
+                  </View>
+                </Button>
+              </View>
+            </Card>
+            {/* <View className="rounded-2xl w-full overflow-hidden items-center">
+              
               {Expenses.length > 0 ? (
                 Expenses.map((item) => (
                   <SwipeableItem
@@ -243,8 +264,8 @@ const Activity = () => {
               ) : (
                 <Text className="text-white">No expenses found.</Text>
               )}
-            </View>
-            <View>
+            </View> */}
+            {/* <View>
               <Button
                 handlePress={() => {
                   deleteAllExpenses();
@@ -255,7 +276,7 @@ const Activity = () => {
                   <Text className="text-white text-lg">Delete</Text>
                 </View>
               </Button>
-            </View>
+            </View> */}
           </View>
         </View>
       </ScrollView>
