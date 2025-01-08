@@ -21,7 +21,7 @@ export default function App() {
   return (
     // <NavigationContainer>
     <ImageBackground source={image}>
-      <View className="h-full justify-center">
+      <View className="h-full justify-center"> 
         {/* <SafeAreaView className="bg-black h-full"> */}
         <StatusBar hidden={true} style="light" />
         {/* <ScrollView> */}

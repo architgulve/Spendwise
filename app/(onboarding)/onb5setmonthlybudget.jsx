@@ -62,6 +62,7 @@ const onb5setmonthlybudget = () => {
                 handleChangeText={(e) => setform({ ...form, budget: e })}
                 otherStyles="mx-7 mt-20"
                 keyboardType="numeric"
+                // type={"number"}
               />
             </Animated.View>
             <View className="w-[90vw] fle flex-row justify-between items-center ">
