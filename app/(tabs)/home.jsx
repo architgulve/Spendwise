@@ -165,7 +165,7 @@ const Home = () => {
                   Hello! {userName}
                 </Text>
               </View>
-              <Pressable onPress={() => router.push("../profile")}>
+              <Pressable onPress={() => router.push("../(profile)")}>
                 <View className="items-center justify-center">
                 <Image
                 source={image}

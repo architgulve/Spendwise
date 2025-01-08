@@ -11,6 +11,7 @@ const FormField = ({
   keyboardType,
   autocomplete,
   otherStyles,
+  type,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -49,6 +50,7 @@ const FormField = ({
             keyboardType={keyboardType}
             autoComplete={autocomplete}
             keyboardAppearance="dark"
+            // type={type}
             {...props}
           />
         </View>

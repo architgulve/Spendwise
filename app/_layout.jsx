@@ -70,11 +70,15 @@ const RootLayout = () => {
               }}
             />
             <Stack.Screen
-              name="profile"
+              name="(profile)"
               options={{ presentation: "transparentModal", animation: "fade", }}
             />
             <Stack.Screen
               name="badgedetails"
+              options={{ presentation: "transparentModal", animation: "fade" }}
+            />
+            <Stack.Screen
+              name="editprofile"
               options={{ presentation: "transparentModal", animation: "fade" }}
             />
           </Stack>
