@@ -12,6 +12,8 @@ import Animated, {
   SlideOutLeft,
 } from "react-native-reanimated";
 import * as Haptics from "expo-haptics";
+import LottieView from "lottie-react-native";
+
 
 // const { Value, timing } = Animated;
 
@@ -40,6 +42,12 @@ const onb1adddaily = () => {
               Add Expenses.
             </Animated.Text>
           </View>
+          <LottieView
+            source={require("../../assets/animations/onboard1.json")}
+            autoPlay
+            loop={true}
+            className="w-[140vw] h-[140vw] mb-10"
+          ></LottieView>
           <Animated.View>
             <CustomButton
               sharedTransitionTag="button"

@@ -1,4 +1,11 @@
-import { View, Text, Pressable, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  ScrollView,
+  TextInput,
+} from "react-native";
 import React, { useEffect, useState, useCallback } from "react";
 import { BlurView } from "expo-blur";
 import { router } from "expo-router";
@@ -11,8 +18,33 @@ import ProfilePic from "../../components/profilepic";
 import { useFocusEffect } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { StyleSheet } from "react-native";
+import { use } from "react";
 
 const EditProfile = () => {
+  const [userName, setUserName] = useState("Stranger");
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const name = await AsyncStorage.getItem("userName");
+        if (name !== null) {
+          setUserName(name);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchUserName();
+  }, []);
+
+  const setUserNAME = async (name) => {
+    try {
+      await AsyncStorage.setItem("userName", name);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const defaultProfile = require("../../assets/images/9.png");
   const profileLog = {
     1: require("../../assets/images/1.png"),
@@ -97,7 +129,10 @@ const EditProfile = () => {
     <View className="h-full p-3 bg-black">
       <View className="mt-5 items-center p-5 justify-between flex-row">
         <Text className="text-white text-2xl">Profile</Text>
-        <Button handlePress={() => router.back()}>
+        <Button handlePress={() => {
+          router.back();
+          setUserNAME(userName);
+        }}>
           <View className="justify-center items-center rounded-full p-3 bg-[#ffffff24]">
             <Text className="text-white text-lg">Done</Text>
           </View>
@@ -235,9 +270,30 @@ const EditProfile = () => {
             </View>
             <View>
               <Card>
+                {/* <View className="flex flex-row  justify-between w-full">
+                  <View className="flex flex-row items-center ">
+                  <Text className="text-white text-2xl">Name</Text>
+                  <Ionicons name="pencil-outline" size={24} color="white" />
+                  </View>
+                  <Text className="text-white text-xl">{userName}</Text>
+                </View> */}
+                <View >
+                  <TextInput
+                    value={userName}
+                    onChangeText={(e) => {
+                      setUserName(e);
+                    }}
+                    placeholder={userName}
+                    placeholderTextColor="#999"
+                  />
+                </View>
+              </Card>
+            </View>
+            <View>
+              <Card>
                 <View className="flex flex-row items-center justify-between w-full">
                   <View className="flex flex-row items-center justify-between w-full">
-                    <Text className="text-white">Budget</Text>
+                    <Text className="text-white text-2xl">Budget</Text>
                     <View className="flex flex-row">
                       <Button
                         ContainerStyles="bg-[#121212] p-3 rounded-l-xl"
@@ -262,6 +318,7 @@ const EditProfile = () => {
                   </View>
                 </View>
               </Card>
+              <Text className="text-white">{userName}</Text>
             </View>
           </View>
         </View>
