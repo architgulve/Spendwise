@@ -153,10 +153,12 @@ const Activity = () => {
               </View>
             </View>
 
-            <View className="flex flex-row justify-between">
-              <Text className="text-[#8f00ff] text-lg font-bold">
-                Categories
-              </Text>
+            <View className="flex flex-row justify-between items-center">
+              <View className=" p-1">
+                <Text className="text-[#8f00ff] text-lg font-bold">
+                  Categories
+                </Text>
+              </View>
               <Button
                 handlePress={() => {
                   router.push("/categories");

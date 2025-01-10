@@ -129,10 +129,12 @@ const EditProfile = () => {
     <View className="h-full p-3 bg-black">
       <View className="mt-5 items-center p-5 justify-between flex-row">
         <Text className="text-white text-2xl">Profile</Text>
-        <Button handlePress={() => {
-          router.back();
-          setUserNAME(userName);
-        }}>
+        <Button
+          handlePress={() => {
+            router.back();
+            setUserNAME(userName);
+          }}
+        >
           <View className="justify-center items-center rounded-full p-3 bg-[#ffffff24]">
             <Text className="text-white text-lg">Done</Text>
           </View>
@@ -141,133 +143,112 @@ const EditProfile = () => {
       <View>
         <View className="items-center">
           <View className="mt-5 items-center">
-            <Image
-              source={profile}
-              style={{ width: 200, height: 200, borderRadius: 100 }}
-            />
-            <View className="">
-              <View className="flex-row p-3 bg-[#1c1c1c] rounded-2xl">
-                <ScrollView
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                  className="space-x-1"
-                >
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("9", require("../../assets/images/9.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/9.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("1", require("../../assets/images/1.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/1.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("2", require("../../assets/images/2.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/2.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("3", require("../../assets/images/3.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/3.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("4", require("../../assets/images/4.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/4.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("5", require("../../assets/images/5.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/5.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("6", require("../../assets/images/6.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/6.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("7", require("../../assets/images/7.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/7.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress("8", require("../../assets/images/8.png"))
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/8.png")}
-                      />
-                    </Button>
-                  </View>
-                  <View>
-                    <Button
-                      handlePress={() =>
-                        profilePress(
-                          "10",
-                          require("../../assets/images/10.png")
-                        )
-                      }
-                    >
-                      <ProfilePic
-                        image={require("../../assets/images/10.png")}
-                      />
-                    </Button>
-                  </View>
-                </ScrollView>
-              </View>
+            <View>
+              <Image
+                source={profile}
+                style={{ width: 200, height: 200, borderRadius: 100 }}
+              />
             </View>
+            {/* <View className=""> */}
+            <View className="flex-row p-3 bg-[#1c1c1c] rounded-2xl mt-5">
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                className="space-x-1"
+              >
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("9", require("../../assets/images/9.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/9.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("1", require("../../assets/images/1.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/1.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("2", require("../../assets/images/2.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/2.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("3", require("../../assets/images/3.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/3.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("4", require("../../assets/images/4.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/4.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("5", require("../../assets/images/5.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/5.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("6", require("../../assets/images/6.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/6.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("7", require("../../assets/images/7.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/7.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("8", require("../../assets/images/8.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/8.png")} />
+                  </Button>
+                </View>
+                <View>
+                  <Button
+                    handlePress={() =>
+                      profilePress("10", require("../../assets/images/10.png"))
+                    }
+                  >
+                    <ProfilePic image={require("../../assets/images/10.png")} />
+                  </Button>
+                </View>
+              </ScrollView>
+            </View>
+            {/* </View> */}
             <View>
               <Card>
                 {/* <View className="flex flex-row  justify-between w-full">
@@ -277,7 +258,8 @@ const EditProfile = () => {
                   </View>
                   <Text className="text-white text-xl">{userName}</Text>
                 </View> */}
-                <View >
+                <View className="items-center flex-row justify-between w-full">
+                  <Text className="text-white text-lg">Name</Text>
                   <TextInput
                     value={userName}
                     onChangeText={(e) => {
@@ -285,6 +267,7 @@ const EditProfile = () => {
                     }}
                     placeholder={userName}
                     placeholderTextColor="#999"
+                    className="bg-[#121212] rounded-xl p-4 text-white items-center"
                   />
                 </View>
               </Card>
@@ -293,7 +276,7 @@ const EditProfile = () => {
               <Card>
                 <View className="flex flex-row items-center justify-between w-full">
                   <View className="flex flex-row items-center justify-between w-full">
-                    <Text className="text-white text-2xl">Budget</Text>
+                    <Text className="text-white text-lg">Budget</Text>
                     <View className="flex flex-row">
                       <Button
                         ContainerStyles="bg-[#121212] p-3 rounded-l-xl"
@@ -318,7 +301,6 @@ const EditProfile = () => {
                   </View>
                 </View>
               </Card>
-              <Text className="text-white">{userName}</Text>
             </View>
           </View>
         </View>

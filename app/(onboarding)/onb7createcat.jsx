@@ -9,12 +9,13 @@ import Button from "../../components/Button";
 import { MotiPressable } from "moti/interactions";
 import CatToggles from "../../components/CatToggles";
 import * as Haptics from "expo-haptics";
+import { addCategory } from "../../utils/database";
 const onb7createcat = () => {
   const image = require("../../assets/images/Android Large - 7bg.png");
 
   const handlePress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    router.push("/(onboarding)/onb8allset")
+    router.push("/(onboarding)/onb8allset");
   };
   return (
     <ImageBackground
@@ -37,23 +38,95 @@ const onb7createcat = () => {
               </Text>
             </View>
             <View className="w-[90vw] flex flex-row flex-wrap items-center justify-center">
-              <CatToggles label={"Food"} />
-              <CatToggles label={"Entertainment"} />
-              <CatToggles label={"Travel"} />
-              <CatToggles label={"Health"} />
-              <CatToggles label={"Education"} />
-              <CatToggles label={"Shopping"} />
-              <CatToggles label={"Personal"} />
-              <CatToggles label={"Gifts"} />
-              <CatToggles label={"Utilities"} />
-              <CatToggles label={"Pets"} />
-              <CatToggles label={"Home"} />
-              <CatToggles label={"Transportation"} />
-              <CatToggles label={"Insurance"} />
-              <CatToggles label={"Savings"} />
+              <CatToggles
+                label={"Food"}
+                onPress={async () => {
+                  addCategory("Food", "#EB9010");
+                }}
+              />
+              <CatToggles
+                label={"Entertainment"}
+                onPress={async () => {
+                  addCategory("Entertainment", "#EBD510");
+                }}
+              />
+              <CatToggles
+                label={"Travel"}
+                onPress={async () => {
+                  addCategory("Travel", "#616BF8");
+                }}
+              />
+              <CatToggles
+                label={"Health"}
+                onPress={async () => {
+                  addCategory("Health", "#FD2E6C");
+                }}
+              />
+              <CatToggles
+                label={"Education"}
+                onPress={async () => {
+                  addCategory("Education", "#A6A67B");
+                }}
+              />
+              <CatToggles
+                label={"Shopping"}
+                onPress={async () => {
+                  addCategory("Shopping", "#F608A3");
+                }}
+              />
+              <CatToggles
+                label={"Personal"}
+                onPress={async () => {
+                  addCategory("Personal", "#25F4FF");
+                }}
+              />
+              <CatToggles
+                label={"Gifts"}
+                onPress={async () => {
+                  addCategory("Gifts", "#8411B9");
+                }}
+              />
+              <CatToggles
+                label={"Utilities"}
+                onPress={async () => {
+                  addCategory("Utilities", "#1974E2");
+                }}
+              />
+              <CatToggles
+                label={"Pets"}
+                onPress={async () => {
+                  addCategory("Pets", "#D01D1D");
+                }}
+              />
+              <CatToggles
+                label={"Home"}
+                onPress={async () => {
+                  addCategory("Home", "#1ED4E8");
+                }}
+              />
+              <CatToggles
+                label={"Cab"}
+                onPress={async () => {
+                  addCategory("Cab", "#FFC31F");
+                }}
+              />
+              <CatToggles
+                label={"Insurance"}
+                onPress={async () => {
+                  addCategory("Insurance", "#FFFFFF");
+                }}
+              />
+              <CatToggles
+                label={"Savings"}
+                onPress={async () => {
+                  addCategory("Savings", "#1FFF2A");
+                }}
+              />
               <CatToggles
                 label={"Groceries"}
-                // onPress={() => router.push("/(onboarding)/onb8allset")}
+                onPress={async () => {
+                  addCategory("Groceries", "#10EB47");
+                }}
               />
               <CatToggles label={"Other"} />
             </View>

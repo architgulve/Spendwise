@@ -22,7 +22,7 @@ const TimingConfig = {
   duration: 150,
 };
 
-const CatToggles = ({ label, onPress }) => {
+const CatToggles = ({ label, onPress, color }) => {
   const [selected, setSelected] = React.useState(false);
   const pressed = useSharedValue(false);
   const fadedActiveColor = Color(activecolor).alpha(0.1).toString();

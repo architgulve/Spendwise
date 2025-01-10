@@ -52,7 +52,7 @@ const RootLayout = () => {
 
   return (
     // <NavigationIndependentTree>
-    // <NavigationContainer>
+    <NavigationContainer>
     <GestureHandlerRootView style={{ flex: 1 }}>
       {/* <LayoutWrapper> */}
         <SafeAreaProvider>
@@ -77,15 +77,11 @@ const RootLayout = () => {
               name="badgedetails"
               options={{ presentation: "transparentModal", animation: "fade" }}
             />
-            <Stack.Screen
-              name="editprofile"
-              options={{ presentation: "transparentModal", animation: "fade" }}
-            />
           </Stack>
         </SafeAreaProvider>
       {/* </LayoutWrapper> */}
     </GestureHandlerRootView>
-    // </NavigationContainer>
+    </NavigationContainer>
     
     //  </NavigationIndependentTree>
   );

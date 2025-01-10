@@ -123,18 +123,6 @@ const Add = () => {
                 <Text className="text-white text-2xl font-bold">
                   Add Expense
                 </Text>
-                {/* <View className="flex flex-row items-center space-x-2 bg-black rounded-full p-2 w-1/3" >
-                  <DateTimePicker
-                    value={date}
-                    mode="date"
-                    display="default"
-                    onChange={onChange}
-                    accentColor="#8f00ff"
-                  />
-                  <Text className="text-white text-base">
-                    {date.onChanged ? date.toDateString() : 'Select Date'}
-                  </Text>
-                </View> */}
                 <View className="flex flex-row items-center space-x-2 bg-black rounded-full p-2 w-1/3">
                   <Button
                     handlePress={() => {
@@ -142,9 +130,9 @@ const Add = () => {
                       setShow(true);
                     }}
                   >
-                    <Text className="text-white text-base">
+                    {Platform.OS==="ios" && (<Text className="text-white text-base">
                       {date.toDateString()}
-                    </Text>
+                    </Text>)}
                   </Button>
 
                   {show && (
