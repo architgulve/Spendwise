@@ -147,7 +147,9 @@ const Settings = () => {
               <Card containerStyles={"mt-8"}>
                 <View className="flex flex-col gap-3 divide-y divide-[#2b2b2b]">
                   <View>
-                    <Button>
+                    <Button
+                      handlePress={() => router.push("/contactus")}
+                    >
                       <View className="flex flex-row justify-between">
                         <View className="flex flex-row gap-3 items-center">
                           <Ionicons
