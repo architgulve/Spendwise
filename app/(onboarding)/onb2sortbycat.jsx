@@ -11,6 +11,7 @@ import Animated, {
 } from "react-native-reanimated";
 import BackButton from "../../components/backbutton";
 import * as Haptics from "expo-haptics";
+import LottieView from "lottie-react-native";
 
 const onb2sortbycat = () => {
   const image = require("../../assets/images/Rectangle 55bg.png");
@@ -36,6 +37,12 @@ const onb2sortbycat = () => {
               Sort by category.
             </Animated.Text>
           </View>
+          <LottieView
+            source={require("../../assets/animations/onboard2.json")}
+            autoPlay
+            loop={true}
+            className="w-[220vw] h-[140vw] mb-10"
+          ></LottieView>
           <View className="w-[90vw] fle flex-row justify-between items-center ">
             <BackButton />
             <Animated.View>

@@ -43,10 +43,10 @@ const onb1adddaily = () => {
             </Animated.Text>
           </View>
           <LottieView
-            source={require("../../assets/animations/onboard1.json")}
+            source={require("../../assets/animations/onboard3.json")}
             autoPlay
             loop={true}
-            className="w-[140vw] h-[140vw] mb-10"
+            className="w-[160vw] h-[140vw] mb-10"
           ></LottieView>
           <Animated.View>
             <CustomButton
