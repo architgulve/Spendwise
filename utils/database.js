@@ -263,6 +263,24 @@ export const sumofCategory = async (name) => {
     throw e;
   }
 }
+ 
+// Modified database query function
+export const topThreeCatogories = async () => {
+  try {
+    const result = await db.getAllSync(
+      `SELECT category as name, SUM(cost) as value 
+       FROM expenses
+       GROUP BY category 
+       ORDER BY value DESC 
+       LIMIT 3`
+    );
+    console.log("Top 3 categories:", result);
+    return result;
+  } catch (e) {
+    console.log("Error getting Top 3 Categories:", e);
+    throw e;
+  }
+};
 
 export const sumofAllCategories = async () => {
   try {
