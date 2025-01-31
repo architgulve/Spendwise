@@ -79,9 +79,10 @@ const Activity = () => {
       } catch (e) {
         console.log(e);
       }
-      const weekData = await getLastWeekExpenses(); // Fetch weekly expenses
-      // console.log("Fetched weekly expenses:", weekData);
-      setWeeklyExpenses(weekData);
+      const w = await getLastWeekExpenses(); // Fetch weekly expenses
+      // const weekData = w.map((item) => item.expense);
+      console.log("Fetched weekly expenses:", weekData);
+      setWeeklyExpenses(w);
       // console.log("Expenses state:", Expenses);
       // console.log("Weekly expenses state:", weeklyExpenses);
     } catch (error) {
@@ -90,6 +91,11 @@ const Activity = () => {
   };
 
   const piedata = [{}];
+  const getDayOfWeek = (dateString) => {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+    const date = new Date(dateString);
+    return days[date.getDay()];
+  }; 
 
   // useEffect(() => {
   //   if (prevsegments.current !== segments && segments.includes("(activity)")) {
@@ -103,6 +109,7 @@ const Activity = () => {
       fetchData(); // Fetch data every time the tab comes into focus
     }, [])
   );
+
 
   return (
     <SafeAreaView edges={["top"]} className="bg-[#000000] h-full">
@@ -121,12 +128,14 @@ const Activity = () => {
             </View>
 
             <View className="h-[67vw] rounded-2xl w-full bg-[#1c1c1c] overflow-hidden items-center justify-center ">
-              <View className="w-full items-center ">
+              <View className="w-full justify-center items-center ">
                 <BarChart
                   data={weeklyExpenses.map((value, index) => ({
-                    value,
-                    label: `${index}`,
+                    value: value.expense,
+                    label: getDayOfWeek(value.date),
+                    
                   }))}
+                  // data={[]}
                   maxValue={userBudget}
                   backgroundColor={"#123456"}
                   roundedTop
@@ -148,7 +157,7 @@ const Activity = () => {
                       </View>
                     );
                   }}
-                  // gradientColor={'#FFEEFE'}
+
                 />
               </View>
             </View>
