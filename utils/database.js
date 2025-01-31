@@ -81,8 +81,9 @@ export const getLastWeekExpenses = async () => {
         `SELECT SUM(cost) AS total FROM expenses WHERE date = ?`,
         [date]
       );
-      lastWeekExpenses.push(result?.total ?? 0);
+      lastWeekExpenses.push({date,expense:(result?.total ?? 0)});
     }
+    console.log(lastWeekExpenses);
     return lastWeekExpenses;
   } catch (error) {
     console.error('Error fetching last week expenses', error);
@@ -267,15 +268,38 @@ export const sumofCategory = async (name) => {
 // Modified database query function
 export const topThreeCatogories = async () => {
   try {
-    const result = await db.getAllSync(
-      `SELECT category as name, SUM(cost) as value 
+    // Fetch all categories, including those with 0 cost
+    const allCategories = await db.getAllSync(
+      `SELECT category as name, COALESCE(SUM(cost), 0) as value 
        FROM expenses
        GROUP BY category 
-       ORDER BY value DESC 
-       LIMIT 3`
+       ORDER BY value DESC`
     );
-    console.log("Top 3 categories:", result);
-    return result;
+
+    // Fetch all unique category names from the database
+    const allCategoryNames = await db.getAllSync(
+      `SELECT DISTINCT category as name 
+       FROM expenses`
+    );
+
+    // Take the top 3 categories based on value
+    const topCategories = allCategories.slice(0, 3);
+
+    // If there are fewer than 3 categories, pad the result with actual category names
+    if (topCategories.length < 3) {
+      // Find categories that are not already in the topCategories
+      const remainingCategories = allCategoryNames
+        .filter((cat) => !topCategories.some((topCat) => topCat.name === cat.name))
+        .slice(0, 3 - topCategories.length);
+
+      // Add these categories with a value of 0
+      remainingCategories.forEach((cat) => {
+        topCategories.push({ name: cat.name, value: 0 });
+      });
+    }
+
+    console.log("Top 3 categories:", topCategories);
+    return topCategories;
   } catch (e) {
     console.log("Error getting Top 3 Categories:", e);
     throw e;
@@ -363,3 +387,4 @@ const updateStreak = async (currentDate) => {
     console.error('Error updating streak', error);
   }
 };
+

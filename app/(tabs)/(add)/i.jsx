@@ -46,12 +46,12 @@ const Add = () => {
   const [selectedCategory, setselectedCategory] = useState(["None", "#ffffff"]);
   const [show, setShow] = useState(false);
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    const [category, setCategory] = useState([]);
-    // setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
+  // const onChange = (event, selectedDate) => {
+  //   const currentDate = selectedDate || date;
+  //   const [category, setCategory] = useState([]);
+  //   // setShow(Platform.OS === 'ios');
+  //   setDate(currentDate);
+  // };
 
   const increment = () => {
     setQuantity((prev) => prev + 1);
@@ -119,12 +119,12 @@ const Add = () => {
         <ScrollView>
           <View className="m-3 mb-[120px]">
             <View className="flex flex-col space-y-5">
-              <View className="flex-1 flex flex-row justify-between">
+              <View className="flex-1 flex flex-row justify-between items-center">
                 <Text className="text-white text-2xl font-bold">
                   Add Expense
                 </Text>
-                <View className="flex flex-row items-center space-x-2 bg-black rounded-full p-2 w-1/3">
-                  <Button
+                <View className="flex flex-row items-center space-x-2  rounded-full p-2 w-1/3 justify-center">
+                  {/* <Button
                     handlePress={() => {
                       // Show the date picker only when the button is pressed
                       setShow(true);
@@ -133,9 +133,10 @@ const Add = () => {
                     {Platform.OS==="ios" && (<Text className="text-white text-base">
                       {date.toDateString()}
                     </Text>)}
-                  </Button>
+                  </Button> */}
+                  
 
-                  {show && (
+                  {Platform.OS === "ios" && (
                     <DateTimePicker
                       testID="dateTimePicker"
                       value={date}
@@ -149,6 +150,33 @@ const Add = () => {
                       }}
                       accentColor="#8f00ff"
                     />
+                  )}
+                  {Platform.OS === "android" && (
+                    <>
+                      <Button
+                        handlePress={() => {setShow(true)}}
+                      >
+                        <Text className="text-white text-base">
+                          {date.toDateString()}
+                        </Text>
+                      </Button>
+                      {show && (
+                        
+                        <DateTimePicker
+                          testID="dateTimePicker"
+                          value={date}
+                          mode="date"
+                          is24Hour={true}
+                          display="default"
+                          onChange={(event, selectedDate) => {
+                            const currentDate = selectedDate || date;
+                            setShow(Platform.OS === "ios");
+                            setDate(currentDate);
+                          }}
+                          accentColor="#8f00ff"
+                        />
+                      )}
+                    </>
                   )}
                 </View>
               </View>
